@@ -69,3 +69,12 @@ ALTER TABLE "Comment" ADD CONSTRAINT "Comment_userIdx_fkey" FOREIGN KEY ("userId
 
 -- AddForeignKey
 ALTER TABLE "Comment" ADD CONSTRAINT "Comment_projectIdx_fkey" FOREIGN KEY ("projectIdx") REFERENCES "Project"("idx") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+
+-- 결국, 카테고리 이름을 추가하려면 SQL 쿼리를 마이그레이션 파일에 직접 추가하고, pnpm prisma migrate deploy를 통해 그 쿼리를 데이터베이스에 적용해야 합니다.
+INSERT INTO "Category" (title) VALUES 
+('공부'), 
+('운동'), 
+('루틴'), 
+('취미'), 
+('기타');

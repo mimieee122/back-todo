@@ -39,6 +39,7 @@ model Project {
       categoryIdx   Int
       priority    Priority @relation(fields: [priorityIdx], references: [idx])
       priorityIdx Int
+      title String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now()) @updatedAt
 
