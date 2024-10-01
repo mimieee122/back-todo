@@ -8,9 +8,8 @@ const prisma = new PrismaClient()
 export const updateProject = async (
     req: NextApiRequest,
     res: NextApiResponse,
-    title: string,
-    projectIdx: number,
-    priorityIdx: number
+
+    projectIdx: number
 ) => {
     const cookies = parseCookies({ req })
     const token = cookies['token']
@@ -22,6 +21,14 @@ export const updateProject = async (
     try {
         const decoded = verify(token, process.env.JWT_SECRET as string) as {
             idx: number
+        }
+
+        const { title, priorityIdx } = req.body
+
+        if (!title || !priorityIdx) {
+            return res
+                .status(400)
+                .json({ message: '프로젝트 명과 우선순위를 입력하세요.' })
         }
 
         const project = await prisma.project.findUnique({

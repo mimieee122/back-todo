@@ -9,9 +9,7 @@ const prisma = new PrismaClient()
 export const createProject = async (
     req: NextApiRequest,
     res: NextApiResponse,
-    categoryIdx: number,
-    title: string,
-    priorityIdx: number
+    categoryIdx: number
 ) => {
     if (req.method !== 'POST') {
         return res.status(405).json({ message: '허용되지 않은 메소드 입니다.' })
@@ -29,36 +27,37 @@ export const createProject = async (
     try {
         const decoded = verify(token, process.env.SECRET_JWT as string) as {
             idx: number
-            nickname: string
+            id: string
         }
 
-        //const {title}=req.body
-        // if(!title)
-        // {
-        //     return res.status(400).json({message:'프로젝트 명을 입력하세요.'})
-        // }
+        const { title, priorityIdx } = req.body
 
-        const idx = req.query
+        if (!title || !priorityIdx) {
+            return res
+                .status(400)
+                .json({ message: '프로젝트 명과 우선순위를 입력하세요.' })
+        }
 
         const user = await prisma.user.findUnique({
             where: {
                 idx: decoded.idx,
             },
             select: {
-                nickname: true,
+                id: true,
             },
         })
         if (!user) {
             return res.status(401).json({ message: '유저가 없습니다.' })
         }
 
+        // user.title , user.priorityIdx 뭐 이러고 있었음 ..
+
         const project = await prisma.project.create({
             data: {
-                idx: Number(idx),
                 title: title,
                 categoryIdx: categoryIdx,
                 userIdx: Number(decoded.idx),
-                priorityIdx: priorityIdx,
+                priorityIdx: Number(priorityIdx),
             },
         })
         return res.status(201).json(project)
