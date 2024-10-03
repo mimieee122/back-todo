@@ -14,12 +14,11 @@ export function useLogOut() {
     })
 
     // 로그아웃 폼 제출 핸들러
-    const onSubmitLogOut = (e: any) => {
-        e.preventDefault()
+    const onSubmitLogOut = () => {
         if (me.isSuccess) {
             logoutMutation.mutate()
         } else {
-            toast.error('로그인 상태가 아닙니다.')
+            toast.error('이미 로그아웃 상태입니다.')
         }
     }
 

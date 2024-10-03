@@ -4,6 +4,8 @@ import React from 'react'
 import { Login } from '@/components/pages/home/login'
 import Image from 'next/image'
 import { LogOut } from '@/components/pages/home/logout'
+import Link from 'next/link'
+import Button from '@/components/button'
 
 export default function Home() {
     const me = useQuery({
@@ -12,11 +14,7 @@ export default function Home() {
     })
 
     return (
-        <div
-            className={`${
-                me.isSuccess ? 'logged-in-bg' : ''
-            } flex flex-row justify-center w-screen min-h-screen`}
-        >
+        <div className="flex flex-row justify-center w-screen min-h-screen">
             <div className="absolute w-screen h-screen -z-10">
                 <Image
                     src="/assets/images/background.jpg"
@@ -53,6 +51,9 @@ export default function Home() {
                                 />
                             </div>
                             <Login />
+                            <Link href="/signUp">
+                                <Button>회원가입</Button>
+                            </Link>
                         </div>
                     )}
                 </div>

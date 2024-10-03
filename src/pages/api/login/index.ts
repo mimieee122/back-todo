@@ -25,7 +25,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
                 .json({ message: '닉네임에 해당하는 유저가 없습니다.' })
         }
 
-        const hashedPassword = password
+        const hashedPassword = user.password
         const isCorrect = await compare(password, hashedPassword)
         if (!isCorrect) {
             res.status(402).json({ message: '비밀번호가 일치하지 않습니다.' })
