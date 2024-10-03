@@ -1,32 +1,45 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Button from '@/components/button'
 import { useLogin } from './login.hook'
+import { useForm } from 'react-hook-form'
+
+// 데이터의 형식을 동일하게 강제하는 것
+// (데이터가 공유되는 게 아니라, 타입 정의만 동일한 것.)
+type FormData = {
+    id: string
+    password: string
+}
 
 export function Login() {
-    const { login, setId, id, setPassword, password } = useLogin()
+    // useLogin hook에서 가져온 onSubmitLogin 사용
+    const { onSubmitLogin } = useLogin()
+
+    // useForm으로 폼 관리
+    const { register, handleSubmit } = useForm<FormData>()
 
     return (
         <form
-            onSubmit={login}
-            className=" flex flex-col border-black border-[2px] border-solid  justify-center items-center text-center gap-[30px] w-[600px] text-black p-4 bg-white bg-opacity-35 rounded-xl"
+            onSubmit={handleSubmit(onSubmitLogin)} // handleSubmit으로 폼 제출
+            className="flex flex-col border-black border-[2px] border-solid justify-center items-center text-center gap-[30px] w-[600px] text-black p-4 bg-white bg-opacity-35 rounded-xl"
         >
             <p className="text-[40px] signIn text-[#5fbfe9]">SIGN IN</p>
+
             <label htmlFor="nickname">ID</label>
             <input
+                {...register('id')} // id 필드를 useForm과 연결
                 type="text"
-                onChange={(e) => setId(e.target.value)}
                 id="name"
                 name="id"
-                value={id}
-                className=" text-center border-black border-[1px]"
+                className="text-center border-black border-[1px]"
             />
-            <label htmlFor="password">password</label>
+
+            <label htmlFor="password">Password</label>
             <input
+                {...register('password')} // password 필드를 useForm과 연결
                 type="password"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
                 id="password"
                 name="password"
-                className=" text-center border-black border-[1px]"
+                className="text-center border-black border-[1px]"
             />
 
             <Button>로그인</Button>

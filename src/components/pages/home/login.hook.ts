@@ -1,37 +1,39 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMutation, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import { useState } from 'react'
 import { toast } from 'react-toastify'
 
+// 데이터의 형식을 동일하게 강제하는 것
+// (데이터가 공유되는 게 아니라, 타입 정의만 동일한 것.)
+
+type FormData = {
+    id: string
+    password: string
+}
+
 export function useLogin() {
-    const [id, setId] = useState('')
-    const [password, setPassword] = useState('') // 내용 상태
+    // 사용자 정보 쿼리
     const me = useQuery({
         queryKey: ['me'],
         queryFn: async () => await axios.get('/api/me'),
     })
-    const login = (e) => {
-        e.preventDefault()
+
+    // 로그인 폼 제출 핸들러
+    const onSubmitLogin = (data: FormData) => {
         if (me.isSuccess) {
             toast.error('이미 로그인 상태입니다.')
             return
         } else {
             loginMutation.mutate({
-                id: e.currentTarget.id.value,
-                password: e.currentTarget.password.value,
+                id: data.id,
+                password: data.password,
             })
         }
     }
 
-    // mutation은 데이터를 변경하는 작업을 의미
+    // 로그인 API 호출을 위한 mutation
     const loginMutation = useMutation({
-        mutationFn: async ({
-            id,
-            password,
-        }: {
-            id: string
-            password: string
-        }) => {
+        mutationFn: async ({ id, password }: FormData) => {
             const response = await axios.post('/api/login', {
                 id,
                 password,
@@ -42,32 +44,25 @@ export function useLogin() {
 
             if (!userIdx || userIdx === undefined) {
                 console.error(
-                    'Failed to set authorIdx: value is undefined or null'
+                    'Failed to set userIdx: value is undefined or null'
                 )
                 throw new Error('로그인 실패: 유효하지 않은 데이터입니다.')
             }
 
-            // localStorage.setItem('authorIdx', authorIdx)
             return response.data
         },
         onSuccess: async () => {
-            setId('') // ID 초기화
-            setPassword('') // 비밀번호 초기화
-            me.refetch()
+            me.refetch() // 로그인 성공 시 사용자 정보 다시 가져오기
             toast.success('로그인이 완료되었습니다.')
         },
-        // onError: (error) => {
-        //     if (error.response && error.response.data) {
-        //         toast.error(error.response.data.message)
-        //     }
-        // },
+        onError: (error: any) => {
+            if (error.response && error.response.data) {
+                toast.error(error.response.data.message)
+            }
+        },
     })
 
     return {
-        login,
-        setId,
-        id,
-        setPassword,
-        password,
+        onSubmitLogin, // 로그인 폼 제출 함수 반환
     }
 }
