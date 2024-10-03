@@ -10,9 +10,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
         const { id, password } = req.body
 
-        if (!id || !password) {
-            res.status(400).json({ message: '아이디, 비밀번호 작성 요망' })
-        }
+        // if (!id || !password) {
+        //     res.status(400).json({ message: '아이디, 비밀번호 작성 요망' })
+        // }
 
         const user = await prisma.user.findUnique({
             where: { id: id },

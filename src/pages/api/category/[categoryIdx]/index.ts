@@ -1,8 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { getOneCategory } from '@/apis/categories/getCategory'
 
-// 현재 이 파일에 토큰 검증이 필요한지 아닌지 모르겠는 상태.
-
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const secret = process.env.SECRET_JWT
 

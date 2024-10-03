@@ -15,7 +15,11 @@ export function Login() {
     const { onSubmitLogin } = useLogin()
 
     // useForm으로 폼 관리
-    const { register, handleSubmit } = useForm<FormData>()
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<FormData>()
 
     return (
         <form
@@ -26,21 +30,26 @@ export function Login() {
 
             <label htmlFor="nickname">ID</label>
             <input
-                {...register('id')} // id 필드를 useForm과 연결
+                {...register('id', { required: 'id를 입력해 주세요.' })} // id 필드를 useForm과 연결
                 type="text"
                 id="name"
                 name="id"
                 className="text-center border-black border-[1px]"
             />
+            {errors.id && <p>{errors.id.message}</p>}
 
             <label htmlFor="password">Password</label>
             <input
-                {...register('password')} // password 필드를 useForm과 연결
+                {...register('password', {
+                    required: 'password를 입력해 주세요.',
+                    // 필수 입력 유효성 검사
+                })}
                 type="password"
                 id="password"
                 name="password"
                 className="text-center border-black border-[1px]"
             />
+            {errors.password && <p>{errors.password.message}</p>}
 
             <Button>로그인</Button>
         </form>

@@ -3,6 +3,7 @@ import axios from 'axios'
 import React from 'react'
 import { Login } from '@/components/pages/home/login'
 import Image from 'next/image'
+import { LogOut } from '@/components/pages/home/logout'
 
 export default function Home() {
     const me = useQuery({
@@ -18,7 +19,7 @@ export default function Home() {
         >
             <div className="absolute w-screen h-screen -z-10">
                 <Image
-                    src="/assets/images/배경.jpg"
+                    src="/assets/images/background.jpg"
                     fill // 부모 요소에 가득 차게 함
                     alt="디폴트 배경"
                     className="object-cover"
@@ -39,12 +40,13 @@ export default function Home() {
                                     로그인 성공
                                 </p>
                             </div>
+                            <LogOut />
                         </div>
                     ) : (
                         <div>
                             <div className="absolute w-screen h-screen -z-10">
                                 <Image
-                                    src="/assets/images/배경.jpg"
+                                    src="/assets/images/background.jpg"
                                     fill // 부모 요소에 가득 차게 함
                                     alt="디폴트 배경"
                                     className="object-cover"
