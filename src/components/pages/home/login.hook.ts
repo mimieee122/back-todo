@@ -40,6 +40,7 @@ export function useLogin() {
             })
 
             const { payload } = response.data
+
             const userIdx = payload.idx
 
             if (!userIdx || userIdx === undefined) {

@@ -13,7 +13,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         }
 
         if (req.method === 'POST') {
-            createUser(req, res)
+            await createUser(req, res)
             return res.status(200).json({ message: '성공' })
         } else {
             return res

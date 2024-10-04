@@ -2,7 +2,7 @@ import { useQuery, useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
-type FormData = {
+type FormData2 = {
     id: string
     password: string
     nickname: string
@@ -16,17 +16,17 @@ export function useSignUp() {
     })
 
     const signUpMutation = useMutation({
-        mutationFn: async ({ id, password, nickname }: FormData) => {
+        mutationFn: async ({ id, password, nickname }: FormData2) => {
             await axios.post('/api/signup', { id, password, nickname })
         },
-        onSuccess: () => {
-            me.refetch()
+        onSuccess: async () => {
+            window.location.href = '/'
+            await me.refetch()
             toast.success('회원가입이 완료되었습니다.')
-            window.location.reload()
         },
     })
 
-    const onSubmitSignUp = (data: FormData) => {
+    const onSubmitSignUp = (data: FormData2) => {
         signUpMutation.mutate({
             id: data.id,
             password: data.password,

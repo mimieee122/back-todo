@@ -32,7 +32,6 @@ export default async function me(req: NextApiRequest, res: NextApiResponse) {
         if (user === null) {
             return res.status(401).json({ message: '유저가 없습니다.' })
         }
-
         return res.status(200).json({
             status: 'success',
             message: '올바르게 토큰 제공 완료',

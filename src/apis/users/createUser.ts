@@ -24,7 +24,9 @@ export const createUser = async (req: NextApiRequest, res: NextApiResponse) => {
         })
 
         const token = sign(
-            { idx: user.idx },
+            {
+                idx: user.idx,
+            },
             process.env.SECRET_JWT as string,
             {
                 expiresIn: '10h',

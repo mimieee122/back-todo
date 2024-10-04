@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import { useSignUp } from './signup.hook'
 import Button from '@/components/button'
 
-type FormData = {
+type FormData2 = {
     id: string
     password: string
     nickname: string
@@ -16,7 +16,7 @@ export function SignUp() {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<FormData>()
+    } = useForm<FormData2>()
 
     return (
         <form onSubmit={handleSubmit(onSubmitSignUp)}>

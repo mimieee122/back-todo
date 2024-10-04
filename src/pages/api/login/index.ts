@@ -34,6 +34,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         const payload = {
             id: id,
             idx: user.idx,
+
             createAt: user.createdAt,
             updateAt: user.updatedAt,
         }
