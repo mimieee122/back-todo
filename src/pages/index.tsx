@@ -20,7 +20,7 @@ export default function Home() {
         <div className="flex flex-row justify-center w-screen min-h-screen">
             <div className="absolute w-screen h-screen -z-10">
                 <Image
-                    src="/assets/images/background.jpg"
+                    src="/assets/images/sea.jpg"
                     fill // 부모 요소에 가득 차게 함
                     alt="디폴트 배경"
                     className="object-cover"

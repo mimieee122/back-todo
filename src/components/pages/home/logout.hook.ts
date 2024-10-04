@@ -26,7 +26,7 @@ export function useLogOut() {
     const logoutMutation = useMutation({
         mutationFn: async () => await axios.post('/api/logout'),
         onSuccess: async () => {
-            me.refetch()
+            await me.refetch()
             toast.success('로그아웃이 완료되었습니다.')
             window.location.reload()
         },

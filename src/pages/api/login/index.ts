@@ -32,9 +32,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         }
 
         const payload = {
-            id: id,
             idx: user.idx,
-
+            nickname: user.nickname,
             createAt: user.createdAt,
             updateAt: user.updatedAt,
         }
