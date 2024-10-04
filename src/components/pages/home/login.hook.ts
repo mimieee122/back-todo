@@ -2,6 +2,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+// import { useRouter } from 'next/router'
 
 // 데이터의 형식을 동일하게 강제하는 것
 // (데이터가 공유되는 게 아니라, 타입 정의만 동일한 것.)
@@ -31,6 +32,8 @@ export function useLogin() {
         }
     }
 
+    // const router = useRouter()
+
     // 로그인 API 호출을 위한 mutation
     const loginMutation = useMutation({
         mutationFn: async ({ id, password }: FormData) => {
@@ -52,10 +55,13 @@ export function useLogin() {
 
             return response.data
         },
+
+        // ********* 이 밑에 onSuccess가 진짜 문제다 문제...
         onSuccess: async () => {
-            window.location.reload()
-            await me.refetch() // 로그인 성공 시 사용자 정보 다시 가져오기
             toast.success('로그인이 완료되었습니다.')
+            await me.refetch() // 로그인 성공 시 사용자 정보 다시 가져오기
+            window.location.href = '/'
+            // router.push('/')
         },
         onError: (error: any) => {
             if (error.response && error.response.data) {
