@@ -11,6 +11,7 @@ model User {
   idx       Int      @id @default(autoincrement())
   id  String   @unique @db.VarChar(100)
   password  String   @db.VarChar(100)
+  nickname String?  @unique @db.VarChar(100)
   //name , email
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt

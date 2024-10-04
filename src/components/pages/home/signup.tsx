@@ -5,6 +5,7 @@ import Button from '@/components/button'
 type FormData = {
     id: string
     password: string
+    nickname: string
 }
 
 export function SignUp() {
@@ -41,6 +42,17 @@ export function SignUp() {
                 className="text-center border-black border-[1px]"
             />
             {errors.password && <p>{errors.password.message}</p>}
+            <label htmlFor="nickname">NICKNAME</label>
+            <input
+                {...register('nickname', {
+                    required: 'nickname을 입력해 주세요.',
+                })}
+                type="text"
+                id="nickname"
+                name="nickname"
+                className="text-center border-black border-[1px]"
+            />
+            {errors.nickname && <p>{errors.nickname.message}</p>}
             <Button>회원가입</Button>
         </form>
     )

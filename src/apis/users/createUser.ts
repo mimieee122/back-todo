@@ -11,7 +11,7 @@ const prisma = new PrismaClient()
 
 export const createUser = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
-        const { id, password } = req.body
+        const { id, password, nickname } = req.body
 
         const hashedPassword = await hash(password, 10)
 
@@ -19,6 +19,7 @@ export const createUser = async (req: NextApiRequest, res: NextApiResponse) => {
             data: {
                 id: id,
                 password: hashedPassword,
+                nickname: nickname,
             },
         })
 

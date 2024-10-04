@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 type FormData = {
     id: string
     password: string
+    nickname: string
 }
 
 export function useSignUp() {
@@ -15,8 +16,8 @@ export function useSignUp() {
     })
 
     const signUpMutation = useMutation({
-        mutationFn: async ({ id, password }: FormData) => {
-            await axios.post('/api/signup', { id, password })
+        mutationFn: async ({ id, password, nickname }: FormData) => {
+            await axios.post('/api/signup', { id, password, nickname })
         },
         onSuccess: () => {
             me.refetch()
@@ -29,6 +30,7 @@ export function useSignUp() {
         signUpMutation.mutate({
             id: data.id,
             password: data.password,
+            nickname: data.nickname,
         })
     }
     return { onSubmitSignUp }
