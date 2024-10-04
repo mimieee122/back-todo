@@ -20,6 +20,7 @@ export function useSignUp() {
             await axios.post('/api/signup', { id, password, nickname })
         },
         onSuccess: async () => {
+            // 아래 두 문장 덕분에 nickname 띄우기를 성공하게 됨 ..
             window.location.href = '/'
             await me.refetch()
             toast.success('회원가입이 완료되었습니다.')

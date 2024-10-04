@@ -53,6 +53,7 @@ export function useLogin() {
             return response.data
         },
         onSuccess: async () => {
+            window.location.reload()
             me.refetch() // 로그인 성공 시 사용자 정보 다시 가져오기
             toast.success('로그인이 완료되었습니다.')
         },
