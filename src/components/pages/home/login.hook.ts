@@ -2,7 +2,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-import { useRouter } from 'next/router'
 
 // 데이터의 형식을 동일하게 강제하는 것
 // (데이터가 공유되는 게 아니라, 타입 정의만 동일한 것.)
@@ -32,8 +31,6 @@ export function useLogin() {
         }
     }
 
-    const router = useRouter()
-
     // 로그인 API 호출을 위한 mutation
     const loginMutation = useMutation({
         mutationFn: async ({ id, password }: FormData) => {
@@ -59,12 +56,10 @@ export function useLogin() {
         onSuccess: async (response) => {
             toast.success('로그인이 완료되었습니다.')
 
-            const nickname = response.nickname
+            localStorage.setItem('nickname', response.nickname)
+
             // router.push는 pathname과 query를 결합하여 새로운 URL을 생성하고, 이를 통해 페이지를 이동시킴
-            router.push({
-                pathname: '/',
-                query: { nickname: nickname },
-            })
+
             await me.refetch()
         },
         onError: (error: any) => {
