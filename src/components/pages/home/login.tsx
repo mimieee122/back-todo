@@ -28,7 +28,7 @@ export function Login() {
         >
             <p className="text-[40px] signIn text-[#5fbfe9]">SIGN IN</p>
 
-            <label htmlFor="nickname">ID</label>
+            <label htmlFor="id">ID</label>
             <input
                 {...register('id', { required: 'id를 입력해 주세요.' })} // id 필드를 useForm과 연결
                 type="text"

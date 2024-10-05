@@ -6,9 +6,13 @@ import Image from 'next/image'
 import { LogOut } from '@/components/pages/home/logout'
 import Link from 'next/link'
 import Button from '@/components/button'
+import { useRouter } from 'next/router'
 
 export default function Home() {
-    const me = useQuery({
+    // useRouter를 사용하면 현재 URL에 대한 정보에 쉽게 접근
+    const router = useRouter()
+    const { nickname } = router.query
+    useQuery({
         queryKey: ['me'],
         queryFn: async () => {
             const response = await axios.get('/api/me')
@@ -28,12 +32,12 @@ export default function Home() {
             </div>
             <div className="blue text-black w-[1000px]  flex flex-col gap-[30px] justify-center items-center ">
                 <div className="text-black login ">
-                    {me.isSuccess ? (
+                    {nickname ? (
                         <div className="flex flex-col gap-[10px] contents-center  justify-center">
                             <div className=" flex flex-col justify-center items-center   border-gray-500 border-[3px] text-center gap-[30px] w-96 h-[50px] p-4 bg-white bg-opacity-70  rounded-xl">
-                                <p className="text-black text-center now ">
+                                <p className="text-black text-center now">
                                     <span> HI. </span>
-                                    <span>{me.data.nickname} !</span>
+                                    <span>{nickname}!</span>
                                 </p>
                             </div>
                             <div className=" flex flex-col justify-center items-center  border-[#3eb9ed] border-[5px] text-center gap-[30px] w-96 text-black p-4 bg-gray-100 bg-opacity-60 rounded-xl">
