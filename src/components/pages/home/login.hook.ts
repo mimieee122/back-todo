@@ -53,13 +53,9 @@ export function useLogin() {
         },
 
         // ********* 이 밑에 onSuccess가 진짜 문제다 문제...
-        onSuccess: async (response) => {
+        onSuccess: async () => {
             toast.success('로그인이 완료되었습니다.')
-
-            localStorage.setItem('nickname', response.nickname)
-
-            // router.push는 pathname과 query를 결합하여 새로운 URL을 생성하고, 이를 통해 페이지를 이동시킴
-
+            // 여기 화면 새로고침이 없어야 하는 거였음
             await me.refetch()
         },
         onError: (error: any) => {

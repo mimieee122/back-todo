@@ -24,9 +24,9 @@ export function Login() {
     return (
         <form
             onSubmit={handleSubmit(onSubmitLogin)} // handleSubmit으로 폼 제출
-            className="flex flex-col border-black border-[2px] border-solid justify-center items-center text-center gap-[30px] w-[600px] text-black p-4 bg-white bg-opacity-35 rounded-xl"
+            className="flex flex-col border-black border-[4.5px] border-solid justify-center items-center text-center gap-[30px] w-[600px] text-black p-4 bg-white bg-opacity-20 rounded-xl"
         >
-            <p className="text-[40px] signIn text-[#5fbfe9]">SIGN IN</p>
+            <p className="text-[60px] signIn text-[black]">SIGN IN</p>
 
             <label htmlFor="id">ID</label>
             <input

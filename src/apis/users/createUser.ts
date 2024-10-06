@@ -15,6 +15,30 @@ export const createUser = async (req: NextApiRequest, res: NextApiResponse) => {
 
         const hashedPassword = await hash(password, 10)
 
+        const existingUser1 = await prisma.user.findUnique({
+            where: { id: id },
+        })
+
+        const existingUser2 = await prisma.user.findUnique({
+            where: { nickname: nickname },
+        })
+
+        if (existingUser1 && existingUser2) {
+            return res
+                .status(400)
+                .json({ message: '이미 존재하는 ID, 닉네임 입니다.' })
+        }
+
+        if (existingUser1) {
+            return res.status(400).json({ message: '이미 존재하는 ID입니다.' })
+        }
+
+        if (existingUser2) {
+            return res
+                .status(400)
+                .json({ message: '이미 존재하는 닉네임 입니다.' })
+        }
+
         const user = await prisma.user.create({
             data: {
                 id: id,

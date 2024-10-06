@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { toast } from 'react-toastify'
@@ -26,6 +27,11 @@ export function useSignUp() {
             toast.success('회원가입이 완료되었습니다.')
             // await me.refetch()
             router.push('/')
+        },
+        onError: (error: any) => {
+            if (error.response && error.response.data) {
+                toast.error(error.response.data.message)
+            }
         },
     })
 
