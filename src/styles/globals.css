@@ -10,6 +10,22 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'PartialSansKR-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/PartialSansKR-Regular.woff2')
+        format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PFStardust';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/PFStardust.woff')
+        format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html,
 body {
     margin: 0;
@@ -17,9 +33,20 @@ body {
     width: 100%;
     height: 100%;
     min-height: 100vh;
-    font-family: SF_HambakSnow;
+    font-family: PFStardust;
+    font-weight: bold;
 }
 
 .signIn {
-    -webkit-text-stroke: 3px black;
+    font-family: PartialSansKR-Regular;
+    -webkit-text-stroke: 1px black;
+}
+
+.flan {
+    font-family: PartialSansKR-Regular;
+}
+
+.sub {
+    font-family: PFStardust;
+    -webkit-text-stroke: 0px black;
 }

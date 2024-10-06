@@ -29,14 +29,14 @@ export default function Home() {
                 <div className="text-black login ">
                     {me.isSuccess ? (
                         <div className="flex flex-col gap-[10px] contents-center  justify-center">
-                            <div className=" flex flex-col justify-center items-center   border-gray-500 border-[3px] text-center gap-[30px] w-100 h-[50px] p-4 bg-white bg-opacity-70  rounded-xl">
-                                <p className="text-black text-center now">
+                            <div className=" flex flex-col font-extrabold justify-center items-center   border-gray-500 border-[3px] text-center gap-[30px] w-100 h-[50px] p-4 bg-white bg-opacity-70  rounded-xl">
+                                <p className="text-black  text-center now">
                                     <span> HI. </span>
                                     <span>{me.data.data.nickname}!</span>
                                 </p>
                             </div>
                             <div className=" flex flex-col justify-center items-center  border-[black] border-[5px] text-center gap-[30px] w-100 text-black p-4 bg-gray-100 bg-opacity-60 rounded-xl">
-                                <p className="text-[50px] signIn text-black">
+                                <p className="flan text-[30px] font-thin text-black">
                                     로그인 성공
                                 </p>
                             </div>

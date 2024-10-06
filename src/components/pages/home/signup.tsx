@@ -34,8 +34,8 @@ export function SignUp() {
                 />
             </div>
             <div className="flex flex-col gap-[20px] h-screen w-screen justify-center items-center">
-                <div className="flex flex-col p-[10px] justify-center items-center h-[500px] w-[400px] border-solid rounded-2xl border-black border-[3px] gap-[20px]">
-                    <p className="text-[40px] signIn bg-opacity-80 text-[black]">
+                <div className="flex flex-col bg-white bg-opacity-20 p-[10px] justify-center items-center h-[500px] w-[400px] border-solid rounded-2xl border-[black] border-[4.5px] gap-[20px]">
+                    <p className="text-[40px] signIn bg-opacity-80 text-[#ff3f6f]">
                         SIGN UP
                     </p>
                     <label htmlFor="id">ID</label>
