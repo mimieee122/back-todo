@@ -55,7 +55,8 @@ export function useLogin() {
         // ********* 이 밑에 onSuccess가 진짜 문제다 문제...
         onSuccess: async () => {
             toast.success('로그인이 완료되었습니다.')
-            // 여기 화면 새로고침이 없어야 하는 거였음
+            // await refetch는 없애고, reload는 있어야 빠름.
+            window.location.reload()
         },
         onError: (error: any) => {
             if (error.response && error.response.data) {
