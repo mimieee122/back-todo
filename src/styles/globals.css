@@ -35,6 +35,9 @@ body {
     min-height: 100vh;
     font-family: PFStardust;
     font-weight: bold;
+    background-image: url('/assets/images/red_bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .signIn {

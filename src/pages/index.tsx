@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import React from 'react'
 import { Login } from '@/components/pages/home/login'
-import Image from 'next/image'
 import { LogOut } from '@/components/pages/home/logout'
 import Link from 'next/link'
 import Button from '@/components/button'
@@ -17,14 +16,6 @@ export default function Home() {
 
     return (
         <div className="flex flex-row justify-center w-screen min-h-screen">
-            <div className="absolute w-screen h-screen -z-10">
-                <Image
-                    src="/assets/images/red_bg.jpg"
-                    fill // 부모 요소에 가득 차게 함
-                    alt="디폴트 배경"
-                    className="object-cover"
-                />
-            </div>
             <div className="blue text-black w-[1000px]  flex flex-col gap-[30px] justify-center items-center ">
                 <div className="text-black login ">
                     {me.isSuccess ? (
@@ -39,6 +30,13 @@ export default function Home() {
                                 <p className="flan text-[30px] font-thin text-black">
                                     로그인 성공
                                 </p>
+                            </div>
+                            <div className="flex flex-row justify-center">
+                                <Link href="/main">
+                                    <button className="text-[25px] text-yellow-300">
+                                        FLAN 바로가기
+                                    </button>
+                                </Link>
                             </div>
                             <div className="flex flex-row gap-[15px]">
                                 <LogOut />

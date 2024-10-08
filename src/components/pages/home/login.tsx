@@ -27,8 +27,8 @@ export function Login() {
             onSubmit={handleSubmit(onSubmitLogin)} // handleSubmit으로 폼 제출
             className="flex flex-col justify-center items-center text-center gap-[20px] w-[600px] text-black p-4"
         >
-            <div className="flex flex-col gap-[0px] items-start">
-                <div className=" relative flex flex-col gap-0 items-start w-[350px] h-[100px] overflow-hidden">
+            <div className="flex flex-col gap-[0px] items-center">
+                <div className=" relative flex flex-col gap-0 items-center w-[330px] h-[100px] overflow-hidden">
                     <Image
                         src="/assets/images/flan.png"
                         fill // 부모 요소에 가득 차게 함
@@ -37,11 +37,11 @@ export function Login() {
                     />
                 </div>
                 <div className="flex flex-row gap-[10px] mt-0  text-[25px] sub p-0  text-[black]">
-                    <p>- Create the </p>
-                    <p className="  text-[#ffbd43]"> fastest plan</p>
+                    <p>- Create your </p>
+                    <p className="  text-[#ffbd43]"> fastest plan !</p>
                 </div>
             </div>
-            <div className="flex flex-col border-[black] border-[5px] border-solid justify-center items-center text-center gap-[30px] w-[600px] text-black p-4 bg-white bg-opacity-20 rounded-xl">
+            <div className="flex flex-col border-[black] border-[4px] border-solid justify-center items-center text-center gap-[30px] w-[600px] text-black p-4 bg-white bg-opacity-20 rounded-xl">
                 <p className="text-[40px] signIn text-[#ff3f6f]">SIGN IN</p>
 
                 <label htmlFor="id">ID</label>

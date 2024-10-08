@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import { useSignUp } from './signup.hook'
 import Button from '@/components/button'
 import Image from 'next/image'
-import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 type FormData2 = {
     id: string
@@ -11,6 +11,8 @@ type FormData2 = {
 }
 
 export function SignUp() {
+    const router = useRouter()
+
     const { onSubmitSignUp } = useSignUp()
 
     // useForm으로 폼 관리
@@ -34,7 +36,7 @@ export function SignUp() {
                 />
             </div>
             <div className="flex flex-col gap-[20px] h-screen w-screen justify-center items-center">
-                <div className="flex flex-col bg-white bg-opacity-20 p-[10px] justify-center items-center h-[500px] w-[400px] border-solid rounded-2xl border-[black] border-[4.5px] gap-[20px]">
+                <div className="flex flex-col bg-white bg-opacity-20 p-[10px] justify-center items-center h-[500px] w-[400px] border-solid rounded-2xl border-[black] border-[4px] gap-[20px]">
                     <p className="text-[40px] signIn bg-opacity-80 text-[#ff3f6f]">
                         SIGN UP
                     </p>
@@ -72,9 +74,9 @@ export function SignUp() {
                     {errors.nickname && <p>{errors.nickname.message}</p>}
                     <Button>회원가입</Button>
                 </div>
-                <Link href="/">
-                    <Button>HOME</Button>
-                </Link>
+                <button className="mt-[10px]" onClick={() => router.back()}>
+                    뒤로가기
+                </button>
             </div>
         </form>
     )

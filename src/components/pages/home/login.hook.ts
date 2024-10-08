@@ -56,7 +56,6 @@ export function useLogin() {
         onSuccess: async () => {
             toast.success('로그인이 완료되었습니다.')
             // 여기 화면 새로고침이 없어야 하는 거였음
-            await me.refetch()
         },
         onError: (error: any) => {
             if (error.response && error.response.data) {
