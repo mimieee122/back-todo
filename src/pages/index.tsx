@@ -4,7 +4,6 @@ import React from 'react'
 import { Login } from '@/components/pages/home/login'
 import { LogOut } from '@/components/pages/home/logout'
 import Link from 'next/link'
-import Image from 'next/image'
 
 export default function Home() {
     // useRouter를 사용하면 현재 URL에 대한 정보에 쉽게 접근
