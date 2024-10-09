@@ -23,10 +23,10 @@ export function SignUp() {
 
     return (
         <form
-            className="flex flex-col mb-[10px]"
+            className="flex flex-col mb-[5px]"
             onSubmit={handleSubmit(onSubmitSignUp)}
         >
-            <div className="absolute self-center z-10 w-[150px] h-[150px] mt-[5px]">
+            <div className="absolute self-center z-10 w-[100px] h-[150px] mt-[5px]">
                 <Image
                     src="/assets/images/calendar.png"
                     fill // 부모 요소에 가득 차게 함
@@ -35,8 +35,8 @@ export function SignUp() {
                 />
             </div>
             <div className="flex flex-col gap-[20px] h-screen w-screen justify-center items-center">
-                <div className="flex flex-col bg-white bg-opacity-20 p-[10px] justify-center items-center h-[500px] w-[400px] border-solid rounded-2xl border-[black] border-[4px] gap-[20px]">
-                    <p className="text-[40px] signIn bg-opacity-80 text-[#ff3f6f]">
+                <div className="flex flex-col  bg-white bg-opacity-20 p-[10px] justify-center items-center h-[600px] w-[400px] shadow-[0_0_15px_#ff3f6f] transition-shadow border-[#ff3f6f] border-[4px] border-solid rounded-xl gap-[20px]">
+                    <p className="text-[40px] mt-[60px] signIn bg-opacity-80 text-[#ff3f6f]">
                         SIGN UP
                     </p>
                     <label htmlFor="id">ID</label>
@@ -71,11 +71,14 @@ export function SignUp() {
                         className="text-center w-[200px] border-black border-[1px]"
                     />
                     {errors.nickname && <p>{errors.nickname.message}</p>}
-                    <button className="w-[200px] h-[40px]  shadow-2xl hover:shadow-[0_0_10px_white] transition-shadow bg-[yellow] bg-opacity-30 border-black border-[3px] border-solid rounded-md">
+                    <button className="w-[200px] h-[40px]  shadow-2xl hover:shadow-[0_0_10px_white] transition-shadow bg-[#ff3f6f] bg-opacity-30 border-black border-[3px] mt-[60px] border-solid rounded-md">
                         회원가입
                     </button>
                 </div>
-                <button className="mt-[10px]" onClick={() => router.back()}>
+                <button
+                    className="mb-[10px] w-[400px] text-end"
+                    onClick={() => router.back()}
+                >
                     뒤로가기
                 </button>
             </div>

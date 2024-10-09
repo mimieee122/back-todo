@@ -3,6 +3,7 @@ import Button from '@/components/button'
 import { useLogin } from './login.hook'
 import { useForm } from 'react-hook-form'
 import Image from 'next/image'
+import Link from 'next/link'
 
 // 데이터의 형식을 동일하게 강제하는 것
 // (데이터가 공유되는 게 아니라, 타입 정의만 동일한 것.)
@@ -37,7 +38,7 @@ export function Login() {
                     />
                 </div>
                 <div className="flex flex-col gap-[0px] items-center">
-                    <div className=" relative flex flex-col  gap-0 items-end w-[470px] h-[150px] overflow-hidden">
+                    <div className=" relative flex flex-col  gap-0 items-end w-[450px] h-[140px] overflow-hidden">
                         <Image
                             src="/assets/images/flan.png"
                             fill // 부모 요소에 가득 차게 함
@@ -47,14 +48,14 @@ export function Login() {
                     </div>
                     <div className="flex flex-row gap-[10px] mt-0 font-thin text-[20px] sub p-0 ">
                         <p className=" text-[black] font-thin">CREATE </p>
-                        <p className=" text-[#ffbd43] font-thin">PLAN</p>
-                        <p className=" text-[#ffbd43]">FAST</p>
+                        <p className=" text-[white] font-thin">PLAN</p>
+                        <p className=" text-[white]">FAST</p>
                         <p className=" text-[black]"> WITH</p>
                         <p className=" text-[#ffbd43]">FLAN</p>
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col border-[black] border-[4px] border-solid justify-center items-center text-center gap-[15px] w-[850px] text-black p-4 bg-white bg-opacity-20 rounded-xl">
+            <div className="flex flex-col shadow-[0_0_15px_#ff3f6f] transition-shadow border-[#ff3f6f] border-[3px] border-solid justify-center items-center text-center gap-[15px] w-[850px] text-black p-4 bg-white bg-opacity-20 rounded-xl">
                 <p className="text-[40px] signIn text-[#ff3f6f]">SIGN IN</p>
 
                 <label htmlFor="id">ID</label>
@@ -82,6 +83,9 @@ export function Login() {
 
                 <Button>로그인</Button>
             </div>
+            <Link href="/signUp">
+                <button className="w-[850px] text-end">회원가입</button>
+            </Link>
         </form>
     )
 }
