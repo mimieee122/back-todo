@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form'
 import { useSignUp } from './signup.hook'
-import Button from '@/components/button'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
@@ -72,7 +71,9 @@ export function SignUp() {
                         className="text-center w-[200px] border-black border-[1px]"
                     />
                     {errors.nickname && <p>{errors.nickname.message}</p>}
-                    <Button>회원가입</Button>
+                    <button className="w-[200px] h-[40px]  shadow-2xl hover:shadow-[0_0_10px_white] transition-shadow bg-[yellow] bg-opacity-30 border-black border-[3px] border-solid rounded-md">
+                        회원가입
+                    </button>
                 </div>
                 <button className="mt-[10px]" onClick={() => router.back()}>
                     뒤로가기

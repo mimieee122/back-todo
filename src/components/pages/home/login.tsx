@@ -45,9 +45,11 @@ export function Login() {
                             className="object-fill"
                         />
                     </div>
-                    <div className="flex flex-row gap-[10px] mt-0  text-[22px] sub p-0  text-[black]">
-                        <p>- Create your </p>
-                        <p className="  text-[#ffbd43]"> fastest plan !</p>
+                    <div className="flex flex-row gap-[10px] mt-0  text-[20px] sub p-0  text-[black]">
+                        <p>CREATE </p>
+                        <p className=" text-[#ffbd43]"> PLAN FAST</p>
+                        <p> WITH</p>
+                        <p className=" text-[#ffbd43]">FLAN</p>
                     </div>
                 </div>
             </div>

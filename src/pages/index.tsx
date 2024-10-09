@@ -4,7 +4,6 @@ import React from 'react'
 import { Login } from '@/components/pages/home/login'
 import { LogOut } from '@/components/pages/home/logout'
 import Link from 'next/link'
-import Button from '@/components/button'
 
 export default function Home() {
     // useRouter를 사용하면 현재 URL에 대한 정보에 쉽게 접근
@@ -41,7 +40,9 @@ export default function Home() {
                             <div className="flex flex-row gap-[15px]">
                                 <LogOut />
                                 <Link href="/signUp">
-                                    <Button>회원가입</Button>
+                                    <button className="w-[200px] h-[40px]  shadow-2xl hover:shadow-[0_0_10px_white] transition-shadow bg-[yellow] bg-opacity-30 border-black border-[3px] border-solid rounded-md">
+                                        회원가입
+                                    </button>
                                 </Link>
                             </div>
                         </div>
@@ -49,7 +50,9 @@ export default function Home() {
                         <div className="flex flex-col gap-[10px]">
                             <Login />
                             <Link href="/signUp">
-                                <Button>회원가입</Button>
+                                <button className="w-[200px] h-[40px]  shadow-2xl hover:shadow-[0_0_10px_white] transition-shadow bg-[yellow] bg-opacity-30 border-black border-[3px] border-solid rounded-md">
+                                    회원가입
+                                </button>
                             </Link>
                         </div>
                     )}
