@@ -28,7 +28,7 @@ export function Login() {
             className="flex flex-col justify-center items-center text-center gap-[20px] w-[600px] text-black p-4"
         >
             <div className="flex flex-row gap-[10px] items-end">
-                <div className=" relative flex flex-col gap-0 items-center w-[250px] h-[200px] overflow-hidden">
+                <div className=" relative flex flex-col gap-0 items-center w-[350px] h-[300px] overflow-hidden">
                     <Image
                         src="/assets/images/flan emoji.png"
                         fill // 부모 요소에 가득 차게 함
@@ -36,8 +36,8 @@ export function Login() {
                         className="object-fill"
                     />
                 </div>
-                <div className="flex flex-col gap-[0px] items-start">
-                    <div className=" relative flex flex-col  gap-0 items-end w-[330px] h-[100px] overflow-hidden">
+                <div className="flex flex-col gap-[0px] items-center">
+                    <div className=" relative flex flex-col  gap-0 items-end w-[470px] h-[150px] overflow-hidden">
                         <Image
                             src="/assets/images/flan.png"
                             fill // 부모 요소에 가득 차게 함
@@ -45,15 +45,16 @@ export function Login() {
                             className="object-fill"
                         />
                     </div>
-                    <div className="flex flex-row gap-[10px] mt-0  text-[20px] sub p-0  text-[black]">
-                        <p>CREATE </p>
-                        <p className=" text-[#ffbd43]"> PLAN FAST</p>
-                        <p> WITH</p>
+                    <div className="flex flex-row gap-[10px] mt-0 font-thin text-[20px] sub p-0 ">
+                        <p className=" text-[black] font-thin">CREATE </p>
+                        <p className=" text-[#ffbd43] font-thin">PLAN</p>
+                        <p className=" text-[#ffbd43]">FAST</p>
+                        <p className=" text-[black]"> WITH</p>
                         <p className=" text-[#ffbd43]">FLAN</p>
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col border-[black] border-[4px] border-solid justify-center items-center text-center gap-[30px] w-[600px] text-black p-4 bg-white bg-opacity-20 rounded-xl">
+            <div className="flex flex-col border-[black] border-[4px] border-solid justify-center items-center text-center gap-[15px] w-[850px] text-black p-4 bg-white bg-opacity-20 rounded-xl">
                 <p className="text-[40px] signIn text-[#ff3f6f]">SIGN IN</p>
 
                 <label htmlFor="id">ID</label>

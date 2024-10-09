@@ -49,8 +49,8 @@ export default function Home() {
                     ) : (
                         <div className="flex flex-col gap-[10px]">
                             <Login />
-                            <Link href="/signUp">
-                                <button className="w-[200px] h-[40px]  shadow-2xl hover:shadow-[0_0_10px_white] transition-shadow bg-[yellow] bg-opacity-30 border-black border-[3px] border-solid rounded-md">
+                            <Link className="self-baseline" href="/signUp">
+                                <button className="w-[200px] h-[40px] shadow-2xl hover:shadow-[0_0_10px_white] transition-shadow bg-[yellow] bg-opacity-30 border-black border-[3px] border-solid rounded-md">
                                     회원가입
                                 </button>
                             </Link>

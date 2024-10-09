@@ -26,11 +26,11 @@ export function SignUp() {
             className="flex flex-col mb-[10px]"
             onSubmit={handleSubmit(onSubmitSignUp)}
         >
-            <div className="absolute w-screen h-screen -z-10">
+            <div className="absolute self-center z-10 w-[150px] h-[150px] mt-[5px]">
                 <Image
-                    src="/assets/images/red_bg.jpg"
+                    src="/assets/images/calendar.png"
                     fill // 부모 요소에 가득 차게 함
-                    alt="디폴트 배경"
+                    alt="달력"
                     className="object-cover"
                 />
             </div>
