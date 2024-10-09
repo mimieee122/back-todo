@@ -48,8 +48,8 @@ export function Login() {
                     </div>
                     <div className="flex flex-row gap-[10px] mt-0 font-thin text-[20px] sub p-0 ">
                         <p className=" text-[black] font-thin">CREATE </p>
-                        <p className=" text-[white] font-thin">PLAN</p>
-                        <p className=" text-[white]">FAST</p>
+                        <p className=" text-[#ffbd43] font-thin">PLAN</p>
+                        <p className=" text-[#ffbd43]">FAST</p>
                         <p className=" text-[black]"> WITH</p>
                         <p className=" text-[#ffbd43]">FLAN</p>
                     </div>
