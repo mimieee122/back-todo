@@ -22,7 +22,7 @@ export default function Main() {
                             className="object-fill"
                         />
                     </div>
-                    <p className="text-[18px] mt-[7px">
+                    <p className="text-[18px] mt-[7px]">
                         USER : {me.data.data.nickname}
                     </p>
                 </div>

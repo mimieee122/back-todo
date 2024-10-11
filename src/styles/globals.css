@@ -61,5 +61,6 @@ body {
 }
 
 .yellow {
+    font-family: PartialSansKR-Regular;
     -webkit-text-stroke: 1px black;
 }

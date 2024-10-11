@@ -55,8 +55,8 @@ export function Login() {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col p-5 shadow-[0_0_15px_#ff3f6f] transition-shadow border-[#ff3f6f] border-[3px] border-solid justify-center items-center text-center gap-[15px] w-[800px] text-black bg-white bg-opacity-20 rounded-xl">
-                <p className="text-[40px] signIn text-[#ff3f6f]">SIGN IN</p>
+            <div className="flex flex-col text-black p-5 shadow-[0_0_15px_#ffbd43] transition-shadow border-[#ffbd43] border-[3px] border-solid justify-center items-center text-center gap-[15px] w-[800px]  bg-white bg-opacity-10 rounded-xl">
+                <p className="text-[40px] signIn text-[#ffbd43]">SIGN IN</p>
 
                 <label htmlFor="id">ID</label>
                 <input
