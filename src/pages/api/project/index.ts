@@ -1,6 +1,6 @@
 import { createProject } from '@/apis/projects/createProject'
-// import { getProjects } from '@/apis/projects/getProject'
-// import { verify } from 'jsonwebtoken'
+import { getProjects } from '@/apis/projects/getProject'
+import { verify } from 'jsonwebtoken'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { parseCookies } from 'nookies'
 
@@ -24,23 +24,23 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
                 .json({ message: '토큰이 발급되지 않았습니다.' })
         }
 
-        // const payload = verify(token, secret) as { idx: number } // 올바른 타입으로 변환
+        const payload = verify(token, secret) as { idx: number } // 올바른 타입으로 변환
 
-        const categoryIdx = Number(req.body.categoryIdx)
+        const { categoryIdx, priorityIdx, title } = req.body
 
-        // const userIdx = payload.idx
+        const userIdx = payload.idx
 
-        // if (req.method === 'GET') {
-        //     const project = await getProjects(
-        //         req,
-        //         res,
-        //         Number(userIdx),
-        //         categoryIdx
-        //     )
-        //     return res.status(200).json(project)
-        // } else
-        if (req.method === 'POST') {
-            const projects = await createProject(req, res, categoryIdx)
+        if (req.method === 'GET') {
+            const project = await getProjects(req, res, userIdx, categoryIdx)
+            return res.status(200).json(project)
+        } else if (req.method === 'POST') {
+            const projects = await createProject(
+                req,
+                res,
+                Number(categoryIdx),
+                Number(priorityIdx),
+                String(title)
+            )
             return res.status(201).json(projects) // 201 Created
             // } else if (req.method === 'PUT') {
             //     const project = await updateProject(req, res, projectIdx)

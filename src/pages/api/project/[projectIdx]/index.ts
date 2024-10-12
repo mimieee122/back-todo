@@ -1,38 +1,68 @@
-import { deleteProject } from '@/apis/projects/deleteProject'
-import { getoneProject } from '@/apis/projects/getProject'
-import { updateProject } from '@/apis/projects/updateProject'
 import { NextApiRequest, NextApiResponse } from 'next'
+import { parseCookies } from 'nookies'
+import { verify } from 'jsonwebtoken'
+import { getComment } from '@/apis/comments/getComment'
+import { createComment } from '@/apis/comments/createComment'
+import { deleteComment } from '@/apis/comments/deleteComment'
+import { updateComment } from '@/apis/comments/updateComment'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
+        const cookies = parseCookies({ req })
+
+        const token = cookies['token']
         const secret = process.env.SECRET_JWT
 
+        const commentIdx = req.query.commentIdx
+
         if (!secret) {
-            console.error('JWT_SECRET is not defined.')
-            return res.status(500).json({
-                message: 'JWT_SECRET 환경 변수가 설정되지 않았습니다.',
-            })
+            throw new Error('SECRET_JWT 환경 변수가 설정되지 않았습니다.')
         }
 
-        const projectIdx = Number(req.query.projectIdx)
+        if (!token) {
+            return res
+                .status(400)
+                .json({ message: '토큰이 발급되지 않았습니다.' })
+        }
+        verify(token, secret) as string
 
         if (req.method === 'GET') {
-            const project = await getoneProject(req, res, projectIdx)
-            return res.status(200).json(project)
+            const comment = await getComment(req, res)
+            if (comment === null) {
+                return res
+                    .status(404)
+                    .json({ message: '게시물을 찾을 수 없습니다.' })
+            }
+            return res.status(202).json(comment)
         } else if (req.method === 'PUT') {
-            const project = await updateProject(req, res, projectIdx)
-            return res.status(200).json(project)
+            const comment = await updateComment(req, res, Number(commentIdx))
+            if (comment === null) {
+                return res
+                    .status(404)
+                    .json({ message: '게시물을 찾을 수 없습니다.' })
+            }
+            return res.status(202).json(comment)
+        } else if (req.method === 'POST') {
+            const comment = await createComment(req, res)
+            if (comment === null) {
+                return res
+                    .status(404)
+                    .json({ message: '게시물을 찾을 수 없습니다.' })
+            }
+            return res.status(202).json(comment)
         } else if (req.method === 'DELETE') {
-            const project = await deleteProject(req, res, projectIdx)
-            return res.status(200).json(project)
+            const comment = await deleteComment(req, res)
+            if (comment === null) {
+                return res
+                    .status(404)
+                    .json({ message: '게시물을 찾을 수 없습니다.' })
+            }
+            return res.status(202).json({ message: '댓글이 삭제되었습니다.' })
         } else {
-            return res
-                .status(405)
-                .json({ message: '허용되지 않은 메서드입니다.' })
+            res.status(405).json({ message: '지원하지 않는 메서드입니다.' })
         }
-    } catch (error) {
-        console.error('토큰 검증 중 오류 발생:', error)
-        return res.status(401).json({ message: '토큰이 올바르지 않습니다.' })
+    } catch {
+        res.status(500).json('error')
     }
 }
 

@@ -1,8 +1,11 @@
 import { useRouter } from 'next/router'
-import { useState } from 'react'
 
 const categories = [
-    { categoryIdx: 1, name: 'Study', projects: [] },
+    {
+        categoryIdx: 1,
+        name: 'Study',
+        projects: [{ idx: '1', priorityIdx: 1, title: 'Math Assignment' }],
+    },
     { categoryIdx: 2, name: 'Exercise', projects: [] },
     { categoryIdx: 3, name: 'Routine', projects: [] },
     { categoryIdx: 4, name: 'Hobby', projects: [] },
@@ -12,23 +15,7 @@ const categories = [
 export default function CategoriesComponent() {
     const router = useRouter()
 
-    const [draggedProject, setDraggedProject] = useState(null)
-
-    // Handle dragging a project
-    const handleDragStart = (project) => {
-        setDraggedProject(project)
-    }
-
-    // Handle dropping a project into a category
-    const handleDrop = (categoryIdx) => {
-        if (draggedProject) {
-            console.log(
-                `Dropped project: ${draggedProject} into category: ${categoryIdx}`
-            )
-            // Here you would update the backend or state to reflect the new project category
-            setDraggedProject(null)
-        }
-    }
+    // Handle the form submission to create a new project
 
     const handleCategoryClick = (categoryIdx) => {
         router.push(`/categories/${categoryIdx}`)
@@ -41,27 +28,24 @@ export default function CategoriesComponent() {
                     <li
                         className="w-[250px] h-[250px] text-center text-[20px] font-extrabold bg-white bg-opacity-10 border-solid border-[1px] rounded-xl border-black"
                         key={category.categoryIdx}
-                        onDragOver={(e) => e.preventDefault()}
-                        onDrop={() => handleDrop(category.categoryIdx)}
                     >
                         <button
-                            onClick={() => {
+                            onClick={() =>
                                 handleCategoryClick(category.categoryIdx)
-                            }}
+                            }
                         >
                             {category.name}
                         </button>
 
                         {/* Projects inside the category */}
                         <ul>
-                            {category.projects.map((project, idx) => (
+                            {category.projects.map((project) => (
                                 <li
-                                    key={idx}
-                                    draggable
-                                    onDragStart={() => handleDragStart(project)} // Attach drag start handler
+                                    key={project.idx} // Assuming project has a unique projectIdx
                                     className="p-2 mt-2 bg-gray-200 border rounded-md"
                                 >
-                                    {project}
+                                    {project.title}{' '}
+                                    {/* Displaying project title */}
                                 </li>
                             ))}
                         </ul>
