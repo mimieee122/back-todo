@@ -4,7 +4,7 @@ const categories = [
     {
         categoryIdx: 1,
         name: 'Study',
-        projects: [{ idx: '1', priorityIdx: 1, title: 'Math Assignment' }],
+        projects: [],
     },
     { categoryIdx: 2, name: 'Exercise', projects: [] },
     { categoryIdx: 3, name: 'Routine', projects: [] },
@@ -18,7 +18,7 @@ export default function CategoriesComponent() {
     // Handle the form submission to create a new project
 
     const handleCategoryClick = (categoryIdx) => {
-        router.push(`/categories/${categoryIdx}`)
+        router.push(`/category/${categoryIdx}`)
     }
 
     return (

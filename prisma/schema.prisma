@@ -39,10 +39,10 @@ model Project {
       idx       Int      @id @default(autoincrement())
       user    User     @relation(fields: [userIdx], references: [idx])
       userIdx Int
-      category  Category     @relation(fields: [categoryIdx], references: [idx])
       categoryIdx   Int
-      priority    Priority @relation(fields: [priorityIdx], references: [idx])
+      category  Category     @relation(fields: [categoryIdx], references: [idx])
       priorityIdx Int
+      priority    Priority @relation(fields: [priorityIdx], references: [idx])
       title String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now()) @updatedAt
@@ -53,10 +53,10 @@ model Project {
 model Comment {
       idx       Int      @id @default(autoincrement())
       content   String
-      user    User     @relation(fields: [userIdx], references: [idx])
       userIdx Int
-      project Project @relation(fields:[projectIdx], references:[idx])
+      user    User     @relation(fields: [userIdx], references: [idx])
       projectIdx Int
+      project Project @relation(fields:[projectIdx], references:[idx])
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now()) @updatedAt
 

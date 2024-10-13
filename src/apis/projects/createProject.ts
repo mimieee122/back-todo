@@ -7,38 +7,40 @@ const prisma = new PrismaClient()
 
 export const createProject = async (
     req: NextApiRequest,
-    res: NextApiResponse,
-    categoryIdx: number,
-    priorityIdx: number,
-    title: string
+    res: NextApiResponse
 ) => {
     if (req.method !== 'POST') {
         return res.status(405).json({ message: '허용되지 않은 메소드 입니다.' })
     }
 
+    const cookies = parseCookies({ req })
+    const token = cookies['token']
+
+    if (!token) {
+        return res
+            .status(401)
+            .json({ message: '로그인 후 프로젝트 생성이 가능합니다.' })
+    }
     try {
-        const cookies = parseCookies({ req })
-        const token = cookies['token']
+        const decoded = verify(token, process.env.SECRET_JWT as string) as {
+            idx: number
+        }
+        const { categoryIdx, title, priorityIdx } = req.body
 
-        if (!token) {
+        const category = await prisma.category.findUnique({
+            where: { idx: categoryIdx },
+        })
+        const priority = await prisma.priority.findUnique({
+            where: { idx: priorityIdx },
+        })
+
+        if (!category || !priority) {
             return res
-                .status(401)
-                .json({ message: '로그인 후 프로젝트 생성이 가능합니다.' })
+                .status(400)
+                .json({ message: '잘못된 카테고리 또는 우선순위입니다.' })
         }
 
-        let decoded
-        try {
-            decoded = verify(token, process.env.SECRET_JWT as string) as {
-                idx: number
-                nickname: string
-            }
-        } catch {
-            return res
-                .status(401)
-                .json({ message: '유효하지 않은 토큰입니다.' })
-        }
-
-        if (!title || !priorityIdx) {
+        if (!title || !priorityIdx || !title) {
             return res
                 .status(400)
                 .json({ message: '프로젝트 명과 우선순위를 입력하세요.' })
@@ -46,17 +48,17 @@ export const createProject = async (
 
         const projects = await prisma.project.create({
             data: {
-                title: String(title),
-                categoryIdx: Number(categoryIdx),
-                userIdx: decoded.idx,
-                priorityIdx: Number(priorityIdx),
+                title,
+                categoryIdx,
+                userIdx: Number(decoded.idx),
+                priorityIdx,
             },
         })
         return res.status(201).json(projects)
     } catch (error) {
-        console.error('프로젝트 생성 중 오류 발생', error)
-        return res.status(500).json({ message: '서버 오류 발생' })
-    } finally {
-        await prisma.$disconnect()
+        console.error('프로젝트 생성 중 오류 발생:', error)
+        return res
+            .status(500)
+            .json({ message: '프로젝트 생성에 실패했습니다.' })
     }
 }

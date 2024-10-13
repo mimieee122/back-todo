@@ -22,20 +22,13 @@ export const getoneProject = async (
 
 export const getProjects = async (
     req: NextApiRequest,
-    res: NextApiResponse,
-    userIdx: number,
-    categoryIdx: number
+    res: NextApiResponse
 ) => {
     try {
-        const projects = await prisma.project.findMany({
-            where: {
-                userIdx: userIdx,
-                categoryIdx: categoryIdx,
-            },
-        })
+        const projects = await prisma.project.findMany({})
         res.status(200).json(projects)
     } catch (error) {
-        console.error('카테고리 전체 조회 중 오류 발생:', error)
+        console.error('프로젝트 전체 조회 중 오류 발생:', error)
         res.status(500).json({
             message: '서버 오류가 발생했습니다.',
         })

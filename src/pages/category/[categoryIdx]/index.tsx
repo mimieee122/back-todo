@@ -4,30 +4,38 @@ import axios from 'axios'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import Image from 'next/image'
-// import {
-//     DragDropContext,
-//     Droppable,
-//     Draggable,
-//     DropResult,
-// } from 'react-beautiful-dnd'
-
-// Define types for project data
+import { useEffect, useState } from 'react'
 
 export default function CategoryDetail() {
     const router = useRouter()
     const { categoryIdx } = router.query
     const idx = Number(categoryIdx)
+    const [priorities, setPriorities] = useState([]) // 우선 순위 상태 추가
 
     // Fetch the projects for the current category
     const { data: projects, refetch } = useQuery({
         queryKey: ['projects', idx],
         queryFn: async () => {
-            if (!idx) return [] // Return empty array if no idx
+            if (!idx) return []
             const response = await axios.get(`/api/category/${idx}`)
             return response.data
         },
         enabled: !!idx, // Run query only if idx is available
     })
+
+    // Fetch priorities from the API
+    useEffect(() => {
+        const fetchPriorities = async () => {
+            try {
+                const response = await axios.get('/api/priority') // 우선 순위 API 호출
+                setPriorities(response.data) // 우선 순위 데이터를 상태에 저장
+            } catch (error) {
+                console.error('Error fetching priorities:', error)
+            }
+        }
+
+        fetchPriorities()
+    }, [])
 
     // Mutation to create a new project
     const createProjectMutation = useMutation({
@@ -36,9 +44,10 @@ export default function CategoryDetail() {
             categoryIdx: number
             priorityIdx: number
         }) => {
+            const idx = data.categoryIdx
+
             try {
-                const response = await axios.post('/api/project', data)
-                return response.data
+                await axios.post(`/api/category/${idx}`, data)
             } catch (error: any) {
                 const errorMsg =
                     error.response?.data?.message || 'Error creating project.'
@@ -51,59 +60,28 @@ export default function CategoryDetail() {
         },
         onError: (error: Error) => {
             alert('왜안될까요')
-            console.error('Project move failed:', error.message)
+            console.error('Project failed:', error.message)
         },
     })
-
-    // Mutation to move a project between categories
-    // const moveProjectMutation = useMutation<
-    //     void,
-    //     Error,
-    //     { projectIdx: number; newCategoryIdx: number }
-    // >({
-    //     mutationFn: async (data) => {
-    //         return await axios.put(`/api/category/${data.newCategoryIdx}`, {
-    //             newCategoryIdx: data.newCategoryIdx,
-    //         })
-    //     },
-    //     onSuccess: () => {
-    //         refetch() // Refetch projects after successful move
-    //     },
-    //     onError: (error: Error) => {
-    //         console.error('Project move failed:', error.message)
-    //     },
-    // })
 
     // Handle form submission to create a project
     const handleCreateProject = (e: any) => {
         e.preventDefault()
-        const title = e.currentTarget.title.value // Get the value directly
-        const priorityIdx = e.currentTarget.priorityIdx.value // Get the value directly
+        const title = e.target.title.value
+        const priorityIdx = e.target.priorityIdx.value
 
+        if (!title || !priorityIdx) {
+            alert('Please enter both title and priority.')
+            return
+        }
+
+        const categoryIdx = idx // Category index from the router
         createProjectMutation.mutate({
-            title: String(title),
-            categoryIdx: idx, // Use the current category index
-            priorityIdx: Number(priorityIdx),
+            title,
+            categoryIdx,
+            priorityIdx: Number(priorityIdx), // Ensure the value is a number
         })
     }
-
-    // Handle drag end
-    // const handleOnDragEnd = (result: DropResult) => {
-    //     const { destination, draggableId } = result
-
-    //     if (!destination) return // Exit if no destination
-
-    //     const draggedProjectIdx = Number(draggableId) // Use the draggableId as the project index
-    //     const newCategoryIdx = Number(destination.droppableId) // ID of the new category
-
-    //     // Only move if the project is being dragged to a different category
-    //     if (newCategoryIdx !== idx) {
-    //         moveProjectMutation.mutate({
-    //             projectIdx: draggedProjectIdx,
-    //             newCategoryIdx,
-    //         })
-    //     }
-    // }
 
     return (
         <>
@@ -132,13 +110,23 @@ export default function CategoryDetail() {
             </nav>
 
             <div>
-                <h1>Category {categoryIdx} Projects</h1>
+                <h1>Category {idx} Projects</h1>
                 <ul className="project-list">
-                    {projects?.map((project) => (
-                        <li key={project.title} className="task">
-                            <div>{project.title}</div>
-                        </li>
-                    ))}
+                    {projects?.map((project) => {
+                        // 우선순위의 label 찾기
+                        const priorityLabel =
+                            priorities.find(
+                                (priority) =>
+                                    priority.idx === project.priorityIdx
+                            )?.label || 'Unknown'
+                        return (
+                            <li key={project.idx} className="task">
+                                <div>{project.title}</div>
+                                <div>{priorityLabel}</div>{' '}
+                                {/* 여기서 label을 사용 */}
+                            </li>
+                        )
+                    })}
                 </ul>
             </div>
 
@@ -154,15 +142,13 @@ export default function CategoryDetail() {
                     placeholder="TITLE"
                     required
                 />
-                <label htmlFor="priorityIdx"></label>
-                <input
-                    className="text-black"
-                    type="text"
-                    id="priorityIdx"
-                    name="priorityIdx"
-                    placeholder="Priority Index"
-                    required
-                />
+                <select name="priorityIdx" required>
+                    {priorities.map((priority) => (
+                        <option key={priority.idx} value={priority.idx}>
+                            {priority.label}
+                        </option>
+                    ))}
+                </select>
                 <button type="submit">Create Project</button>
             </form>
         </>

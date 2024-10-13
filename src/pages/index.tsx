@@ -40,17 +40,14 @@ export default function Home() {
                             </div>
 
                             <div className="flex flex-col  hover:shadow-[0_0_20px_white] transition-shadow rounded-xl  bg-white bg-opacity-30 border-[#ffe136] border-[5px] border-solid  gap-[5px] justify-center">
-                                <Link
-                                    className="self-center"
-                                    href="/categories"
-                                >
+                                <Link className="self-center" href="/category">
                                     <button className="signIn font-thin text-[40px] text-[#ffbd43]">
                                         IT&apos;S YOUR FLAN
                                     </button>
                                 </Link>
 
                                 <div className="self-center relative w-[320px]  h-[150px] mt-[2px] mb-[15px]">
-                                    <Link href="/categories">
+                                    <Link href="/category">
                                         <Image
                                             src="/assets/images/calendar_width.png"
                                             fill // 부모 요소에 가득 차게 함
