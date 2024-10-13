@@ -3,6 +3,9 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
+    await prisma.project.deleteMany()
+    await prisma.category.deleteMany()
+    await prisma.priority.deleteMany()
     const priorities = [
         { label: 'High' },
         { label: 'Medium' },

@@ -4,22 +4,33 @@ import axios from 'axios'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+
+const categories = [
+    { idx: 1, title: 'Study' },
+    { idx: 2, title: 'Exercise' },
+    { idx: 3, title: 'Routine' },
+    { idx: 4, title: 'Hobby' },
+    { idx: 5, title: 'Shopping' },
+]
+
+const priorities = [
+    { idx: 1, label: 'High' },
+    { idx: 2, label: 'Medium' },
+    { idx: 3, label: 'Low' },
+]
 
 export default function CategoryDetail() {
-    const [priorities, setPriorities] = useState([]) // 우선 순위 상태 추가
-    const [categories, setCategories] = useState([]) // 우선 순위 상태 추가
     const router = useRouter()
     const { categoryIdx } = router.query
     const idx = Number(categoryIdx)
 
-    const me = useQuery({
+    const { data: me } = useQuery({
         queryKey: ['me'],
         queryFn: async () => await axios.get('/api/me'),
     })
 
     // Fetch the projects for the current category
-    const { data: projects, refetch } = useQuery({
+    const { data: projects = [], refetch } = useQuery({
         queryKey: ['projects', idx],
         queryFn: async () => {
             if (!idx) return []
@@ -28,33 +39,6 @@ export default function CategoryDetail() {
         },
         enabled: !!idx, // Run query only if idx is available
     })
-
-    // Fetch priorities from the API
-    useEffect(() => {
-        const fetchPriorities = async () => {
-            try {
-                const response = await axios.get('/api/priority') // 우선 순위 API 호출
-                setPriorities(response.data) // 우선 순위 데이터를 상태에 저장
-            } catch (error) {
-                console.error('Error fetching priorities:', error)
-            }
-        }
-
-        fetchPriorities()
-    }, [])
-
-    useEffect(() => {
-        const fetchCategories = async () => {
-            try {
-                const response = await axios.get('/api/category') // 우선 순위 API 호출
-                setCategories(response.data) // 우선 순위 데이터를 상태에 저장
-            } catch (error) {
-                console.error('Error fetching categories:', error)
-            }
-        }
-
-        fetchCategories()
-    }, [])
 
     // Mutation to create a new project
     const createProjectMutation = useMutation({
@@ -76,7 +60,7 @@ export default function CategoryDetail() {
             refetch() // Refetch projects after successful creation
         },
         onError: (error: Error) => {
-            alert('왜안될까요')
+            alert('Error creating project: ' + error.message)
             console.error('Project failed:', error.message)
         },
     })
@@ -98,6 +82,10 @@ export default function CategoryDetail() {
             categoryIdx,
             priorityIdx: Number(priorityIdx), // Ensure the value is a number
         })
+    }
+
+    if (!me) {
+        return <div>Loading user information...</div> // Loading state for user data
     }
 
     return (

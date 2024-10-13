@@ -41,6 +41,15 @@ export default function Main() {
                 </h1>
                 <PrioritiesComponent />
             </div>
+            <div className="flex flex-col items-center mt-[50px] justify-center   ">
+                <div className="hover:shadow-[0_0_20px_white] text-center border-solid w-[400px]  transition-shadow rounded-xl  bg-white bg-opacity-30 border-[#ffe136] border-[5px]">
+                    <Link href="/category">
+                        <button className="signIn font-thin text-[40px] text-[#ffbd43]">
+                            CATEGORY
+                        </button>
+                    </Link>
+                </div>
+            </div>
         </div>
     )
 }

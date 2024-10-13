@@ -31,7 +31,7 @@ model Category {
 
 model Priority {
         idx       Int      @id @default(autoincrement())
-        label    String   @db.VarChar(50)
+        label    String   @unique @db.VarChar(50)
         projects Project[]
 }
 

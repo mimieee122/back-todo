@@ -42,7 +42,7 @@ export default function Home() {
                             <div className="flex flex-col  hover:shadow-[0_0_20px_white] transition-shadow rounded-xl  bg-white bg-opacity-30 border-[#ffe136] border-[5px] border-solid  gap-[5px] justify-center">
                                 <Link className="self-center" href="/category">
                                     <button className="signIn font-thin text-[40px] text-[#ffbd43]">
-                                        IT&apos;S YOUR FLAN
+                                        IT&#39;S YOUR FLAN
                                     </button>
                                 </Link>
 
@@ -56,13 +56,8 @@ export default function Home() {
                                         />
                                     </Link>
                                 </div>
-                                {/* <Link className="self-center" href="/main">
-                                    <button className="signIn font-thin underline text-[25px] text-yellow-300">
-                                        {me.data.data.nickname}님의 FLAN
-                                        바로가기
-                                    </button>
-                                </Link> */}
                             </div>
+
                             <div className="flex flex-row justify-center mt-[25px] gap-[15px]">
                                 <LogOut />
                                 <Link href="/signUp">
