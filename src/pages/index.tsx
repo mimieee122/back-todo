@@ -39,12 +39,12 @@ export default function Home() {
                                 </div>
                             </div>
 
-                            <div className="flex flex-col  shadow-[0_0_5px_#ffbd43] transition-shadow rounded-xl  bg-black bg-opacity-70 border-[#ffe136] border-[5px] border-solid  gap-[5px] justify-center">
+                            <div className="flex flex-col  hover:shadow-[0_0_20px_white] transition-shadow rounded-xl  bg-white bg-opacity-30 border-[#ffe136] border-[5px] border-solid  gap-[5px] justify-center">
                                 <Link
                                     className="self-center"
                                     href="/categories"
                                 >
-                                    <button className="signIn font-thin underline text-[40px] text-[#ffbd43]">
+                                    <button className="signIn font-thin text-[40px] text-[#ffbd43]">
                                         IT&apos;S YOUR FLAN
                                     </button>
                                 </Link>
