@@ -10,7 +10,7 @@ export default async function handler(
     if (req.method === 'GET') {
         try {
             // 모든 우선 순위를 가져오기
-            const priorities = await prisma.priority.findMany()
+            const priorities = await prisma.priority.findMany({})
 
             return res.status(200).json(priorities) // 성공적으로 우선 순위 반환
         } catch (error) {
