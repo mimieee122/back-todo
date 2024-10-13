@@ -19,11 +19,11 @@ export default function PrioritiesComponent() {
     }, [])
 
     // Handle the form submission or action when a priority is clicked
-    const handlePriorityClick = (priorityIdx) => {
-        // 여기에서 우선 순위를 클릭했을 때의 행동을 정의합니다.
-        console.log(`Selected priority index: ${priorityIdx}`)
-        // 추가적인 라우팅 로직을 추가할 수 있습니다.
-    }
+    // const handlePriorityClick = (priorityIdx) => {
+    //     // 여기에서 우선 순위를 클릭했을 때의 행동을 정의합니다.
+    //     // router.push(`/priority/${priorityIdx}`)
+    //     // 추가적인 라우팅 로직을 추가할 수 있습니다.
+    // }
 
     return (
         <div>
@@ -35,7 +35,7 @@ export default function PrioritiesComponent() {
                         key={priority.idx}
                     >
                         <button
-                            onClick={() => handlePriorityClick(priority.idx)}
+                            // onClick={() => handlePriorityClick(priority.idx)}
                             className="w-full h-full flex items-center justify-center"
                         >
                             {priority.label}

@@ -7,10 +7,16 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 export default function CategoryDetail() {
+    const [priorities, setPriorities] = useState([]) // 우선 순위 상태 추가
+    const [categories, setCategories] = useState([]) // 우선 순위 상태 추가
     const router = useRouter()
     const { categoryIdx } = router.query
     const idx = Number(categoryIdx)
-    const [priorities, setPriorities] = useState([]) // 우선 순위 상태 추가
+
+    const me = useQuery({
+        queryKey: ['me'],
+        queryFn: async () => await axios.get('/api/me'),
+    })
 
     // Fetch the projects for the current category
     const { data: projects, refetch } = useQuery({
@@ -37,6 +43,19 @@ export default function CategoryDetail() {
         fetchPriorities()
     }, [])
 
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const response = await axios.get('/api/category') // 우선 순위 API 호출
+                setCategories(response.data) // 우선 순위 데이터를 상태에 저장
+            } catch (error) {
+                console.error('Error fetching categories:', error)
+            }
+        }
+
+        fetchCategories()
+    }, [])
+
     // Mutation to create a new project
     const createProjectMutation = useMutation({
         mutationFn: async (data: {
@@ -44,10 +63,8 @@ export default function CategoryDetail() {
             categoryIdx: number
             priorityIdx: number
         }) => {
-            const idx = data.categoryIdx
-
             try {
-                await axios.post(`/api/category/${idx}`, data)
+                await axios.post(`/api/category/${data.categoryIdx}`, data)
             } catch (error: any) {
                 const errorMsg =
                     error.response?.data?.message || 'Error creating project.'
@@ -95,9 +112,9 @@ export default function CategoryDetail() {
                             className="object-fill"
                         />
                     </div>
-                    {/* <p className="text-[18px] mt-[7px]">
+                    <p className="text-[18px] mt-[7px]">
                         USER: {me.data?.data?.nickname}
-                    </p> */}
+                    </p>
                 </div>
                 <div className="flex flex-row mt-[10px] text-[18px] gap-[30px]">
                     <Link href="/">
@@ -110,24 +127,47 @@ export default function CategoryDetail() {
             </nav>
 
             <div>
-                <h1>Category {idx} Projects</h1>
-                <ul className="project-list">
-                    {projects?.map((project) => {
-                        // 우선순위의 label 찾기
-                        const priorityLabel =
-                            priorities.find(
-                                (priority) =>
-                                    priority.idx === project.priorityIdx
-                            )?.label || 'Unknown'
-                        return (
-                            <li key={project.idx} className="task">
-                                <div>{project.title}</div>
-                                <div>{priorityLabel}</div>{' '}
-                                {/* 여기서 label을 사용 */}
-                            </li>
-                        )
-                    })}
-                </ul>
+                {/* Display projects for the current category */}
+                {categories
+                    .filter((category) => category.idx === idx) // Filter categories based on categoryIdx
+                    .map((category) => (
+                        <div key={category.idx}>
+                            <h1>Category {category.title} Projects</h1>
+                            {projects
+                                .filter(
+                                    (project) =>
+                                        project.categoryIdx === category.idx
+                                ) // Filter projects for this category
+                                .map((project) => {
+                                    // Find the priority label
+                                    const priority = priorities.find(
+                                        (priority) =>
+                                            priority.idx === project.priorityIdx
+                                    )
+                                    const priorityLabel = priority
+                                        ? priority.label
+                                        : 'Unknown'
+
+                                    return (
+                                        <li
+                                            key={project.idx}
+                                            className="task flex flex-row gap-[10px]"
+                                        >
+                                            <div>{project.title}</div>
+                                            <div>{priorityLabel}</div>
+                                        </li>
+                                    )
+                                })}
+                            {projects.filter(
+                                (project) =>
+                                    project.categoryIdx === category.idx
+                            ).length === 0 && (
+                                <h2>
+                                    No projects available for this category.
+                                </h2> // Message when no projects are present
+                            )}
+                        </div>
+                    ))}
             </div>
 
             {/* Project creation form */}
