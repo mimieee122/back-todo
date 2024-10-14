@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useRouter } from 'next/router'
 
 export default function PrioritiesComponent() {
     const [priorities, setPriorities] = useState([])
-
+    const router = useRouter()
     // Fetch priorities from the API when the component mounts
     useEffect(() => {
         const fetchPriorities = async () => {
@@ -25,6 +26,10 @@ export default function PrioritiesComponent() {
     //     // 추가적인 라우팅 로직을 추가할 수 있습니다.
     // }
 
+    const handlePriorityClick = (priorityIdx) => {
+        router.push(`/priority/${priorityIdx}`)
+    }
+
     return (
         <div>
             <h2 className="text-center text-2xl font-bold mb-4">Priorities</h2>
@@ -35,7 +40,7 @@ export default function PrioritiesComponent() {
                         key={priority.idx}
                     >
                         <button
-                            // onClick={() => handlePriorityClick(priority.idx)}
+                            onClick={() => handlePriorityClick(priority.idx)}
                             className="w-full h-full flex items-center justify-center"
                         >
                             {priority.label}

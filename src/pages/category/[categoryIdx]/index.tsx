@@ -174,6 +174,12 @@ export default function CategoryDetail() {
                 </select>
                 <button type="submit">Create Project</button>
             </form>
+            <button
+                className="mb-[10px] w-[400px] text-end"
+                onClick={() => router.back()}
+            >
+                뒤로가기
+            </button>
         </>
     )
 }

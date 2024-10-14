@@ -3,12 +3,15 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 export default function Main() {
     const me = useQuery({
         queryKey: ['me'],
         queryFn: async () => await axios.get('/api/me'),
     })
+
+    const router = useRouter()
 
     return (
         <div>
@@ -50,6 +53,12 @@ export default function Main() {
                     </Link>
                 </div>
             </div>
+            <button
+                className="mb-[10px] w-[400px] text-end"
+                onClick={() => router.back()}
+            >
+                뒤로가기
+            </button>
         </div>
     )
 }

@@ -25,14 +25,35 @@ export default function CategoriesComponent() {
         router.push(`/category/${categoryIdx}`)
     }
 
+    const showImage = (title) => {
+        switch (title) {
+            case 'Study':
+                return '/assets/images/study.png' // 첫 번째 카테고리 이미지
+            case 'Exercise':
+                return '/assets/images/exercise.png' // 두 번째 카테고리 이미지
+            case 'Routine':
+                return '/assets/images/routine.png' // 기본 이미지
+            case 'Hobby':
+                return '/assets/images/hobby.png' // 기본 이미지
+            case 'Shopping':
+                return '/assets/images/shopping.png' // 기본 이미지
+        }
+    }
+
     return (
         <div>
-            <h2 className="text-center text-2xl font-bold mb-4">CATEGORIES</h2>
             <ul className="flex flex-row justify-center gap-[30px]">
                 {categories.map((category) => (
                     <li
-                        className="w-[150px] h-[100px] text-center text-[18px] font-bold bg-white bg-opacity-10 border-solid border-[1px] rounded-xl border-black"
+                        className="w-[250px] h-[400px] text-center text-[18px] font-bold bg-white bg-opacity-10 border-solid border-[1px] rounded-xl border-black"
                         key={category.idx}
+                        style={{
+                            backgroundImage: `url(${showImage(
+                                category.title
+                            )})`,
+                            backgroundSize: 'cover', // 배경 이미지를 버튼 크기에 맞게 조절
+                            backgroundPosition: 'center', // 배경 이미지의 위치 설정
+                        }}
                     >
                         <button
                             onClick={() => handleCategoryClick(category.idx)}
