@@ -75,7 +75,7 @@ export default function CategoryDetail() {
             }
         },
         onSuccess: () => {
-            refetch() // 프로젝트 생성 후 다시 데이터 불러오기
+            refetch() // 프로젝트 생성 후 데이터 불러오기
         },
         onError: (error: Error) => {
             alert('Error creating project: ' + error.message)
@@ -131,22 +131,17 @@ export default function CategoryDetail() {
             </nav>
 
             <div>
-                {/* <h1>Category {categoryIdx} Projects</h1> */}
-
+                {/*category 변수는 비동기적으로 업데이트되므로 물음표 붙이기..*/}
                 <h1>Category {category?.title || 'Unknown'} Projects</h1>
                 <ul className="project-list">
-                    {projects?.map((project) => (
-                        <li key={project.title} className="task">
-                            <div>{project.title}</div>
-                        </li>
-                    ))}
                     {projects?.map((project) => {
-                        // 우선순위의 label 찾기
+                        // 프로젝트의 우선순위의 label 찾기
                         const priorityLabel =
                             priorities.find(
                                 (priority) =>
-                                    priority.idx === project.priorityIdx
+                                    priority.idx === project.priorityIdx // project의 priorityIdx를 사용
                             )?.label || 'Unknown'
+
                         return (
                             <li key={project.idx} className="task">
                                 <div>{project.title}</div>

@@ -27,20 +27,11 @@ export const createProject = async (
         }
         const { categoryIdx, title, priorityIdx } = req.body
 
-        const category = await prisma.category.findUnique({
-            where: { idx: categoryIdx },
-        })
-        const priority = await prisma.priority.findUnique({
-            where: { idx: priorityIdx },
-        })
+        const categoryIndex = Number(categoryIdx)
+        const name = String(title)
+        const priorityIndex = Number(priorityIdx)
 
-        if (!category || !priority) {
-            return res
-                .status(400)
-                .json({ message: '잘못된 카테고리 또는 우선순위입니다.' })
-        }
-
-        if (!title || !priorityIdx || !title) {
+        if (!title || !priorityIdx || !categoryIdx) {
             return res
                 .status(400)
                 .json({ message: '프로젝트 명과 우선순위를 입력하세요.' })
@@ -48,10 +39,10 @@ export const createProject = async (
 
         const project = await prisma.project.create({
             data: {
-                title,
-                categoryIdx,
+                title: name,
+                categoryIdx: categoryIndex,
                 userIdx: Number(decoded.idx),
-                priorityIdx,
+                priorityIdx: priorityIndex,
             },
         })
         return res.status(201).json(project)
