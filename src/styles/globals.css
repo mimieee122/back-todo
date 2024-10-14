@@ -64,3 +64,8 @@ body {
     font-family: PartialSansKR-Regular;
     -webkit-text-stroke: 1px black;
 }
+
+.category {
+    font-family: PartialSansKR-Regular;
+    -webkit-text-stroke: 2.5px black;
+}

@@ -5,6 +5,7 @@ import { useMutation, useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import Button from '@/components/button'
 
 // Prisma 클라이언트 생성
 
@@ -135,10 +136,10 @@ export default function CategoryDetail() {
 
             <div className="flex flex-col items-center justify-center">
                 {/*category 변수는 비동기적으로 업데이트되므로 물음표 붙이기..*/}
-                <h1 className="text-[60px] signIn text-[pink]">
-                    Category *{category?.title || 'Unknown'}* Projects
+                <h1 className="text-[60px] mb-[20px] signIn text-[#f13857]">
+                    To Do {category?.title || 'Unknown'}
                 </h1>
-                <div className="w-[1200px] h-[250px] border-[3px] border-black border-solid">
+                <div className="w-[1200px] h-[250px] shadow-[0_0_10px_white] transition-shadow rounded-xl  bg-white bg-opacity-15 border-[#f13857] border-[5px] border-solid ">
                     <ul className="project-list flex  flex-col gap-[5px]">
                         {projects?.map((project) => {
                             // 프로젝트의 우선순위의 label 찾기
@@ -153,8 +154,8 @@ export default function CategoryDetail() {
                                     key={project.idx}
                                     className="task flex flex-row gap-[10px] mt-[10px]"
                                 >
-                                    <div> - PROJECT : {project.title}</div>
-                                    <div>PRIORITY : {priorityLabel}</div>{' '}
+                                    <div> - TODO : {project.title}</div>
+                                    <div>중요도 : {priorityLabel}</div>{' '}
                                     {/* 여기서 label을 사용 */}
                                 </li>
                             )
@@ -166,10 +167,10 @@ export default function CategoryDetail() {
             {/* 프로젝트 생성 폼 */}
             <div className="flex flex-row justify-center items-center mt-[30px]">
                 <form
-                    className="flex flex-col items-center w-[1200px] h-[200px] border-black border-[3px]"
+                    className="flex flex-col items-center w-[1200px] h-[200px] rounded-xl  bg-white bg-opacity-15 border-[black] border-[3px] border-solid"
                     onSubmit={handleCreateProject}
                 >
-                    <div className=" write text-white mb-[20px] font-extrabold text-[40px]">
+                    <div className=" signIn text-white mb-[20px] font-extrabold text-[40px]">
                         WRITE
                     </div>
                     <div className="flex flex-row gap-[20px]">
@@ -192,7 +193,7 @@ export default function CategoryDetail() {
                             ))}
                         </select>
                         <button
-                            className="w-[250px] h-[30px] border-black border-[1px] rounded-sm"
+                            className="w-[250px] h-[30px] bg-black text-white border-black border-[3px] rounded-md"
                             type="submit"
                         >
                             Create Project
@@ -201,9 +202,7 @@ export default function CategoryDetail() {
                 </form>
             </div>
             <div className="flex flex-row justify-center mt-[50px]">
-                <button className="mb-[2px] " onClick={() => router.back()}>
-                    뒤로가기
-                </button>
+                <Button onClick={() => router.back()}>뒤로가기</Button>
             </div>
         </>
     )
