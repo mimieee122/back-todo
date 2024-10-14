@@ -17,7 +17,10 @@ export default function CategoryDetail() {
 
     const me = useQuery({
         queryKey: ['me'],
-        queryFn: async () => await axios.get('/api/me'),
+        queryFn: async () => {
+            const response = await axios.get('/api/me')
+            return response.data
+        },
     })
     useEffect(() => {
         const fetchPriorities = async () => {
@@ -60,7 +63,7 @@ export default function CategoryDetail() {
                         />
                     </div>
                     <p className="text-[18px] mt-[7px]">
-                        USER: {me.data?.data?.nickname}
+                        USER: {me.data?.nickname}
                     </p>
                 </div>
                 <div className="flex flex-row mt-[10px] text-[18px] gap-[30px]">
@@ -89,6 +92,11 @@ export default function CategoryDetail() {
                         )
                     })}
                 </ul>
+            </div>
+            <div className="flex flex-row justify-center mt-[50px]">
+                <button className="mb-[2px] " onClick={() => router.back()}>
+                    뒤로가기
+                </button>
             </div>
         </>
     )

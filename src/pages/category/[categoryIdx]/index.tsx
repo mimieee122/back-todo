@@ -18,7 +18,10 @@ export default function CategoryDetail() {
 
     const me = useQuery({
         queryKey: ['me'],
-        queryFn: async () => await axios.get('/api/me'),
+        queryFn: async () => {
+            const response = await axios.get('/api/me')
+            return response.data
+        },
     })
     useEffect(() => {
         const fetchPriorities = async () => {
@@ -117,7 +120,7 @@ export default function CategoryDetail() {
                         />
                     </div>
                     <p className="text-[18px] mt-[7px]">
-                        USER: {me.data?.data?.nickname}
+                        USER: {me.data?.nickname}
                     </p>
                 </div>
                 <div className="flex flex-row mt-[10px] text-[18px] gap-[30px]">
@@ -130,56 +133,78 @@ export default function CategoryDetail() {
                 </div>
             </nav>
 
-            <div>
+            <div className="flex flex-col items-center justify-center">
                 {/*category 변수는 비동기적으로 업데이트되므로 물음표 붙이기..*/}
-                <h1>Category {category?.title || 'Unknown'} Projects</h1>
-                <ul className="project-list">
-                    {projects?.map((project) => {
-                        // 프로젝트의 우선순위의 label 찾기
-                        const priorityLabel =
-                            priorities.find(
-                                (priority) =>
-                                    priority.idx === project.priorityIdx // project의 priorityIdx를 사용
-                            )?.label || 'Unknown'
+                <h1 className="text-[60px] signIn text-[pink]">
+                    Category *{category?.title || 'Unknown'}* Projects
+                </h1>
+                <div className="w-[1200px] h-[250px] border-[3px] border-black border-solid">
+                    <ul className="project-list flex  flex-col gap-[5px]">
+                        {projects?.map((project) => {
+                            // 프로젝트의 우선순위의 label 찾기
+                            const priorityLabel =
+                                priorities.find(
+                                    (priority) =>
+                                        priority.idx === project.priorityIdx // project의 priorityIdx를 사용
+                                )?.label || 'Unknown'
 
-                        return (
-                            <li key={project.idx} className="task">
-                                <div>{project.title}</div>
-                                <div>{priorityLabel}</div>{' '}
-                                {/* 여기서 label을 사용 */}
-                            </li>
-                        )
-                    })}
-                </ul>
+                            return (
+                                <li
+                                    key={project.idx}
+                                    className="task flex flex-row gap-[10px] mt-[10px]"
+                                >
+                                    <div> - PROJECT : {project.title}</div>
+                                    <div>PRIORITY : {priorityLabel}</div>{' '}
+                                    {/* 여기서 label을 사용 */}
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
             </div>
 
             {/* 프로젝트 생성 폼 */}
-            <form onSubmit={handleCreateProject}>
-                <div className="write text-white mb-0 text-[35px]">WRITE</div>
-                <label htmlFor="title"></label>
-                <input
-                    className="text-black"
-                    type="text"
-                    id="title"
-                    name="title"
-                    placeholder="TITLE"
-                    required
-                />
-                <select name="priorityIdx" required>
-                    {priorities.map((priority) => (
-                        <option key={priority.idx} value={priority.idx}>
-                            {priority.label}
-                        </option>
-                    ))}
-                </select>
-                <button type="submit">Create Project</button>
-            </form>
-            <button
-                className="mb-[10px] w-[400px] text-end"
-                onClick={() => router.back()}
-            >
-                뒤로가기
-            </button>
+            <div className="flex flex-row justify-center items-center mt-[30px]">
+                <form
+                    className="flex flex-col items-center w-[1200px] h-[200px] border-black border-[3px]"
+                    onSubmit={handleCreateProject}
+                >
+                    <div className=" write text-white mb-[20px] font-extrabold text-[40px]">
+                        WRITE
+                    </div>
+                    <div className="flex flex-row gap-[20px]">
+                        <label htmlFor="title"></label>
+                        <p>할 일 :</p>
+                        <input
+                            className="text-black"
+                            type="text"
+                            id="title"
+                            name="title"
+                            placeholder="TO-DO"
+                            required
+                        />
+                        <p>중요도 :</p>
+                        <select name="priorityIdx" required>
+                            {priorities.map((priority) => (
+                                <option key={priority.idx} value={priority.idx}>
+                                    {priority.label}
+                                </option>
+                            ))}
+                        </select>
+                        <button
+                            className="w-[250px] h-[30px] border-black border-[1px] rounded-sm"
+                            type="submit"
+                        >
+                            Create Project
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div className="flex flex-row justify-center mt-[50px]">
+                <button className="mb-[2px] " onClick={() => router.back()}>
+                    뒤로가기
+                </button>
+            </div>
         </>
     )
 }

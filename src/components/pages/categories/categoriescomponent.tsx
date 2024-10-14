@@ -9,16 +9,15 @@ export default function CategoriesComponent() {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get('/api/category') // API 엔드포인트를 설정합니다.
+                const response = await axios.get('/api/category')
                 setCategories(response.data)
             } catch (error) {
-                console.error('Error fetching priorities:', error)
+                console.error('Error fetching categories:', error)
             }
         }
 
         fetchCategories()
     }, [])
-
     // Handle the form submission to create a new project
 
     const handleCategoryClick = (categoryIdx) => {
@@ -45,7 +44,7 @@ export default function CategoriesComponent() {
             <ul className="flex flex-row justify-center gap-[30px]">
                 {categories.map((category) => (
                     <li
-                        className="w-[250px] h-[400px] text-center text-[18px] font-bold bg-white bg-opacity-10 border-solid border-[1px] rounded-xl border-black"
+                        className="w-[250px] h-[400px] text-center text-[30px] font-extrabold  text-white shadow-[0_0_15px_white] transition-shadow   bg-white bg-opacity-10 border-solid rounded-xl  border-[#ff3f6f] border-[4px]"
                         key={category.idx}
                         style={{
                             backgroundImage: `url(${showImage(

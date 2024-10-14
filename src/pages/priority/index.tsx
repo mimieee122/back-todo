@@ -7,7 +7,10 @@ import Link from 'next/link'
 export default function Main() {
     const me = useQuery({
         queryKey: ['me'],
-        queryFn: async () => await axios.get('/api/me'),
+        queryFn: async () => {
+            const response = await axios.get('/api/me')
+            return response.data
+        },
     })
 
     return (
@@ -23,7 +26,7 @@ export default function Main() {
                         />
                     </div>
                     <p className="text-[18px] mt-[7px]">
-                        USER : {me.data.data.nickname}
+                        USER : {me.data.nickname}
                     </p>
                 </div>
                 <div className="flex flex-row mt-[10px] text-[18px] gap-[30px]">
@@ -42,10 +45,10 @@ export default function Main() {
                 <PrioritiesComponent />
             </div>
             <div className="flex flex-col items-center mt-[50px] justify-center   ">
-                <div className="hover:shadow-[0_0_20px_white] text-center border-solid w-[400px]  transition-shadow rounded-xl  bg-white bg-opacity-30 border-[#ffe136] border-[5px]">
+                <div className="text-center ">
                     <Link href="/category">
-                        <button className="signIn font-thin text-[40px] text-[#ffbd43]">
-                            CATEGORY
+                        <button className="border-[3px] border-[gray] bg-white bg-opacity-10 border-solid rounded-xl w-[300px] text-[25px] signIn font-thin text-[gray]">
+                            CATEGORY 분류
                         </button>
                     </Link>
                 </div>

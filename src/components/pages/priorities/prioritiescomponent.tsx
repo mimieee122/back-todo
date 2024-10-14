@@ -32,7 +32,6 @@ export default function PrioritiesComponent() {
 
     return (
         <div>
-            <h2 className="text-center text-2xl font-bold mb-4">Priorities</h2>
             <ul className="flex flex-row justify-center gap-[30px]">
                 {priorities.map((priority) => (
                     <li

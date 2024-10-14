@@ -11,7 +11,10 @@ export default function Home() {
 
     const me = useQuery({
         queryKey: ['me'],
-        queryFn: async () => await axios.get('/api/me'),
+        queryFn: async () => {
+            const response = await axios.get('/api/me')
+            return response.data
+        },
     })
 
     return (
@@ -26,7 +29,7 @@ export default function Home() {
                                         HI,
                                     </p>
                                     <p className="yellow text-[30px] font-thin text-[#ffbd43]">
-                                        {me.data.data.nickname} !
+                                        {me.data.nickname} !
                                     </p>
                                 </div>
                                 <div className="relative w-[300px]  h-[300px] ">
@@ -39,7 +42,7 @@ export default function Home() {
                                 </div>
                             </div>
 
-                            <div className="flex flex-col  hover:shadow-[0_0_20px_white] transition-shadow rounded-xl  bg-white bg-opacity-15 border-[#ffe136] border-[5px] border-solid  gap-[5px] justify-center">
+                            <div className="flex flex-col  hover:shadow-[0_0_10px_white] transition-shadow rounded-xl  bg-white bg-opacity-15 border-[#ffe136] border-[5px] border-solid  gap-[5px] justify-center">
                                 <Link className="self-center" href="/category">
                                     <button className="signIn font-thin text-[40px] text-[#ffbd43]">
                                         IT&#39;S YOUR FLAN
