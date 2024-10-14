@@ -11,8 +11,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
     try {
         if (req.method === 'GET') {
-            await getCategories(req, res)
-            return res.status(202).json({ message: '카테고리 전체 조회 완료.' })
+            const categories = await getCategories(req, res)
+
+            return res.status(200).json(categories)
         } else {
             return res
                 .status(405)

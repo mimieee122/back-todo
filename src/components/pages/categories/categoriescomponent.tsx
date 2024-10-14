@@ -1,19 +1,23 @@
+import axios from 'axios'
 import { useRouter } from 'next/router'
-
-const categories = [
-    {
-        categoryIdx: 1,
-        name: 'Study',
-        projects: [],
-    },
-    { categoryIdx: 2, name: 'Exercise', projects: [] },
-    { categoryIdx: 3, name: 'Routine', projects: [] },
-    { categoryIdx: 4, name: 'Hobby', projects: [] },
-    { categoryIdx: 5, name: 'Shopping', projects: [] },
-]
+import { useEffect, useState } from 'react'
 
 export default function CategoriesComponent() {
     const router = useRouter()
+    const [categories, setCategories] = useState([])
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const response = await axios.get('/api/category') // API 엔드포인트를 설정합니다.
+                setCategories(response.data)
+            } catch (error) {
+                console.error('Error fetching priorities:', error)
+            }
+        }
+
+        fetchCategories()
+    }, [])
 
     // Handle the form submission to create a new project
 
@@ -27,19 +31,20 @@ export default function CategoriesComponent() {
                 {categories.map((category) => (
                     <li
                         className="w-[250px] h-[250px] text-center text-[20px] font-extrabold bg-white bg-opacity-10 border-solid border-[1px] rounded-xl border-black"
-                        key={category.categoryIdx}
+                        key={category.idx}
                     >
                         <button
                             onClick={() =>
-                                handleCategoryClick(category.categoryIdx)
+                                handleCategoryClick(Number(category.idx))
                             }
                         >
-                            {category.name}
+                            {/*카테고리 상세 페이지에 categoryIdx 숫자로 전송하기 성공 ㅠㅠ*/}
+                            {category.title}
                         </button>
 
                         {/* Projects inside the category */}
                         <ul>
-                            {category.projects.map((project) => (
+                            {category.projects?.map((project) => (
                                 <li
                                     key={project.idx} // Assuming project has a unique projectIdx
                                     className="p-2 mt-2 bg-gray-200 border rounded-md"

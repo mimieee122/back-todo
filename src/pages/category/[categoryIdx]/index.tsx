@@ -4,29 +4,40 @@ import axios from 'axios'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 
 // Prisma 클라이언트 생성
 
 export default function CategoryDetail() {
+    const [priorities, setPriorities] = useState([]) // 우선 순위 상태 추가
+    const [categories, setCategories] = useState([]) // 우선 순위 상태 추가
+
     const router = useRouter()
-    const { categoryIdx } = router.query
-    const idx = Number(categoryIdx)
 
-    const { data: categories = [] } = useQuery({
-        queryKey: ['categories'],
-        queryFn: async () => {
-            const response = await axios.get('/api/category') // 데이터 요청
-            return response.data // 응답 데이터 반환
-        },
-    })
+    const idx = Number(router.query.categoryIdx) || 0
+    useEffect(() => {
+        const fetchPriorities = async () => {
+            try {
+                const response = await axios.get('/api/priority') // 우선 순위 API 호출
+                setPriorities(response.data) // 우선 순위 데이터를 상태에 저장
+            } catch (error) {
+                console.error('Error fetching priorities:', error)
+            }
+        }
+        fetchPriorities()
+    }, [])
 
-    const { data: priorities = [] } = useQuery({
-        queryKey: ['priorities'],
-        queryFn: async () => {
-            const response = await axios.get('/api/priority') // 데이터 요청
-            return response.data // 응답 데이터 반환
-        },
-    })
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const response = await axios.get('/api/category') // 우선 순위 API 호출
+                setCategories(response.data) // 우선 순위 데이터를 상태에 저장
+            } catch (error) {
+                console.error('Error fetching priorities:', error)
+            }
+        }
+        fetchCategories()
+    }, [])
 
     // 사용자 정보 가져오기
     const me = useQuery({
@@ -37,16 +48,20 @@ export default function CategoryDetail() {
         },
     })
 
-    // 해당 카테고리의 프로젝트를 가져오기
-    const { data: projects, refetch } = useQuery({
-        queryKey: ['projects', idx],
+    const { data: projectsData, refetch } = useQuery({
+        queryKey: ['projects', idx], // Unique query key for this category
         queryFn: async () => {
-            if (!idx) return [] // idx가 없을 경우 빈 배열 반환
-            const response = await axios.get(`/api/category/${idx}`) // 데이터 요청
-            return response.data // 응답 데이터 반환
+            if (idx) {
+                const response = await axios.get(`/api/category/${idx}`) // API에서 해당 카테고리의 프로젝트를 가져옵니다.
+                return response.data.projects // 프로젝트 상태를 업데이트합니다.
+            }
+            return []
         },
-        enabled: !!idx, // idx가 있을 때만 쿼리를 실행
+        enabled: !!idx, // idx가 있을 때만 쿼리 실행
     })
+
+    const projects = projectsData || []
+    // 해당 카테고리의 프로젝트를 가져오기
 
     // 새 프로젝트 생성 뮤테이션
     const createProjectMutation = useMutation({
@@ -91,8 +106,8 @@ export default function CategoryDetail() {
             priorityIdx: Number(priorityIdx), // priorityIdx를 숫자로 변환
         })
     }
-    console.log('categoryIdx:', categoryIdx) // categoryIdx 확인
-    console.log('categories:', categories) // categories 데이터 확인
+
+    const category = categories.find((category) => category.idx === idx)
 
     return (
         <>
@@ -121,35 +136,31 @@ export default function CategoryDetail() {
             </nav>
 
             <div>
-                <h1>
-                    Category{' '}
-                    {categories.find((category) => category.idx === idx)?.title}{' '}
-                    Projects
-                </h1>
-                {projects && projects.length > 0 ? (
-                    <ul>
-                        {projects.map((project) => {
-                            const priority = priorities.find(
-                                (p) => p.idx === project.priorityIdx
-                            )
-                            const priorityLabel = priority
-                                ? priority.label
-                                : 'Unknown'
+                {/* <h1>Category {categoryIdx} Projects</h1> */}
 
-                            return (
-                                <li
-                                    key={project.idx}
-                                    className="task flex flex-row gap-[10px]"
-                                >
-                                    <div>{project.title}</div>
-                                    <div>{priorityLabel}</div>
-                                </li>
-                            )
-                        })}
-                    </ul>
-                ) : (
-                    <h2>No projects available for this category.</h2>
-                )}
+                <h1>Category {category?.title || 'Unknown'} Projects</h1>
+                <ul className="project-list">
+                    {projects?.map((project) => (
+                        <li key={project.title} className="task">
+                            <div>{project.title}</div>
+                        </li>
+                    ))}
+                    {projects?.map((project) => {
+                        // 우선순위의 label 찾기
+                        const priorityLabel =
+                            priorities.find(
+                                (priority) =>
+                                    priority.idx === project.priorityIdx
+                            )?.label || 'Unknown'
+                        return (
+                            <li key={project.idx} className="task">
+                                <div>{project.title}</div>
+                                <div>{priorityLabel}</div>{' '}
+                                {/* 여기서 label을 사용 */}
+                            </li>
+                        )
+                    })}
+                </ul>
             </div>
 
             {/* 프로젝트 생성 폼 */}
