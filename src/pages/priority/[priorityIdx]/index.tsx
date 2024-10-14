@@ -67,6 +67,9 @@ export default function CategoryDetail() {
                     </p>
                 </div>
                 <div className="flex flex-row mt-[10px] text-[18px] gap-[30px]">
+                    <Link href="/category">
+                        <button className=" text-[#fff983]">CATEGORY</button>
+                    </Link>
                     <Link href="/">
                         <button>HOME</button>
                     </Link>
@@ -92,11 +95,6 @@ export default function CategoryDetail() {
                         )
                     })}
                 </ul>
-            </div>
-            <div className="flex flex-row justify-center mt-[50px]">
-                <button className="mb-[2px] " onClick={() => router.back()}>
-                    뒤로가기
-                </button>
             </div>
         </>
     )

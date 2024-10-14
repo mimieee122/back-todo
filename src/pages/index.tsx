@@ -29,7 +29,7 @@ export default function Home() {
                                         HI,
                                     </p>
                                     <p className="yellow text-[30px] font-thin text-[#ffbd43]">
-                                        {me.data.nickname}
+                                        {me.data.data?.nickname}
                                     </p>
                                 </div>
                                 <div className="relative w-[300px]  h-[300px] ">

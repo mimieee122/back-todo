@@ -5,7 +5,6 @@ import { useMutation, useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import Button from '@/components/button'
 
 // Prisma 클라이언트 생성
 
@@ -125,11 +124,17 @@ export default function CategoryDetail() {
                     </p>
                 </div>
                 <div className="flex flex-row mt-[10px] text-[18px] gap-[30px]">
+                    <Link href="/category">
+                        <button className="     text-[#fff983]">
+                            CATEGORY
+                        </button>
+                    </Link>
+
                     <Link href="/">
                         <button>HOME</button>
                     </Link>
                     <Link href="/signUp">
-                        <button>Sign Up</button>
+                        <button>회원가입</button>
                     </Link>
                 </div>
             </nav>
@@ -139,7 +144,7 @@ export default function CategoryDetail() {
                 <h1 className="text-[60px] mb-[20px] signIn text-[#f13857]">
                     To Do {category?.title || 'Unknown'}
                 </h1>
-                <div className="w-[1200px] h-[250px] shadow-[0_0_10px_white] transition-shadow rounded-xl  bg-white bg-opacity-15 border-[#f13857] border-[5px] border-solid ">
+                <div className="w-[1200px] h-[250px] overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl  bg-white bg-opacity-15 border-[#f13857] border-[5px] border-solid ">
                     <ul className="project-list flex  flex-col gap-[5px]">
                         {projects?.map((project) => {
                             // 프로젝트의 우선순위의 label 찾기
@@ -170,7 +175,7 @@ export default function CategoryDetail() {
                     className="flex flex-col items-center w-[1200px] h-[200px] rounded-xl  bg-white bg-opacity-15 border-[black] border-[3px] border-solid"
                     onSubmit={handleCreateProject}
                 >
-                    <div className=" signIn text-white mb-[20px] font-extrabold text-[40px]">
+                    <div className=" signIn text-[#f9d55e] mb-[20px] font-extrabold text-[40px]">
                         WRITE
                     </div>
                     <div className="flex flex-row gap-[20px]">
@@ -201,9 +206,7 @@ export default function CategoryDetail() {
                     </div>
                 </form>
             </div>
-            <div className="flex flex-row justify-center mt-[50px]">
-                <Button onClick={() => router.back()}>뒤로가기</Button>
-            </div>
+            <div className="flex flex-row justify-center mt-[50px]"></div>
         </>
     )
 }

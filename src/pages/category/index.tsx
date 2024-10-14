@@ -1,21 +1,17 @@
-import Button from '@/components/button'
 import CategoriesComponent from '@/components/pages/categories/categoriescomponent'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 
 export default function Main() {
-    const { data: me, isLoading } = useQuery({
+    const me = useQuery({
         queryKey: ['me'],
         queryFn: async () => {
             const response = await axios.get('/api/me')
             return response.data
         },
     })
-
-    const router = useRouter()
 
     return (
         <div>
@@ -30,7 +26,7 @@ export default function Main() {
                         />
                     </div>
                     <p className="text-[18px] mt-[7px]">
-                        USER : {isLoading ? 'Loading...' : me?.nickname}
+                        USER : {me.data.nickname}
                     </p>
                 </div>
                 <div className="flex flex-row mt-[10px] text-[18px] gap-[30px]">
@@ -56,7 +52,6 @@ export default function Main() {
                         </button>
                     </Link>
                 </div>
-                <Button onClick={() => router.back()}>뒤로가기</Button>
             </div>
         </div>
     )

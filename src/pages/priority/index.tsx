@@ -30,6 +30,11 @@ export default function Main() {
                     </p>
                 </div>
                 <div className="flex flex-row mt-[10px] text-[18px] gap-[30px]">
+                    <Link href="/category">
+                        <button className="     text-[#fff983]">
+                            CATEGORY
+                        </button>
+                    </Link>
                     <Link href="/">
                         <button>HOME</button>
                     </Link>
@@ -43,15 +48,6 @@ export default function Main() {
                     PRIORITY
                 </h1>
                 <PrioritiesComponent />
-            </div>
-            <div className="flex flex-col items-center mt-[50px] justify-center   ">
-                <div className="text-center ">
-                    <Link href="/category">
-                        <button className="border-[3px] border-[gray] bg-white bg-opacity-10 border-solid rounded-xl w-[300px] text-[25px] signIn font-thin text-[gray]">
-                            CATEGORY 분류
-                        </button>
-                    </Link>
-                </div>
             </div>
         </div>
     )
