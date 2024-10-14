@@ -46,7 +46,7 @@ export const createProject = async (
                 .json({ message: '프로젝트 명과 우선순위를 입력하세요.' })
         }
 
-        const projects = await prisma.project.create({
+        const project = await prisma.project.create({
             data: {
                 title,
                 categoryIdx,
@@ -54,7 +54,7 @@ export const createProject = async (
                 priorityIdx,
             },
         })
-        return res.status(201).json(projects)
+        return res.status(201).json(project)
     } catch (error) {
         console.error('프로젝트 생성 중 오류 발생:', error)
         return res

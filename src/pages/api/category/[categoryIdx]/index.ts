@@ -24,10 +24,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             }
 
             try {
-                await createProject(req, res)
-                return res
-                    .status(201)
-                    .json({ message: '프로젝트가 성공적으로 생성되었습니다.' })
+                const project = await createProject(req, res)
+                return res.status(201).json(project)
             } catch (error) {
                 console.error('프로젝트 생성 중 오류 발생:', error)
                 return res
@@ -35,8 +33,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
                     .json({ message: '프로젝트 생성에 실패했습니다.' })
             }
         } else if (req.method === 'GET') {
-            await getProjects(req, res)
-            return res.status(202).json({ message: '프로젝트 조회 완료.' })
+            const projects = await getProjects(req, res)
+            return res.status(202).json(projects)
         } else {
             return res
                 .status(405)

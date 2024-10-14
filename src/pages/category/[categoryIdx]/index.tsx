@@ -14,7 +14,12 @@ export default function CategoryDetail() {
 
     const router = useRouter()
 
-    const idx = Number(router.query.categoryIdx) || 0
+    const idx = Number(router.query.categoryIdx)
+
+    const me = useQuery({
+        queryKey: ['me'],
+        queryFn: async () => await axios.get('/api/me'),
+    })
     useEffect(() => {
         const fetchPriorities = async () => {
             try {
@@ -39,28 +44,18 @@ export default function CategoryDetail() {
         fetchCategories()
     }, [])
 
-    // 사용자 정보 가져오기
-    const me = useQuery({
-        queryKey: ['me'],
-        queryFn: async () => {
-            const response = await axios.get('/api/me') // 데이터 요청
-            return response.data // 응답 데이터 반환
-        },
-    })
-
-    const { data: projectsData, refetch } = useQuery({
+    const { data: projects, refetch } = useQuery({
         queryKey: ['projects', idx], // Unique query key for this category
         queryFn: async () => {
             if (idx) {
                 const response = await axios.get(`/api/category/${idx}`) // API에서 해당 카테고리의 프로젝트를 가져옵니다.
-                return response.data.projects // 프로젝트 상태를 업데이트합니다.
+                return response.data // 프로젝트 상태를 업데이트합니다.
             }
             return []
         },
         enabled: !!idx, // idx가 있을 때만 쿼리 실행
     })
 
-    const projects = projectsData || []
     // 해당 카테고리의 프로젝트를 가져오기
 
     // 새 프로젝트 생성 뮤테이션

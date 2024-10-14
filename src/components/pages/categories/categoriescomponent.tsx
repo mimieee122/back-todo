@@ -27,33 +27,19 @@ export default function CategoriesComponent() {
 
     return (
         <div>
+            <h2 className="text-center text-2xl font-bold mb-4">CATEGORIES</h2>
             <ul className="flex flex-row justify-center gap-[30px]">
                 {categories.map((category) => (
                     <li
-                        className="w-[250px] h-[250px] text-center text-[20px] font-extrabold bg-white bg-opacity-10 border-solid border-[1px] rounded-xl border-black"
+                        className="w-[150px] h-[100px] text-center text-[18px] font-bold bg-white bg-opacity-10 border-solid border-[1px] rounded-xl border-black"
                         key={category.idx}
                     >
                         <button
-                            onClick={() =>
-                                handleCategoryClick(Number(category.idx))
-                            }
+                            onClick={() => handleCategoryClick(category.idx)}
+                            className="w-full h-full flex items-center justify-center"
                         >
-                            {/*카테고리 상세 페이지에 categoryIdx 숫자로 전송하기 성공 ㅠㅠ*/}
                             {category.title}
                         </button>
-
-                        {/* Projects inside the category */}
-                        <ul>
-                            {category.projects?.map((project) => (
-                                <li
-                                    key={project.idx} // Assuming project has a unique projectIdx
-                                    className="p-2 mt-2 bg-gray-200 border rounded-md"
-                                >
-                                    {project.title}{' '}
-                                    {/* Displaying project title */}
-                                </li>
-                            ))}
-                        </ul>
                     </li>
                 ))}
             </ul>

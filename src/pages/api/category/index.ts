@@ -1,5 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { getCategories } from '@/apis/categories/getCategory'
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const secret = process.env.SECRET_JWT
@@ -11,7 +13,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
     try {
         if (req.method === 'GET') {
-            const categories = await getCategories(req, res)
+            const categories = await prisma.category.findMany({})
 
             return res.status(200).json(categories)
         } else {

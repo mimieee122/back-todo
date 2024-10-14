@@ -8,13 +8,14 @@ export const getCategories = async (
     res: NextApiResponse
 ) => {
     try {
-        const categories = await prisma.category.findMany({})
-        return res.status(200).json(categories)
+        const categories = await prisma.category.findMany()
+        return categories
     } catch (error) {
         console.error('카테고리 전체 조회 중 오류 발생:', error)
         res.status(500).json({
             message: '서버 오류가 발생했습니다.',
         })
+        return
     }
 }
 
