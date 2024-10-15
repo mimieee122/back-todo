@@ -9,6 +9,8 @@ import { useEffect, useState } from 'react'
 // Prisma 클라이언트 생성
 
 export default function CategoryDetail() {
+    const [title, setTitle] = useState('')
+    const [priorityIdx, setPriorityIdx] = useState('')
     const [priorities, setPriorities] = useState([]) // 우선 순위 상태 추가
     const [categories, setCategories] = useState([]) // 우선 순위 상태 추가
 
@@ -78,6 +80,8 @@ export default function CategoryDetail() {
             }
         },
         onSuccess: () => {
+            setTitle('')
+            setPriorityIdx('')
             refetch() // 프로젝트 생성 후 데이터 불러오기
         },
         onError: (error: Error) => {
@@ -187,10 +191,17 @@ export default function CategoryDetail() {
                             id="title"
                             name="title"
                             placeholder="TO-DO"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
                             required
                         />
                         <p>중요도 :</p>
-                        <select name="priorityIdx" required>
+                        <select
+                            name="priorityIdx"
+                            value={priorityIdx} // 우선 순위 상태 연결
+                            onChange={(e) => setPriorityIdx(e.target.value)} // 상태 업데이트
+                            required
+                        >
                             {priorities.map((priority) => (
                                 <option key={priority.idx} value={priority.idx}>
                                     {priority.label}
