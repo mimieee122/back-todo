@@ -38,9 +38,6 @@ export default function Main() {
                     <Link href="/">
                         <button>HOME</button>
                     </Link>
-                    <Link href="/signUp">
-                        <button>회원가입</button>
-                    </Link>
                 </div>
             </nav>
             <div className="flex flex-col justify-center items-center gap-[20px] mt-[150px]">

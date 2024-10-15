@@ -137,9 +137,6 @@ export default function CategoryDetail() {
                     <Link href="/">
                         <button>HOME</button>
                     </Link>
-                    <Link href="/signUp">
-                        <button>회원가입</button>
-                    </Link>
                 </div>
             </nav>
 
