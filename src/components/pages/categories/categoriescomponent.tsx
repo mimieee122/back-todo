@@ -48,29 +48,26 @@ export default function CategoriesComponent() {
     }
 
     return (
-        <div>
-            <ul className="flex flex-row justify-center gap-[30px]">
-                {categories.map((category) => (
-                    <li
-                        className="w-[250px] h-[400px] text-center text-[30px] font-extrabold  text-white shadow-[0_0_15px_white] transition-shadow   bg-white bg-opacity-10 border-solid rounded-xl  border-[#ff3f6f] border-[4px]"
-                        key={category.idx}
-                        style={{
-                            backgroundImage: `url(${showImage(
-                                category.title
-                            )})`,
-                            backgroundSize: 'cover', // 배경 이미지를 버튼 크기에 맞게 조절
-                            backgroundPosition: 'center', // 배경 이미지의 위치 설정
-                        }}
+        <ul className='flex flex-row justify-center w-full gap-12 px-12 max-w-[1920px]'>
+            {categories.map((category) => (
+                <li
+                    className='min-w-[200px] flex-1 h-[400px] text-center text-[30px] font-extrabold text-white shadow-[0_0_15px_white] transition-shadow  bg-white bg-opacity-10 border-solid rounded-xl border-[#ff3f6f] border-[4px]'
+                    key={category.idx}
+                    style={{
+                        backgroundImage: `url(${showImage(category.title)})`,
+                        backgroundSize: 'cover', // 배경 이미지를 버튼 크기에 맞게 조절
+                        backgroundPosition: 'center', // 배경 이미지의 위치 설정
+                        backgroundRepeat: 'no-repeat',
+                    }}
+                >
+                    <button
+                        onClick={() => handleCategoryClick(category.idx)}
+                        className='w-full h-full flex items-center justify-center'
                     >
-                        <button
-                            onClick={() => handleCategoryClick(category.idx)}
-                            className="w-full h-full flex items-center justify-center"
-                        >
-                            {category.title}
-                        </button>
-                    </li>
-                ))}
-            </ul>
-        </div>
+                        {category.title}
+                    </button>
+                </li>
+            ))}
+        </ul>
     )
 }

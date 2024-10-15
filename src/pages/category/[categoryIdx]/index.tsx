@@ -113,40 +113,40 @@ export default function CategoryDetail() {
 
     return (
         <>
-            <nav className="flex flex-row justify-between p-[10px] pl-[20px] pr-[20px] bg-white bg-opacity-5">
-                <div className="flex flex-row gap-[10px]">
-                    <div className="relative flex flex-col gap-0 items-start w-[30px] h-[30px] mt-[8px] overflow-hidden">
+            <nav className='flex flex-row justify-between p-[10px] pl-[20px] pr-[20px] bg-white bg-opacity-5'>
+                <div className='flex flex-row gap-[10px]'>
+                    <div className='relative flex flex-col gap-0 items-start w-[30px] h-[30px] mt-[8px] overflow-hidden'>
                         <Image
-                            src="/assets/images/profile.png"
+                            src='/assets/images/profile.png'
                             fill
-                            alt="Profile picture"
-                            className="object-fill"
+                            alt='Profile picture'
+                            className='object-fill'
                         />
                     </div>
-                    <p className="text-[18px] mt-[7px]">
+                    <p className='text-[18px] mt-[7px]'>
                         USER: {me.data?.nickname}
                     </p>
                 </div>
-                <div className="flex flex-row mt-[10px] text-[18px] gap-[30px]">
-                    <Link href="/category">
-                        <button className="     text-[#fff983]">
+                <div className='flex flex-row mt-[10px] text-[18px] gap-[30px]'>
+                    <Link href='/category'>
+                        <button className='     text-[#fff983]'>
                             CATEGORY
                         </button>
                     </Link>
 
-                    <Link href="/">
+                    <Link href='/'>
                         <button>HOME</button>
                     </Link>
                 </div>
             </nav>
 
-            <div className="flex flex-col items-center justify-center">
+            <div className='flex flex-col items-center justify-center'>
                 {/*category 변수는 비동기적으로 업데이트되므로 물음표 붙이기..*/}
-                <h1 className="text-[60px] mb-[20px] signIn text-[#f13857]">
+                <h1 className='text-[60px] mb-[20px] signIn text-[#f13857]'>
                     To Do {category?.title || 'Unknown'}
                 </h1>
-                <div className="w-[1200px] h-[250px] overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl  bg-white bg-opacity-15 border-[#f13857] border-[5px] border-solid ">
-                    <ul className="project-list flex  flex-col gap-[5px]">
+                <div className='w-[1200px] h-[250px] overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl  bg-white bg-opacity-15 border-[#f13857] border-[5px] border-solid '>
+                    <ul className='project-list flex  flex-col gap-[5px]'>
                         {projects?.map((project) => {
                             // 프로젝트의 우선순위의 label 찾기
                             const priorityLabel =
@@ -158,7 +158,7 @@ export default function CategoryDetail() {
                             return (
                                 <li
                                     key={project.idx}
-                                    className="task flex flex-row gap-[10px] mt-[10px]"
+                                    className='task flex flex-row gap-[10px] mt-[10px]'
                                 >
                                     <div> - TODO : {project.title}</div>
                                     <div>중요도 : {priorityLabel}</div>{' '}
@@ -171,30 +171,30 @@ export default function CategoryDetail() {
             </div>
 
             {/* 프로젝트 생성 폼 */}
-            <div className="flex flex-row justify-center items-center mt-[30px]">
+            <div className='flex flex-row justify-center items-center mt-[30px]'>
                 <form
-                    className="flex flex-col items-center w-[1200px] h-[200px] rounded-xl  bg-white bg-opacity-15 border-[black] border-[3px] border-solid"
+                    className='flex flex-col items-center w-[1200px] p-4 rounded-xl  bg-white bg-opacity-15 border-[black] border-[3px] border-solid'
                     onSubmit={handleCreateProject}
                 >
-                    <div className=" signIn text-[#f9d55e] mb-[20px] font-extrabold text-[40px]">
+                    <div className=' signIn text-[#f9d55e] mb-[20px] font-extrabold text-[40px]'>
                         WRITE
                     </div>
-                    <div className="flex flex-row gap-[20px]">
-                        <label htmlFor="title"></label>
+                    <div className='flex flex-row gap-[20px]'>
+                        <label htmlFor='title'></label>
                         <p>할 일 :</p>
                         <input
-                            className="text-black"
-                            type="text"
-                            id="title"
-                            name="title"
-                            placeholder="TO-DO"
+                            className='text-black'
+                            type='text'
+                            id='title'
+                            name='title'
+                            placeholder='TO-DO'
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                             required
                         />
                         <p>중요도 :</p>
                         <select
-                            name="priorityIdx"
+                            name='priorityIdx'
                             value={priorityIdx} // 우선 순위 상태 연결
                             onChange={(e) => setPriorityIdx(e.target.value)} // 상태 업데이트
                             required
@@ -206,15 +206,15 @@ export default function CategoryDetail() {
                             ))}
                         </select>
                         <button
-                            className="w-[250px] h-[30px] bg-black text-white border-black border-[3px] rounded-md"
-                            type="submit"
+                            className='w-[250px] h-[30px] bg-black text-white border-black border-[3px] rounded-md'
+                            type='submit'
                         >
                             Create Project
                         </button>
                     </div>
                 </form>
             </div>
-            <div className="flex flex-row justify-center mt-[50px]"></div>
+            <div className='flex flex-row justify-center mt-[50px]'></div>
         </>
     )
 }
