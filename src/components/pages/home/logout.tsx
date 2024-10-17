@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Button from '@/components/button'
 import { useForm } from 'react-hook-form'
 import { useLogOut } from './logout.hook'
 
@@ -19,7 +18,9 @@ export function LogOut() {
 
     return (
         <form onSubmit={handleSubmit(onSubmitLogOut)}>
-            <Button>로그아웃</Button>
+            <button className="w-[600px] h-[40px]   bg-[black] text-white bg-opacity-40  border-solid rounded-md">
+                로그아웃
+            </button>
         </form>
     )
 }

@@ -26,7 +26,7 @@ export default function Main() {
                         />
                     </div>
                     <p className="text-[18px] mt-[7px]">
-                        USER : {me.data.nickname}
+                        USER : {me.data.data?.nickname}
                     </p>
                 </div>
                 <div className="flex flex-row mt-[10px] text-[18px] gap-[30px]">
