@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { useSignUp } from './signup.hook'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 type FormData2 = {
     id: string
@@ -10,8 +10,6 @@ type FormData2 = {
 }
 
 export function SignUp() {
-    const router = useRouter()
-
     const { onSubmitSignUp } = useSignUp()
 
     // useForm으로 폼 관리
@@ -23,20 +21,24 @@ export function SignUp() {
 
     return (
         <form
-            className="flex flex-col mb-[5px]"
+            className="flex flex-col mb-[5px] justify-center items-center h-screen w-screen"
             onSubmit={handleSubmit(onSubmitSignUp)}
         >
-            <div className="absolute self-center z-10 w-[250px] h-[150px] mt-[5px]">
-                <Image
-                    src="/assets/images/calendar_width.png"
-                    fill // 부모 요소에 가득 차게 함
-                    alt="달력"
-                    className="object-cover"
-                />
-            </div>
-            <div className="flex flex-col gap-[20px] h-screen w-screen justify-center items-center">
-                <div className="flex flex-col  bg-white bg-opacity-10 p-[10px] justify-center items-center h-[600px] w-[400px] shadow-[0_0_15px_white] transition-shadow border-[#ff3f6f] border-[4px] border-solid rounded-xl gap-[20px]">
-                    <p className="text-[45px] mt-[100px] signIn bg-opacity-80 text-[#ff3f6f]">
+            {/* 달력과 SIGN UP 폼을 포함하는 부모 div */}
+            <div className="relative flex flex-col items-center">
+                {/* 달력 이미지 */}
+                <div className="absolute z-10 w-[250px] h-[150px] mt-[15px]">
+                    <Image
+                        src="/assets/images/calendar_width.png"
+                        fill
+                        alt="달력"
+                        className="object-cover"
+                    />
+                </div>
+
+                {/* SIGN UP 폼 */}
+                <div className="flex flex-col bg-white bg-opacity-10 p-[10px] justify-center items-center h-[600px] w-[400px] shadow-[0_0_15px_white] transition-shadow border-[#ff3f6f] border-[4px] border-solid rounded-xl gap-[20px] mt-[100px] relative z-0">
+                    <p className="text-[45px] mt-[50px] signIn bg-opacity-80 text-[#ff3f6f]">
                         SIGN UP
                     </p>
                     <label htmlFor="id">ID</label>
@@ -64,23 +66,32 @@ export function SignUp() {
                     <input
                         {...register('nickname', {
                             required: 'nickname을 입력해 주세요.',
+                            maxLength: {
+                                value: 3,
+                                message:
+                                    '⚠️ nickname은 세 글자 이내로 입력해 주세요.',
+                            },
                         })}
                         type="text"
                         id="nickname"
                         name="nickname"
                         className="text-center w-[200px] border-black border-[1px]"
                     />
-                    {errors.nickname && <p>{errors.nickname.message}</p>}
-                    <button className="w-[250px] h-[40px]  shadow-2xl hover:shadow-[0_0_10px_white] transition-shadow bg-[#ff3f6f] bg-opacity-30 border-black border-[3px] mt-[60px] border-solid rounded-md">
+                    {errors.nickname && (
+                        <p className="mb-[0px] text-red-500 text-sm">
+                            {errors.nickname.message}
+                        </p>
+                    )}
+                    <button className="w-[250px] h-[40px]  shadow-2xl hover:shadow-[0_0_10px_white] transition-shadow bg-[#ff3f6f] bg-opacity-30 border-black border-[3px] mt-[40px] border-solid rounded-md">
                         회원가입
                     </button>
                 </div>
-                <button
-                    className="mb-[10px] w-[400px] text-end"
-                    onClick={() => router.back()}
-                >
-                    뒤로가기
-                </button>
+            </div>
+
+            <div className="mt-[10px] text-[18px]">
+                <Link href="/">
+                    <button>HOME</button>
+                </Link>
             </div>
         </form>
     )
