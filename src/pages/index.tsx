@@ -40,7 +40,7 @@ export default function Home() {
                                 </div>
                             </div>
 
-                            <div className="flex flex-col  shadow-[0_0_10px_white] transition-shadow rounded-xl  bg-white bg-opacity-15 border-[#ff3f6f] border-[8px] border-solid  gap-[5px] justify-center">
+                            <div className="flex flex-col shadow-[0_0_10px_white] hover:shadow-[0_0_15px_white] transition-shadow rounded-xl  bg-white bg-opacity-15 border-[#ff3f6f] border-[8px] border-solid  gap-[5px] justify-center">
                                 <Link className="self-center" href="/category">
                                     <button className="signIn font-thin text-[40px] text-[#ff3f6f]">
                                         IT&#39;S YOUR FLAN
