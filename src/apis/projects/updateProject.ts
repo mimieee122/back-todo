@@ -8,7 +8,6 @@ const prisma = new PrismaClient()
 export const updateProject = async (
     req: NextApiRequest,
     res: NextApiResponse,
-
     projectIdx: number
 ) => {
     const cookies = parseCookies({ req })
@@ -33,7 +32,6 @@ export const updateProject = async (
 
         const project = await prisma.project.findUnique({
             where: { idx: projectIdx },
-            select: { userIdx: true },
         })
 
         if (!project) {
@@ -42,19 +40,21 @@ export const updateProject = async (
                 .json({ message: '게시물을 찾을 수 없습니다.' })
         }
 
-        if (decoded.idx != project.userIdx) {
+        if (decoded.idx !== project.userIdx) {
             return res
                 .status(400)
                 .json({ message: '프로젝트를 수정할 권한이 없습니다.' })
         }
 
         const result = await prisma.project.update({
-            where: { idx: Number(projectIdx) },
+            where: { idx: projectIdx },
             data: { title: title, priorityIdx: priorityIdx },
         })
         res.status(200).json(result)
     } catch (error) {
         console.error('프로젝트 수정 중 오류 발생', error)
-        res.status(500).json({ message: '서버 오류 발생' })
+        return res
+            .status(500)
+            .json({ message: '프로젝트 업데이트에 실패했습니다.' })
     }
 }

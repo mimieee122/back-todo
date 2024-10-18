@@ -19,6 +19,11 @@ export default async function handler(
 
     try {
         const projectIdx = Number(req.query.projectIdx)
+        if (isNaN(projectIdx)) {
+            return res
+                .status(400)
+                .json({ message: '유효하지 않은 projectIdx입니다.' })
+        }
         if (req.method === 'GET') {
             const project = await getoneProject(req, res, projectIdx)
             if (project === null) {

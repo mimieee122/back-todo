@@ -96,8 +96,8 @@ export default function CategoryDetail() {
 
     const handleCreateProject = (e: any) => {
         e.preventDefault()
-        const title = e.target.title.value
-        const priorityIdx = e.target.priorityIdx.value
+        const title = e.target.createTitle.value
+        const priorityIdx = e.target.createPriorityIdx.value
 
         if (!title || !priorityIdx) {
             alert('Please enter both title and priority.')
@@ -113,12 +113,9 @@ export default function CategoryDetail() {
     }
 
     const updateProjectMutation = useMutation({
-        mutationFn: async (data: {
-            title: string
-            priorityIdx: number
-            projectIdx: number
-        }) => {
-            await axios.put(`/api/project/${data.projectIdx}`, data)
+        mutationFn: async (data: { title: string; priorityIdx: number }) => {
+            const projectIdx = Number(editingProject)
+            await axios.put(`/api/project/${projectIdx}`, data)
         },
         onSuccess: () => {
             // 업데이트 후 상태 초기화
@@ -131,24 +128,24 @@ export default function CategoryDetail() {
             alert(error.response?.data?.message || 'Error updating project.')
         },
     })
-    const handleUpdateProject = (projectIdx: number | null, e: any) => {
+    const handleUpdateProject = (e: any) => {
         e.preventDefault()
-        const title = e.target.title.value
-        const priorityIdx = e.target.priorityIdx.value
+        const title = e.target.editTitle.value
+        const priorityIdx = e.target.editPriorityIdx.value
 
         if (!title && !priorityIdx) {
             alert('Please provide title or priority.')
             return
         }
 
-        if (projectIdx === null) {
+        if (editingProject === null) {
+            alert('No project is being edited.')
             return
         }
 
         updateProjectMutation.mutate({
             title: String(title),
             priorityIdx: Number(priorityIdx),
-            projectIdx: Number(projectIdx),
         })
     }
 
@@ -169,9 +166,9 @@ export default function CategoryDetail() {
 
     const renderPriorityBoard = (priorityLabel: string) => {
         return (
-            <div className="w-[400px] h-[250px] overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#f13857] border-[5px] border-solid">
-                <h2 className="text-center text-[20px] mb-[10px] text-[black]">
-                    {priorityLabel} Priority
+            <div className="w-[400px] h-[400px] overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#f13857] border-[5px] border-solid">
+                <h2 className="text-center text-[25px] mt-[20px] text-white mb-[10px]">
+                    중요도 : {priorityLabel}
                 </h2>
                 <ul className="project-list flex flex-col gap-[5px]">
                     {projects
@@ -189,26 +186,20 @@ export default function CategoryDetail() {
                             >
                                 {editingProject === project.idx ? (
                                     <form
-                                        onSubmit={(e) => {
-                                            e.preventDefault()
-                                            handleUpdateProject(
-                                                Number(project.idx),
-                                                e
-                                            )
-                                        }}
+                                        onSubmit={(e) => handleUpdateProject(e)}
                                         className="flex flex-row gap-[10px]"
                                     >
                                         <input
                                             type="text"
                                             value={editTitle}
-                                            name="title"
+                                            name="editTitle"
                                             onChange={(e) =>
                                                 setEditTitle(e.target.value)
                                             }
                                         />
                                         <select
                                             value={editPriorityIdx}
-                                            name="priorityIdx"
+                                            name="editPriorityIdx"
                                             onChange={(e) =>
                                                 setEditPriorityIdx(
                                                     e.target.value
@@ -235,11 +226,11 @@ export default function CategoryDetail() {
                                         </button>
                                     </form>
                                 ) : (
-                                    <div className="flex flex-row justify-between items-center w-full">
+                                    <div className="flex flex-row border-[1px] p-3 text-[20px] rounded-lg bg-white bg-opacity-10 h-[50px] border-[white] justify-between items-center w-full">
                                         <div> - TODO: {project.title}</div>
-                                        <div className="flex gap-[10px]">
+                                        <div className="flex  gap-[10px]">
                                             <button
-                                                className="text-[blue]"
+                                                className="text-[white]"
                                                 onClick={() =>
                                                     setEditingProject(
                                                         project.idx
@@ -249,7 +240,7 @@ export default function CategoryDetail() {
                                                 수정
                                             </button>
                                             <button
-                                                className="text-[red]"
+                                                className="text-[white]"
                                                 onClick={() =>
                                                     handleDeleteProject(
                                                         project.idx
@@ -296,11 +287,11 @@ export default function CategoryDetail() {
             </nav>
 
             <div className="flex flex-col items-center justify-center">
-                <h1 className="text-[60px] mb-[20px] signIn text-[#f13857]">
+                <h1 className="text-[60px] mt-[40px] mb-[20px] signIn text-[#f13857]">
                     To Do {category?.title || 'Unknown'}
                 </h1>
 
-                <div className="flex flex-row gap-[20px]">
+                <div className="flex flex-row gap-[35px]">
                     {renderPriorityBoard('High')}
                     {renderPriorityBoard('Medium')}
                     {renderPriorityBoard('Low')}
@@ -318,14 +309,14 @@ export default function CategoryDetail() {
                             className="p-[10px] rounded-xl text-black text-[20px]"
                             type="text"
                             value={createTitle}
-                            name="title"
+                            name="createTitle"
                             onChange={(e) => setCreateTitle(e.target.value)}
                             placeholder="Enter project title"
                         />
                         <select
                             className="p-[10px] rounded-xl"
                             value={createPriorityIdx}
-                            name="priorityIdx"
+                            name="createPriorityIdx"
                             onChange={(e) =>
                                 setCreatePriorityIdx(e.target.value)
                             }
