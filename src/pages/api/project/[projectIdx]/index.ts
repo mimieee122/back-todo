@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { deleteProject } from '@/apis/projects/deleteProject'
+import { getoneProject } from '@/apis/projects/getProject'
 import { updateProject } from '@/apis/projects/updateProject'
 import { NextApiRequest, NextApiResponse } from 'next'
 
@@ -18,7 +19,15 @@ export default async function handler(
 
     try {
         const projectIdx = Number(req.query.projectIdx)
-        if (req.method === 'PUT') {
+        if (req.method === 'GET') {
+            const project = await getoneProject(req, res, projectIdx)
+            if (project === null) {
+                return res
+                    .status(404)
+                    .json({ message: '해당 투두 항목을 찾을 수 없습니다.' })
+            }
+            return res.status(200).json(project)
+        } else if (req.method === 'PUT') {
             const project = await updateProject(req, res, projectIdx)
             if (project === null) {
                 return res

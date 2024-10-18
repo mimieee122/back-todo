@@ -21,9 +21,6 @@ export default function CategoryDetail() {
 
     const router = useRouter()
     const idx = Number(router.query.categoryIdx)
-    const projectIdx = router.query.projectIdx
-        ? Number(router.query.projectIdx)
-        : null
 
     const { data: me } = useQuery({
         queryKey: ['me'],
@@ -109,15 +106,19 @@ export default function CategoryDetail() {
 
         const categoryIdx = idx
         createProjectMutation.mutate({
-            title,
+            title: String(title),
             categoryIdx,
             priorityIdx: Number(priorityIdx),
         })
     }
 
     const updateProjectMutation = useMutation({
-        mutationFn: async (data: { title: string; priorityIdx: number }) => {
-            await axios.put(`/api/project/${projectIdx}`, data)
+        mutationFn: async (data: {
+            title: string
+            priorityIdx: number
+            projectIdx: number
+        }) => {
+            await axios.put(`/api/project/${data.projectIdx}`, data)
         },
         onSuccess: () => {
             // 업데이트 후 상태 초기화
@@ -130,8 +131,7 @@ export default function CategoryDetail() {
             alert(error.response?.data?.message || 'Error updating project.')
         },
     })
-
-    const handleUpdateProject = (e: any) => {
+    const handleUpdateProject = (projectIdx: number | null, e: any) => {
         e.preventDefault()
         const title = e.target.title.value
         const priorityIdx = e.target.priorityIdx.value
@@ -140,9 +140,30 @@ export default function CategoryDetail() {
             alert('Please provide title or priority.')
             return
         }
+
+        if (projectIdx === null) {
+            return
+        }
+
         updateProjectMutation.mutate({
-            title,
+            title: String(title),
             priorityIdx: Number(priorityIdx),
+            projectIdx: Number(projectIdx),
+        })
+    }
+
+    const deleteProjectMutation = useMutation({
+        mutationFn: async (data: { projectIdx: number }) => {
+            await axios.delete(`/api/project/${data.projectIdx}`)
+        },
+        onSuccess: () => {
+            refetchProjects()
+        },
+    })
+
+    const handleDeleteProject = (projectIdx: number) => {
+        deleteProjectMutation.mutate({
+            projectIdx: Number(projectIdx),
         })
     }
 
@@ -168,22 +189,28 @@ export default function CategoryDetail() {
                             >
                                 {editingProject === project.idx ? (
                                     <form
-                                        onSubmit={handleUpdateProject}
+                                        onSubmit={(e) => {
+                                            e.preventDefault()
+                                            handleUpdateProject(
+                                                Number(project.idx),
+                                                e
+                                            )
+                                        }}
                                         className="flex flex-row gap-[10px]"
                                     >
                                         <input
                                             type="text"
-                                            value={createTitle}
+                                            value={editTitle}
                                             name="title"
                                             onChange={(e) =>
-                                                setCreateTitle(e.target.value)
+                                                setEditTitle(e.target.value)
                                             }
                                         />
                                         <select
-                                            value={createPriorityIdx}
+                                            value={editPriorityIdx}
                                             name="priorityIdx"
                                             onChange={(e) =>
-                                                setCreatePriorityIdx(
+                                                setEditPriorityIdx(
                                                     e.target.value
                                                 )
                                             }
@@ -223,9 +250,11 @@ export default function CategoryDetail() {
                                             </button>
                                             <button
                                                 className="text-[red]"
-                                                // onClick={() =>
-                                                //     handleDeleteProject(project.idx)
-                                                // }
+                                                onClick={() =>
+                                                    handleDeleteProject(
+                                                        project.idx
+                                                    )
+                                                }
                                             >
                                                 삭제
                                             </button>
@@ -288,16 +317,18 @@ export default function CategoryDetail() {
                         <input
                             className="p-[10px] rounded-xl text-black text-[20px]"
                             type="text"
-                            value={editTitle}
+                            value={createTitle}
                             name="title"
-                            onChange={(e) => setEditTitle(e.target.value)}
+                            onChange={(e) => setCreateTitle(e.target.value)}
                             placeholder="Enter project title"
                         />
                         <select
                             className="p-[10px] rounded-xl"
-                            value={editPriorityIdx}
+                            value={createPriorityIdx}
                             name="priorityIdx"
-                            onChange={(e) => setEditPriorityIdx(e.target.value)}
+                            onChange={(e) =>
+                                setCreatePriorityIdx(e.target.value)
+                            }
                         >
                             {priorities.map((priority) => (
                                 <option key={priority.idx} value={priority.idx}>

@@ -49,7 +49,7 @@ export const updateProject = async (
         }
 
         const result = await prisma.project.update({
-            where: { idx: projectIdx },
+            where: { idx: Number(projectIdx) },
             data: { title: title, priorityIdx: priorityIdx },
         })
         res.status(200).json(result)
