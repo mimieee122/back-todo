@@ -35,7 +35,7 @@ export default function Main() {
                     </Link>
                 </div>
             </nav>
-            <div className="flex flex-col justify-center items-center gap-[20px] mt-[40px]">
+            <div className="flex flex-col justify-center items-center gap-[20px] mt-[50px]">
                 <h1 className="text-[70px] text-[#ff3f6f] font-thin category yellow">
                     CATEGORY
                 </h1>

@@ -29,7 +29,7 @@ export function Login() {
             className="flex flex-col justify-center items-center text-center gap-[20px] w-[600px] text-black p-4"
         >
             <div className="flex flex-row gap-[10px] items-end">
-                <div className=" relative flex flex-col gap-0 items-center w-[260px] h-[220px] overflow-hidden">
+                <div className=" relative flex flex-col gap-0 items-center w-[300px] h-[250px] overflow-hidden">
                     <Image
                         src="/assets/images/flan emoji.png"
                         fill // 부모 요소에 가득 차게 함
@@ -38,7 +38,7 @@ export function Login() {
                     />
                 </div>
                 <div className="flex flex-col gap-[0px] items-center">
-                    <div className=" relative flex flex-col  gap-0 items-end w-[500px] h-[160px] overflow-hidden">
+                    <div className=" relative flex flex-col  gap-0 items-end w-[520px] h-[180px] overflow-hidden">
                         <Image
                             src="/assets/images/flan.png"
                             fill // 부모 요소에 가득 차게 함

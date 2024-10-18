@@ -56,7 +56,7 @@ export default function CategoriesComponent() {
                     key={category.idx}
                     style={{
                         backgroundImage: `url(${showImage(category.title)})`,
-                        backgroundSize: 'cover', // 배경 이미지를 버튼 크기에 맞게 조절
+                        backgroundSize: 'cover',
                         backgroundPosition: 'center', // 배경 이미지의 위치 설정
                         backgroundRepeat: 'no-repeat',
                     }}

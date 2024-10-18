@@ -6,30 +6,38 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
-// Prisma 클라이언트 생성
-
 export default function CategoryDetail() {
-    const [title, setTitle] = useState('')
-    const [priorityIdx, setPriorityIdx] = useState('')
-    const [priorities, setPriorities] = useState([]) // 우선 순위 상태 추가
-    const [categories, setCategories] = useState([]) // 우선 순위 상태 추가
+    const [editingProject, setEditingProject] = useState<number | null>(null)
+    // Create Project 상태
+    const [createTitle, setCreateTitle] = useState('')
+    const [createPriorityIdx, setCreatePriorityIdx] = useState('')
+
+    // Update Project 상태
+    const [editTitle, setEditTitle] = useState('')
+    const [editPriorityIdx, setEditPriorityIdx] = useState('')
+
+    const [priorities, setPriorities] = useState([])
+    const [categories, setCategories] = useState([])
 
     const router = useRouter()
-
     const idx = Number(router.query.categoryIdx)
+    const projectIdx = router.query.projectIdx
+        ? Number(router.query.projectIdx)
+        : null
 
-    const me = useQuery({
+    const { data: me } = useQuery({
         queryKey: ['me'],
         queryFn: async () => {
             const response = await axios.get('/api/me')
             return response.data
         },
     })
+
     useEffect(() => {
         const fetchPriorities = async () => {
             try {
-                const response = await axios.get('/api/priority') // 우선 순위 API 호출
-                setPriorities(response.data) // 우선 순위 데이터를 상태에 저장
+                const response = await axios.get('/api/priority')
+                setPriorities(response.data)
             } catch (error) {
                 console.error('Error fetching priorities:', error)
             }
@@ -40,30 +48,29 @@ export default function CategoryDetail() {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get('/api/category') // 우선 순위 API 호출
-                setCategories(response.data) // 우선 순위 데이터를 상태에 저장
+                const response = await axios.get('/api/category')
+                setCategories(response.data)
             } catch (error) {
-                console.error('Error fetching priorities:', error)
+                console.error('Error fetching categories:', error)
             }
         }
         fetchCategories()
     }, [])
 
-    const { data: projects, refetch } = useQuery({
-        queryKey: ['projects', idx], // Unique query key for this category
+    const category = categories.find((category) => category.idx === idx)
+
+    const { data: projects, refetch: refetchProjects } = useQuery({
+        queryKey: ['projects', idx],
         queryFn: async () => {
             if (idx) {
-                const response = await axios.get(`/api/category/${idx}`) // API에서 해당 카테고리의 프로젝트를 가져옵니다.
-                return response.data // 프로젝트 상태를 업데이트합니다.
+                const response = await axios.get(`/api/category/${idx}`)
+                return response.data
             }
             return []
         },
-        enabled: !!idx, // idx가 있을 때만 쿼리 실행
+        enabled: !!idx,
     })
 
-    // 해당 카테고리의 프로젝트를 가져오기
-
-    // 새 프로젝트 생성 뮤테이션
     const createProjectMutation = useMutation({
         mutationFn: async (data: {
             title: string
@@ -80,9 +87,9 @@ export default function CategoryDetail() {
             }
         },
         onSuccess: () => {
-            setTitle('')
-            setPriorityIdx('')
-            refetch() // 프로젝트 생성 후 데이터 불러오기
+            setCreateTitle('')
+            setCreatePriorityIdx('')
+            refetchProjects()
         },
         onError: (error: Error) => {
             alert('Error creating project: ' + error.message)
@@ -90,7 +97,6 @@ export default function CategoryDetail() {
         },
     })
 
-    // 프로젝트 생성 처리 함수
     const handleCreateProject = (e: any) => {
         e.preventDefault()
         const title = e.target.title.value
@@ -105,99 +111,193 @@ export default function CategoryDetail() {
         createProjectMutation.mutate({
             title,
             categoryIdx,
-            priorityIdx: Number(priorityIdx), // priorityIdx를 숫자로 변환
+            priorityIdx: Number(priorityIdx),
         })
     }
 
-    const category = categories.find((category) => category.idx === idx)
+    const updateProjectMutation = useMutation({
+        mutationFn: async (data: { title: string; priorityIdx: number }) => {
+            await axios.put(`/api/project/${projectIdx}`, data)
+        },
+        onSuccess: () => {
+            // 업데이트 후 상태 초기화
+            setEditTitle('')
+            setEditPriorityIdx('')
+            setEditingProject(null)
+            refetchProjects()
+        },
+        onError: (error: any) => {
+            alert(error.response?.data?.message || 'Error updating project.')
+        },
+    })
+
+    const handleUpdateProject = (e: any) => {
+        e.preventDefault()
+        const title = e.target.title.value
+        const priorityIdx = e.target.priorityIdx.value
+
+        if (!title && !priorityIdx) {
+            alert('Please provide title or priority.')
+            return
+        }
+        updateProjectMutation.mutate({
+            title,
+            priorityIdx: Number(priorityIdx),
+        })
+    }
+
+    const renderPriorityBoard = (priorityLabel: string) => {
+        return (
+            <div className="w-[400px] h-[250px] overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#f13857] border-[5px] border-solid">
+                <h2 className="text-center text-[20px] mb-[10px] text-[black]">
+                    {priorityLabel} Priority
+                </h2>
+                <ul className="project-list flex flex-col gap-[5px]">
+                    {projects
+                        ?.filter(
+                            (project) =>
+                                priorities.find(
+                                    (priority) =>
+                                        priority.idx === project.priorityIdx
+                                )?.label === priorityLabel
+                        )
+                        .map((project) => (
+                            <li
+                                key={project.idx}
+                                className="task flex flex-row gap-[10px] mt-[10px]"
+                            >
+                                {editingProject === project.idx ? (
+                                    <form
+                                        onSubmit={handleUpdateProject}
+                                        className="flex flex-row gap-[10px]"
+                                    >
+                                        <input
+                                            type="text"
+                                            value={createTitle}
+                                            name="title"
+                                            onChange={(e) =>
+                                                setCreateTitle(e.target.value)
+                                            }
+                                        />
+                                        <select
+                                            value={createPriorityIdx}
+                                            name="priorityIdx"
+                                            onChange={(e) =>
+                                                setCreatePriorityIdx(
+                                                    e.target.value
+                                                )
+                                            }
+                                        >
+                                            {priorities.map((priority) => (
+                                                <option
+                                                    key={priority.idx}
+                                                    value={priority.idx}
+                                                >
+                                                    {priority.label}
+                                                </option>
+                                            ))}
+                                        </select>
+                                        <button type="submit">Update</button>
+                                        <button
+                                            type="button"
+                                            onClick={() =>
+                                                setEditingProject(null)
+                                            }
+                                        >
+                                            Cancel
+                                        </button>
+                                    </form>
+                                ) : (
+                                    <div className="flex flex-row justify-between items-center w-full">
+                                        <div> - TODO: {project.title}</div>
+                                        <div className="flex gap-[10px]">
+                                            <button
+                                                className="text-[blue]"
+                                                onClick={() =>
+                                                    setEditingProject(
+                                                        project.idx
+                                                    )
+                                                }
+                                            >
+                                                수정
+                                            </button>
+                                            <button
+                                                className="text-[red]"
+                                                // onClick={() =>
+                                                //     handleDeleteProject(project.idx)
+                                                // }
+                                            >
+                                                삭제
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
+                            </li>
+                        ))}
+                </ul>
+            </div>
+        )
+    }
 
     return (
         <>
-            <nav className='flex flex-row justify-between p-[10px] pl-[20px] pr-[20px] bg-white bg-opacity-5'>
-                <div className='flex flex-row gap-[10px]'>
-                    <div className='relative flex flex-col gap-0 items-start w-[30px] h-[30px] mt-[8px] overflow-hidden'>
+            <nav className="flex flex-row justify-between p-[10px] pl-[20px] pr-[20px] bg-white bg-opacity-5">
+                <div className="flex flex-row gap-[10px]">
+                    <div className="relative flex flex-col gap-0 items-start w-[30px] h-[30px] mt-[8px] overflow-hidden">
                         <Image
-                            src='/assets/images/profile.png'
+                            src="/assets/images/profile.png"
                             fill
-                            alt='Profile picture'
-                            className='object-fill'
+                            alt="Profile picture"
+                            className="object-fill"
                         />
                     </div>
-                    <p className='text-[18px] mt-[7px]'>
+                    <p className="text-[18px] mt-[7px]">
                         USER: {me.data?.nickname}
                     </p>
                 </div>
-                <div className='flex flex-row mt-[10px] text-[18px] gap-[30px]'>
-                    <Link href='/category'>
-                        <button className='     text-[#fff983]'>
-                            CATEGORY
-                        </button>
+                <div className="flex flex-row mt-[10px] text-[18px] gap-[30px]">
+                    <Link href="/category">
+                        <button className="text-[#fff983]">CATEGORY</button>
                     </Link>
 
-                    <Link href='/'>
+                    <Link href="/">
                         <button>HOME</button>
                     </Link>
                 </div>
             </nav>
 
-            <div className='flex flex-col items-center justify-center'>
-                {/*category 변수는 비동기적으로 업데이트되므로 물음표 붙이기..*/}
-                <h1 className='text-[60px] mb-[20px] signIn text-[#f13857]'>
+            <div className="flex flex-col items-center justify-center">
+                <h1 className="text-[60px] mb-[20px] signIn text-[#f13857]">
                     To Do {category?.title || 'Unknown'}
                 </h1>
-                <div className='w-[1200px] h-[250px] overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl  bg-white bg-opacity-15 border-[#f13857] border-[5px] border-solid '>
-                    <ul className='project-list flex  flex-col gap-[5px]'>
-                        {projects?.map((project) => {
-                            // 프로젝트의 우선순위의 label 찾기
-                            const priorityLabel =
-                                priorities.find(
-                                    (priority) =>
-                                        priority.idx === project.priorityIdx // project의 priorityIdx를 사용
-                                )?.label || 'Unknown'
 
-                            return (
-                                <li
-                                    key={project.idx}
-                                    className='task flex flex-row gap-[10px] mt-[10px]'
-                                >
-                                    <div> - TODO : {project.title}</div>
-                                    <div>중요도 : {priorityLabel}</div>{' '}
-                                    {/* 여기서 label을 사용 */}
-                                </li>
-                            )
-                        })}
-                    </ul>
+                <div className="flex flex-row gap-[20px]">
+                    {renderPriorityBoard('High')}
+                    {renderPriorityBoard('Medium')}
+                    {renderPriorityBoard('Low')}
                 </div>
             </div>
 
             {/* 프로젝트 생성 폼 */}
-            <div className='flex flex-row justify-center items-center mt-[30px]'>
+            <div className="flex flex-row justify-center items-center mt-[30px]">
                 <form
-                    className='flex flex-col items-center w-[1200px] p-4 rounded-xl  bg-white bg-opacity-15 border-[black] border-[3px] border-solid'
+                    className="flex flex-col items-center w-[1200px] p-4 rounded-xl bg-white bg-opacity-5"
                     onSubmit={handleCreateProject}
                 >
-                    <div className=' signIn text-[#f9d55e] mb-[20px] font-extrabold text-[40px]'>
-                        WRITE
-                    </div>
-                    <div className='flex flex-row gap-[20px]'>
-                        <label htmlFor='title'></label>
-                        <p>할 일 :</p>
+                    <div className="flex flex-row gap-[20px]">
                         <input
-                            className='text-black'
-                            type='text'
-                            id='title'
-                            name='title'
-                            placeholder='TO-DO'
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            required
+                            className="p-[10px] rounded-xl text-black text-[20px]"
+                            type="text"
+                            value={editTitle}
+                            name="title"
+                            onChange={(e) => setEditTitle(e.target.value)}
+                            placeholder="Enter project title"
                         />
-                        <p>중요도 :</p>
                         <select
-                            name='priorityIdx'
-                            value={priorityIdx} // 우선 순위 상태 연결
-                            onChange={(e) => setPriorityIdx(e.target.value)} // 상태 업데이트
-                            required
+                            className="p-[10px] rounded-xl"
+                            value={editPriorityIdx}
+                            name="priorityIdx"
+                            onChange={(e) => setEditPriorityIdx(e.target.value)}
                         >
                             {priorities.map((priority) => (
                                 <option key={priority.idx} value={priority.idx}>
@@ -206,15 +306,14 @@ export default function CategoryDetail() {
                             ))}
                         </select>
                         <button
-                            className='w-[250px] h-[30px] bg-black text-white border-black border-[3px] rounded-md'
-                            type='submit'
+                            className="bg-[#f13857] text-white p-[10px] rounded-xl shadow-[0_0_10px_#fff983] transition-shadow"
+                            type="submit"
                         >
-                            Create Project
+                            추가하기
                         </button>
                     </div>
                 </form>
             </div>
-            <div className='flex flex-row justify-center mt-[50px]'></div>
         </>
     )
 }
