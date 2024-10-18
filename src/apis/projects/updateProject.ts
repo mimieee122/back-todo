@@ -32,6 +32,7 @@ export const updateProject = async (
 
         const project = await prisma.project.findUnique({
             where: { idx: projectIdx },
+            select: { userIdx: true },
         })
 
         if (!project) {
