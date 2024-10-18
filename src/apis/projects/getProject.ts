@@ -22,13 +22,14 @@ export const getoneProject = async (
 
 export const getProjects = async (
     req: NextApiRequest,
-    res: NextApiResponse
+    res: NextApiResponse,
+    userIdx: number
 ) => {
     try {
         const { categoryIdx } = req.query // 쿼리 파라미터에서 categoryIdx 추출
         const idx = Number(categoryIdx) // categoryIdx를 숫자로 변환
         const projects = await prisma.project.findMany({
-            where: { categoryIdx: idx },
+            where: { categoryIdx: idx, userIdx: Number(userIdx) },
         })
         return res.status(200).json(projects)
     } catch (error) {

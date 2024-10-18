@@ -25,6 +25,7 @@ export const createProject = async (
         const decoded = verify(token, process.env.SECRET_JWT as string) as {
             idx: number
         }
+
         const { categoryIdx, title, priorityIdx } = req.body
 
         const categoryIndex = Number(categoryIdx)

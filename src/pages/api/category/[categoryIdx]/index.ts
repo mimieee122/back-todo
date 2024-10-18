@@ -1,6 +1,8 @@
 import { createProject } from '@/apis/projects/createProject'
 import { getProjects } from '@/apis/projects/getProject'
+import { verify } from 'jsonwebtoken'
 import { NextApiRequest, NextApiResponse } from 'next'
+import { parseCookies } from 'nookies'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const secret = process.env.SECRET_JWT
@@ -11,6 +13,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             message: 'JWT_SECRET 환경 변수가 설정되지 않았습니다.',
         })
     }
+    const cookies = parseCookies({ req })
+    const token = cookies['token']
+
+    if (!token) {
+        return res.status(500).json({ message: '토큰 음슴.' })
+    }
+
+    const decoded = verify(token, process.env.SECRET_JWT) as { idx: number }
+
+    const userIdx = Number(decoded.idx)
 
     try {
         if (req.method === 'POST') {
@@ -33,7 +45,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
                     .json({ message: '프로젝트 생성에 실패했습니다.' })
             }
         } else if (req.method === 'GET') {
-            const projects = await getProjects(req, res)
+            const projects = await getProjects(req, res, userIdx)
             return res.status(202).json(projects)
         } else {
             return res
