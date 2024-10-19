@@ -167,8 +167,8 @@ export default function CategoryDetail() {
     const renderPriorityBoard = (priorityLabel: string) => {
         return (
             <div className="w-[400px] h-[400px] overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#f13857] border-[5px] border-solid">
-                <h2 className="text-center text-[25px] mt-[20px] text-white mb-[10px]">
-                    중요도 : {priorityLabel}
+                <h2 className="text-center underline text-[25px] mt-[20px] text-white mb-[10px]">
+                    priority : {priorityLabel}
                 </h2>
                 <ul className="project-list flex flex-col gap-[5px]">
                     {projects
@@ -226,8 +226,8 @@ export default function CategoryDetail() {
                                         </button>
                                     </form>
                                 ) : (
-                                    <div className="flex flex-row border-[1px] p-3 text-[20px] rounded-lg bg-white bg-opacity-10 h-[50px] border-[white] justify-between items-center w-full">
-                                        <div> - TODO: {project.title}</div>
+                                    <div className="flex flex-row border-[1px] p-3 text-[15px] hover:shadow-[0_0_15px_white]  shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#f13857] border-solid justify-between items-center w-full">
+                                        <div> - {project.title}</div>
                                         <div className="flex  gap-[10px]">
                                             <button
                                                 className="text-[white]"
@@ -287,7 +287,7 @@ export default function CategoryDetail() {
             </nav>
 
             <div className="flex flex-col items-center justify-center">
-                <h1 className="text-[60px] mt-[40px] mb-[20px] signIn text-[#ff8fab]">
+                <h1 className="text-[60px] mt-[40px] mb-[20px] yellow text-[#ff8fab]">
                     To Do {category?.title || 'Unknown'}
                 </h1>
 
@@ -301,20 +301,20 @@ export default function CategoryDetail() {
             {/* 프로젝트 생성 폼 */}
             <div className="flex flex-row justify-center items-center mt-[30px]">
                 <form
-                    className="flex flex-col items-center w-[1200px] p-4 rounded-xl bg-white bg-opacity-5"
+                    className="flex flex-col items-center w-[1300px] p-4 rounded-sm bg-white bg-opacity-10"
                     onSubmit={handleCreateProject}
                 >
                     <div className="flex flex-row gap-[20px]">
                         <input
-                            className="p-[10px] rounded-xl text-black text-[20px]"
+                            className="p-[10px] rounded-md text-black text-[20px]"
                             type="text"
                             value={createTitle}
                             name="createTitle"
                             onChange={(e) => setCreateTitle(e.target.value)}
-                            placeholder="Enter project title"
+                            placeholder="Enter to-do"
                         />
                         <select
-                            className="p-[10px] rounded-xl"
+                            className="p-[10px] rounded-md"
                             value={createPriorityIdx}
                             name="createPriorityIdx"
                             onChange={(e) =>
@@ -328,10 +328,10 @@ export default function CategoryDetail() {
                             ))}
                         </select>
                         <button
-                            className="bg-[#f13857] text-white p-[10px] rounded-xl shadow-[0_0_10px_#fff983] transition-shadow"
+                            className="bg-[#f13857] text-white p-[10px] rounded-md shadow-[0_0_10px_#fff983] transition-shadow"
                             type="submit"
                         >
-                            추가하기
+                            CREATE
                         </button>
                     </div>
                 </form>
