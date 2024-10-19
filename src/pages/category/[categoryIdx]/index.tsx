@@ -287,7 +287,7 @@ export default function CategoryDetail() {
             </nav>
 
             <div className="flex flex-col items-center justify-center">
-                <h1 className="text-[60px] mt-[40px] mb-[20px] signIn text-[#f13857]">
+                <h1 className="text-[60px] mt-[40px] mb-[20px] signIn text-[#ff8fab]">
                     To Do {category?.title || 'Unknown'}
                 </h1>
 

@@ -35,13 +35,13 @@ export default function Main() {
                     </Link>
                 </div>
             </nav>
-            <div className="flex flex-col justify-center items-center gap-[20px] mt-[50px]">
-                <h1 className="text-[70px] text-[#ff3f6f] font-thin category yellow">
+            <div className="flex flex-col justify-center items-center gap-[50px] mt-[50px]">
+                <h1 className="text-[70px] text-[#ff8fab]  font-thin category yellow">
                     CATEGORY
                 </h1>
                 <CategoriesComponent />
             </div>
-            <div className="flex flex-row gap-[30px] items-center mt-[50px] justify-center   ">
+            {/* <div className="flex flex-row gap-[30px] items-center mt-[50px] justify-center   ">
                 <div className="text-center ">
                     <Link href="/priority">
                         <button className="border-[2px] border-[black] bg-white bg-opacity-10 border-solid rounded-md w-[250px] text-[20px] text-[black]">
@@ -49,7 +49,7 @@ export default function Main() {
                         </button>
                     </Link>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

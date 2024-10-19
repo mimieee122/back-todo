@@ -40,22 +40,34 @@ export default function Home() {
                                 </div>
                             </div>
 
-                            <div className="flex flex-col shadow-[0_0_10px_white] hover:shadow-[0_0_25px_white] transition-shadow rounded-xl  bg-white bg-opacity-15 border-[#ff517d] border-[8px] border-solid  gap-[5px] justify-center">
+                            <div className="flex flex-col shadow-[0_0_25px_white] hover:shadow-[0_0_35px_white] transition-shadow rounded-xl  bg-white bg-opacity-15 border-[#ff517d] border-[5px] border-solid  gap-[5px] justify-center">
                                 <Link className="self-center" href="/category">
-                                    <button className="signIn font-thin text-[40px] text-[#ff3f6f]">
+                                    <button className="signIn font-thin text-[40px] text-[#ff8fab]">
                                         IT&#39;S YOUR FLAN
                                     </button>
                                 </Link>
 
-                                <div className="self-center relative w-[320px]  h-[150px] mt-[2px] mb-[15px]">
-                                    <Link href="/category">
-                                        <Image
-                                            src="/assets/images/calendar_width.png"
-                                            fill // 부모 요소에 가득 차게 함
-                                            alt="달력"
-                                            className="object-contain"
-                                        />
-                                    </Link>
+                                <div className="flex flex-row justify-center items-center gap-[10px]">
+                                    <div className="self-center relative w-[300px]  h-[180px] mt-[2px] mb-[15px]">
+                                        <Link href="/category">
+                                            <Image
+                                                src="/assets/images/calendar_width.png"
+                                                fill // 부모 요소에 가득 차게 함
+                                                alt="달력"
+                                                className="object-contain"
+                                            />
+                                        </Link>
+                                    </div>
+                                    <div className="self-center relative w-[150px]  h-[150px] mt-[2px] mb-[15px]">
+                                        <Link href="/category">
+                                            <Image
+                                                src="/assets/images/cursor.png"
+                                                fill // 부모 요소에 가득 차게 함
+                                                alt="마우스 커서"
+                                                className="object-contain"
+                                            />
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
 
