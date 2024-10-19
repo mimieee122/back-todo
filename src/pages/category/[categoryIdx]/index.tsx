@@ -166,10 +166,10 @@ export default function CategoryDetail() {
 
     const renderPriorityBoard = (priorityLabel: string) => {
         return (
-            <div className="relative w-[400px] h-[400px] justify-center items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#f13857] border-[5px] border-solid">
+            <div className="relative w-[400px] h-[400px] justify-center items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#ffbd43] border-[2px] border-solid">
                 {/* 중요도 이미지 */}
                 <div className="flex flex-col mt-[50px] justify-center items-center relative">
-                    <div className="absolute z-10 w-[200px] h-[100px] ">
+                    <div className="absolute z-10 w-[150px] h-[80px] ">
                         <Image
                             src="/assets/images/medium.png"
                             fill
@@ -178,8 +178,8 @@ export default function CategoryDetail() {
                         />
                     </div>
                 </div>
-                <h2 className="text-center text-[25px] mt-[20px] text-white mb-[10px]">
-                    priority : {priorityLabel}
+                <h2 className="text-center text-[15px] mt-[20px] text-white mb-[10px]">
+                    {priorityLabel}
                 </h2>
                 <ul className="project-list flex flex-col gap-[5px]">
                     {projects
@@ -298,7 +298,7 @@ export default function CategoryDetail() {
             </nav>
 
             <div className="flex flex-col items-center justify-center">
-                <h1 className="text-[70px] mt-[40px] font-thin mb-[20px] yellow text-[#ff8fab]">
+                <h1 className="text-[70px] mt-[40px] font-thin mb-[20px] category text-[#ffbd43]">
                     To Do {category?.title || 'Unknown'}
                 </h1>
 
@@ -339,7 +339,7 @@ export default function CategoryDetail() {
                             ))}
                         </select>
                         <button
-                            className="bg-[#f13857] text-white p-[10px] rounded-md shadow-[0_0_10px_#fff983] transition-shadow"
+                            className="bg-[#ffbd43] text-white p-[10px] rounded-md shadow-[0_0_10px_#fff983] transition-shadow"
                             type="submit"
                         >
                             CREATE
