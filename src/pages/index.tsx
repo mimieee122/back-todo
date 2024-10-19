@@ -40,7 +40,7 @@ export default function Home() {
                                 </div>
                             </div>
 
-                            <div className="flex flex-col shadow-[0_0_25px_white] transition-shadow rounded-xl  bg-white bg-opacity-15 border-[#ff517d] border-[5px] border-solid  gap-[5px] justify-center">
+                            <div className="flex flex-col shadow-[0_0_20px_white] transition-shadow rounded-xl  bg-white bg-opacity-15 border-[#ff517d] border-[5px] border-solid  gap-[5px] justify-center">
                                 <Link className="self-center" href="/category">
                                     <button className="signIn font-thin text-[40px] text-[#ff8fab]">
                                         IT&#39;S YOUR FLAN

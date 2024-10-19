@@ -166,8 +166,19 @@ export default function CategoryDetail() {
 
     const renderPriorityBoard = (priorityLabel: string) => {
         return (
-            <div className="w-[400px] h-[400px] overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#f13857] border-[5px] border-solid">
-                <h2 className="text-center underline text-[25px] mt-[20px] text-white mb-[10px]">
+            <div className="relative w-[400px] h-[400px] justify-center items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#f13857] border-[5px] border-solid">
+                {/* 중요도 이미지 */}
+                <div className="flex flex-col mt-[50px] justify-center items-center relative">
+                    <div className="absolute z-10 w-[200px] h-[100px] ">
+                        <Image
+                            src="/assets/images/medium.png"
+                            fill
+                            alt="중요도"
+                            className="object-contain"
+                        />
+                    </div>
+                </div>
+                <h2 className="text-center text-[25px] mt-[20px] text-white mb-[10px]">
                     priority : {priorityLabel}
                 </h2>
                 <ul className="project-list flex flex-col gap-[5px]">
@@ -287,11 +298,11 @@ export default function CategoryDetail() {
             </nav>
 
             <div className="flex flex-col items-center justify-center">
-                <h1 className="text-[60px] mt-[40px] mb-[20px] yellow text-[#ff8fab]">
+                <h1 className="text-[70px] mt-[40px] font-thin mb-[20px] yellow text-[#ff8fab]">
                     To Do {category?.title || 'Unknown'}
                 </h1>
 
-                <div className="flex flex-row gap-[35px]">
+                <div className="flex flex-row relative gap-[35px]">
                     {renderPriorityBoard('High')}
                     {renderPriorityBoard('Medium')}
                     {renderPriorityBoard('Low')}
