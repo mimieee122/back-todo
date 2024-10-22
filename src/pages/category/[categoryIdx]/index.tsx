@@ -164,24 +164,36 @@ export default function CategoryDetail() {
         })
     }
 
+    const showPriority = (priorityLabel) => {
+        switch (priorityLabel) {
+            case 'High':
+                return '/assets/images/high.png' // 첫 번째 카테고리 이미지
+            case 'Medium':
+                return '/assets/images/medium.png' // 두 번째 카테고리 이미지
+            case 'Low':
+                return '/assets/images/low.png' // 기본 이미지
+        }
+    }
+
     const renderPriorityBoard = (priorityLabel: string) => {
         return (
-            <div className="relative w-[400px] h-[400px] justify-center items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#ffbd43] border-[2px] border-solid">
+            <div className="flex flex-col relative w-[400px] h-[400px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#ffbd43] border-[2px] border-solid">
                 {/* 중요도 이미지 */}
-                <div className="flex flex-col mt-[50px] justify-center items-center relative">
-                    <div className="absolute z-10 w-[150px] h-[80px] ">
-                        <Image
-                            src="/assets/images/medium.png"
-                            fill
-                            alt="중요도"
-                            className="object-contain"
-                        />
-                    </div>
-                </div>
-                <h2 className="text-center text-[15px] mt-[20px] text-white mb-[10px]">
+
+                <div
+                    style={{
+                        backgroundImage: `url(${showPriority(priorityLabel)})`,
+                        backgroundSize: 'contain',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
+                    }}
+                    className="w-[150px] h-[80px] "
+                ></div>
+
+                <h2 className="text-center text-[15px] mt-[5px] text-white mb-[10px]">
                     {priorityLabel}
                 </h2>
-                <ul className="project-list flex flex-col gap-[5px]">
+                <ul className="project-list w-[350px] flex flex-col gap-[5px]">
                     {projects
                         ?.filter(
                             (project) =>

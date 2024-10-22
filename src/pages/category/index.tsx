@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Main() {
-    const me = useQuery({
+    const { data: me } = useQuery({
         queryKey: ['me'],
         queryFn: async () => {
             const response = await axios.get('/api/me')
