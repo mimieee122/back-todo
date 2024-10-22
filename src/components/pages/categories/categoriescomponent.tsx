@@ -4,26 +4,17 @@ import { useEffect, useState } from 'react'
 
 export default function CategoriesComponent() {
     const router = useRouter()
-    const [categories, setCategories] = useState(() => {
-        // 로컬 스토리지에서 카테고리 데이터가 있으면 불러옴
-        const storedCategories = localStorage.getItem('categoriesData')
-        return storedCategories ? JSON.parse(storedCategories) : []
-    })
+    const [categories, setCategories] = useState([])
 
     useEffect(() => {
         const fetchCategories = async () => {
             try {
                 const response = await axios.get('/api/category')
                 setCategories(response.data)
-                localStorage.setItem(
-                    'categoriesData',
-                    JSON.stringify(response.data)
-                )
             } catch (error) {
                 console.error('Error fetching categories:', error)
             }
         }
-
         fetchCategories()
     }, [])
     // Handle the form submission to create a new project

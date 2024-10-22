@@ -18,7 +18,7 @@ export const updateProject = async (
     }
 
     try {
-        const decoded = verify(token, process.env.JWT_SECRET as string) as {
+        const decoded = verify(token, process.env.SECRET_JWT as string) as {
             idx: number
         }
 
