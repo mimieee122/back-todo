@@ -1,8 +1,9 @@
 -- CreateTable
 CREATE TABLE "User" (
     "idx" SERIAL NOT NULL,
-    "nickname" VARCHAR(100) NOT NULL,
+    "id" VARCHAR(100) NOT NULL,
     "password" VARCHAR(100) NOT NULL,
+    "nickname" VARCHAR(100) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -31,6 +32,7 @@ CREATE TABLE "Project" (
     "userIdx" INTEGER NOT NULL,
     "categoryIdx" INTEGER NOT NULL,
     "priorityIdx" INTEGER NOT NULL,
+    "title" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -50,10 +52,16 @@ CREATE TABLE "Comment" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "User_id_key" ON "User"("id");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "User_nickname_key" ON "User"("nickname");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Category_title_key" ON "Category"("title");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Priority_label_key" ON "Priority"("label");
 
 -- AddForeignKey
 ALTER TABLE "Project" ADD CONSTRAINT "Project_userIdx_fkey" FOREIGN KEY ("userIdx") REFERENCES "User"("idx") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -69,12 +77,3 @@ ALTER TABLE "Comment" ADD CONSTRAINT "Comment_userIdx_fkey" FOREIGN KEY ("userId
 
 -- AddForeignKey
 ALTER TABLE "Comment" ADD CONSTRAINT "Comment_projectIdx_fkey" FOREIGN KEY ("projectIdx") REFERENCES "Project"("idx") ON DELETE RESTRICT ON UPDATE CASCADE;
-
-
--- 결국, 카테고리 이름을 추가하려면 SQL 쿼리를 마이그레이션 파일에 직접 추가하고, pnpm prisma migrate deploy를 통해 그 쿼리를 데이터베이스에 적용해야 합니다.
-INSERT INTO "Category" (title) VALUES 
-('공부'), 
-('운동'), 
-('루틴'), 
-('취미'), 
-('기타');
