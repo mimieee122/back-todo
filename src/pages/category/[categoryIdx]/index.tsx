@@ -353,7 +353,7 @@ export default function CategoryDetail() {
 
             <div className="flex flex-col items-center justify-center">
                 <h1 className="text-[70px] mt-[40px] font-thin mb-[20px] category text-[#ffbd43]">
-                    To Do {category?.title || 'Unknown'}
+                    {category ? category.title : 'Loading...'}
                 </h1>
 
                 <div className="flex flex-row relative gap-[35px]">
