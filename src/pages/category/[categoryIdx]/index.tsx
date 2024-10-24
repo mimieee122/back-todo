@@ -7,9 +7,6 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 export default function CategoryDetail() {
-    const [completedProjects, setCompletedProjects] = useState<{
-        [key: number]: boolean
-    }>({})
     const [editingProject, setEditingProject] = useState<number | null>(null)
     // Create Project 상태
     const [createTitle, setCreateTitle] = useState('')
@@ -21,6 +18,16 @@ export default function CategoryDetail() {
 
     const [priorities, setPriorities] = useState([])
     const [categories, setCategories] = useState([])
+
+    const [completedProjects, setCompletedProjects] = useState({})
+
+    useEffect(() => {
+        // 클라이언트 측에서만 Local Storage 접근
+        const saved = localStorage.getItem('completedProjects')
+        if (saved) {
+            setCompletedProjects(JSON.parse(saved))
+        }
+    }, []) // 컴포넌트가 처음 마운트될 때 한 번만 실행
 
     const router = useRouter()
     const idx = Number(router.query.categoryIdx)
@@ -168,10 +175,18 @@ export default function CategoryDetail() {
     }
 
     const toggleCompletion = (projectIdx: number) => {
-        setCompletedProjects((prev) => ({
-            ...prev,
-            [projectIdx]: !prev[projectIdx], // Toggle completion state
-        }))
+        setCompletedProjects((prev) => {
+            const newCompletedProjects = {
+                ...prev,
+                [projectIdx]: !prev[projectIdx], // Toggle completion state
+            }
+            // Local Storage에 즉시 저장
+            localStorage.setItem(
+                'completedProjects',
+                JSON.stringify(newCompletedProjects)
+            )
+            return newCompletedProjects
+        })
     }
 
     const showPriority = (priorityLabel) => {
