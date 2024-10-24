@@ -7,6 +7,9 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 export default function CategoryDetail() {
+    const [completedProjects, setCompletedProjects] = useState<{
+        [key: number]: boolean
+    }>({})
     const [editingProject, setEditingProject] = useState<number | null>(null)
     // Create Project 상태
     const [createTitle, setCreateTitle] = useState('')
@@ -164,6 +167,13 @@ export default function CategoryDetail() {
         })
     }
 
+    const toggleCompletion = (projectIdx: number) => {
+        setCompletedProjects((prev) => ({
+            ...prev,
+            [projectIdx]: !prev[projectIdx], // Toggle completion state
+        }))
+    }
+
     const showPriority = (priorityLabel) => {
         switch (priorityLabel) {
             case 'High':
@@ -250,7 +260,24 @@ export default function CategoryDetail() {
                                     </form>
                                 ) : (
                                     <div className="flex flex-row border-[1px] p-3 text-[15px] hover:shadow-[0_0_15px_white]  shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#f13857] border-solid justify-between items-center w-full">
-                                        <div> - {project.title}</div>
+                                        <input
+                                            type="checkbox"
+                                            checked={
+                                                !!completedProjects[project.idx]
+                                            }
+                                            onChange={() =>
+                                                toggleCompletion(project.idx)
+                                            }
+                                        />
+                                        <div
+                                            className={`${
+                                                completedProjects[project.idx]
+                                                    ? 'line-through text-gray-500'
+                                                    : ''
+                                            }`}
+                                        >
+                                            {project.title}
+                                        </div>
                                         <div className="flex  gap-[10px]">
                                             <button
                                                 className="text-[white]"
