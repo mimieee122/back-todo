@@ -37,7 +37,7 @@ export function SignUp() {
                 </div>
 
                 {/* SIGN UP 폼 */}
-                <div className="flex flex-col bg-white bg-opacity-10 p-[10px] justify-center items-center h-[600px] w-[400px] shadow-[0_0_15px_white] transition-shadow border-[#ff3f6f] border-[4px] border-solid rounded-xl gap-[20px] mt-[100px] relative z-0">
+                <div className="flex flex-col bg-white bg-opacity-10 p-[10px] justify-center items-center h-[550px] w-[400px] shadow-[0_0_15px_white] transition-shadow border-[#ff3f6f] border-[4px] border-solid rounded-xl gap-[20px] mt-[100px] relative z-0">
                     <p className="text-[45px] mt-[50px] signIn bg-opacity-80 text-[#ff3f6f]">
                         SIGN UP
                     </p>

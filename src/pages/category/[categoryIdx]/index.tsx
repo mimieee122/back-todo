@@ -202,7 +202,7 @@ export default function CategoryDetail() {
 
     const renderPriorityBoard = (priorityLabel: string) => {
         return (
-            <div className="flex flex-col w-full relative  h-[450px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#ffbd43] border-[2px] border-solid">
+            <div className="flex flex-col w-full relative  h-[450px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#ff8fab] border-[2px] border-solid">
                 {/* 중요도 이미지 */}
 
                 <div
@@ -364,14 +364,14 @@ export default function CategoryDetail() {
             </div>
 
             {/* 프로젝트 생성 폼 */}
-            <div className="flex flex-row justify-center items-center mb-[5px] mt-[25px]">
+            <div className="flex flex-row justify-center   mt-[25px]">
                 <form
-                    className="flex flex-col items-center  p-4 rounded-lg bg-white bg-opacity-10"
+                    className="flex flex-col items-center h-[60px]  p-4 rounded-md w-screen bg-white bg-opacity-10"
                     onSubmit={handleCreateProject}
                 >
                     <div className="flex flex-row gap-[20px]">
                         <input
-                            className="p-[10px] rounded-md text-black text-[20px]"
+                            className=" rounded-md text-black text-[20px]"
                             type="text"
                             value={createTitle}
                             name="createTitle"
@@ -379,7 +379,7 @@ export default function CategoryDetail() {
                             placeholder="Enter to-do"
                         />
                         <select
-                            className="p-[10px] rounded-md"
+                            className="rounded-md"
                             value={createPriorityIdx}
                             name="createPriorityIdx"
                             onChange={(e) =>
@@ -393,7 +393,7 @@ export default function CategoryDetail() {
                             ))}
                         </select>
                         <button
-                            className="bg-[#ff8fab] text-white p-[10px] rounded-md shadow-[0_0_10px_#ff8fab] transition-shadow"
+                            className="bg-[#ff8fab] text-white pr-[10px] pl-[10px] rounded-md shadow-[0_0_10px_#ff8fab] transition-shadow"
                             type="submit"
                         >
                             CREATE
