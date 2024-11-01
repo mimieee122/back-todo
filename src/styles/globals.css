@@ -61,6 +61,10 @@ body {
 }
 
 @media (max-width: 817px) {
+    html,
+    body {
+        overflow: auto;
+    }
     .emoji {
         display: none; /* 화면에서 숨기기 */
     }
