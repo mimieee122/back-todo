@@ -121,6 +121,19 @@ body {
         padding-top: 15px;
         padding-bottom: 15px;
     }
+
+    .stars {
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        height: 500px;
+        justify-items: center;
+        align-items: start;
+    }
+
+    .label {
+        display: none;
+    }
 }
 
 .signIn {

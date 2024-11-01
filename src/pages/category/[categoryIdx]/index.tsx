@@ -212,10 +212,10 @@ export default function CategoryDetail() {
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',
                     }}
-                    className="w-[150px] h-[80px] "
+                    className="w-[150px] h-[40px] "
                 ></div>
 
-                <h2 className="text-center text-[15px] mt-[5px] text-white mb-[10px]">
+                <h2 className="text-center label text-[15px] mt-[5px] text-white mb-[10px]">
                     {priorityLabel}
                 </h2>
                 <ul className="project-list w-[350px] flex flex-col gap-[5px]">
@@ -325,7 +325,7 @@ export default function CategoryDetail() {
     }
 
     return (
-        <div className=" flex flex-col justify-center  ">
+        <div className=" flex flex-col items-center justify-center  ">
             <nav className="flex flex-row nav m-0 justify-between w-screen p-[10px] pl-[20px] pr-[20px] h-[60px] bg-white bg-opacity-5">
                 <div className="flex flex-row  justify-start gap-[10px]">
                     <div className="relative flex flex-col gap-0 items-start w-[30px] h-[30px] mt-[8px] overflow-hidden ">
@@ -351,12 +351,12 @@ export default function CategoryDetail() {
                 </div>
             </nav>
 
-            <div className="flex flex-col w-full items-center justify-center">
+            <div className="flex flex-col overflow-auto w-full items-center justify-center">
                 <h1 className="text-[70px] title mt-[40px] font-thin mb-[20px] category text-[#ff8fab]">
                     {category ? category.title : 'Loading...'}
                 </h1>
 
-                <div className="flex flex-row ml-2 mr-2 justify-center relative gap-[35px]">
+                <div className="flex flex-row stars ml-2 mr-2 justify-center relative gap-[35px]">
                     {renderPriorityBoard('HIGH')}
                     {renderPriorityBoard('MEDIUM')}
                     {renderPriorityBoard('LOW')}
@@ -364,14 +364,14 @@ export default function CategoryDetail() {
             </div>
 
             {/* 프로젝트 생성 폼 */}
-            <div className="flex flex-row justify-center   mt-[25px]">
+            <div className="flex flex-row justify-center items-center   mt-[25px]">
                 <form
-                    className="flex flex-col items-center h-[60px]  p-4 rounded-md w-screen bg-white bg-opacity-10"
+                    className="flex flex-col justify-center items-center h-[40px]  p-4 rounded-md w-screen bg-white bg-opacity-10"
                     onSubmit={handleCreateProject}
                 >
-                    <div className="flex flex-row gap-[20px]">
+                    <div className="flex flex-row gap-[10px]">
                         <input
-                            className=" rounded-md text-black text-[20px]"
+                            className=" rounded-md text-black text-[18px]"
                             type="text"
                             value={createTitle}
                             name="createTitle"
