@@ -352,7 +352,7 @@ export default function CategoryDetail() {
             </nav>
 
             <div className="flex flex-col overflow-auto w-full items-center justify-center">
-                <h1 className="text-[70px] title mt-[40px] font-thin mb-[20px] category text-[#ff8fab]">
+                <h1 className="text-[70px] title mt-[40px] font-thin mb-[50px] category text-[#ff8fab]">
                     {category ? category.title : 'Loading...'}
                 </h1>
 
@@ -364,7 +364,7 @@ export default function CategoryDetail() {
             </div>
 
             {/* 프로젝트 생성 폼 */}
-            <div className="flex flex-row justify-center items-center   mt-[25px]">
+            <div className="flex flex-row justify-center items-center   mt-[120px]">
                 <form
                     className="flex flex-col justify-center items-center h-[40px]  p-4 rounded-md w-screen bg-white bg-opacity-10"
                     onSubmit={handleCreateProject}
