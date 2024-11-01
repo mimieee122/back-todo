@@ -202,7 +202,7 @@ export default function CategoryDetail() {
 
     const renderPriorityBoard = (priorityLabel: string) => {
         return (
-            <div className="flex flex-col relative w-[400px] h-[400px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#ffbd43] border-[2px] border-solid">
+            <div className="flex flex-col w-full relative  h-[450px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#ffbd43] border-[2px] border-solid">
                 {/* 중요도 이미지 */}
 
                 <div
@@ -325,10 +325,10 @@ export default function CategoryDetail() {
     }
 
     return (
-        <>
-            <nav className="flex flex-row justify-between p-[10px] pl-[20px] pr-[20px] bg-white bg-opacity-5">
-                <div className="flex flex-row gap-[10px]">
-                    <div className="relative flex flex-col gap-0 items-start w-[30px] h-[30px] mt-[8px] overflow-hidden">
+        <div className="w-full h-full flex flex-col justify-start ">
+            <nav className="flex flex-row w-screen nav m-0 justify-between p-[10px] pl-[20px] pr-[20px] h-[60px] bg-white bg-opacity-5">
+                <div className="flex flex-row w-full justify-start gap-[10px]">
+                    <div className="relative flex flex-col gap-0 items-start w-[30px] h-[30px] mt-[8px] overflow-hidden ">
                         <Image
                             src="/assets/images/profile.png"
                             fill
@@ -351,12 +351,12 @@ export default function CategoryDetail() {
                 </div>
             </nav>
 
-            <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-col w-full items-center justify-center">
                 <h1 className="text-[70px] mt-[40px] font-thin mb-[20px] category text-[#ff8fab]">
                     {category ? category.title : 'Loading...'}
                 </h1>
 
-                <div className="flex flex-row relative gap-[35px]">
+                <div className="flex flex-row ml-2 mr-2 justify-center relative gap-[35px]">
                     {renderPriorityBoard('HIGH')}
                     {renderPriorityBoard('MEDIUM')}
                     {renderPriorityBoard('LOW')}
@@ -364,9 +364,9 @@ export default function CategoryDetail() {
             </div>
 
             {/* 프로젝트 생성 폼 */}
-            <div className="flex flex-row justify-center items-center mt-[30px]">
+            <div className="flex flex-row justify-center items-center mb-[5px] mt-[25px]">
                 <form
-                    className="flex flex-col items-center w-[1300px] p-4 rounded-lg bg-white bg-opacity-10"
+                    className="flex flex-col items-center  p-4 rounded-lg bg-white bg-opacity-10"
                     onSubmit={handleCreateProject}
                 >
                     <div className="flex flex-row gap-[20px]">
@@ -401,6 +401,6 @@ export default function CategoryDetail() {
                     </div>
                 </form>
             </div>
-        </>
+        </div>
     )
 }

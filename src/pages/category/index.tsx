@@ -14,8 +14,8 @@ export default function Main() {
     })
 
     return (
-        <div>
-            <nav className="flex flex-row justify-between p-[10px] pl-[20px] pr-[20px] bg-white bg-opacity-5 ">
+        <div className="flex flex-col justify-start">
+            <nav className="flex flex-row justify-between nav  p-[10px] pl-[20px] h-[60px] pr-[20px] bg-white bg-opacity-5 ">
                 <div className="flex flex-row gap-[10px]">
                     <div className=" relative flex flex-col gap-0 items-start w-[30px] h-[30px] mt-[8px] overflow-hidden">
                         <Image

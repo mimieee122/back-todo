@@ -45,7 +45,7 @@ html,
 body {
     margin: 0;
     padding: 0;
-    width: 100%;
+    width: 100%; /* 너비를 100%로 설정 */
     height: 100%;
     min-height: 100vh;
     font-family: Noto Sans KR;
@@ -56,9 +56,8 @@ body {
     background-position: center;
     display: flex; /* flexbox 사용 */
     justify-content: center; /* 가로 방향 중앙 정렬 */
-    align-items: center; /* 세로 방향 중앙 정렬 */
-    width: 100%; /* 너비를 100%로 설정 */
-    height: 100%;
+
+    overflow: hidden;
 }
 
 @media (max-width: 817px) {
