@@ -274,7 +274,7 @@ export default function CategoryDetail() {
                                         </button>
                                     </form>
                                 ) : (
-                                    <div className="flex flex-row border-[1px] p-3 text-[15px] hover:shadow-[0_0_15px_white]  shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#f13857] border-solid justify-between items-center w-full">
+                                    <div className="flex flex-row border-[1px] p-1 m-1 text-[10px] hover:shadow-[0_0_15px_white]  shadow-[0_0_10px_white] transition-shadow rounded-md bg-white bg-opacity-15 border-[#f13857] border-solid justify-between items-center w-full">
                                         <input
                                             type="checkbox"
                                             checked={
@@ -364,14 +364,14 @@ export default function CategoryDetail() {
             </div>
 
             {/* 프로젝트 생성 폼 */}
-            <div className="flex flex-row justify-center items-center   mt-[120px]">
+            <div className="flex flex-row justify-center items-center   mt-[30px]">
                 <form
                     className="flex flex-col justify-center items-center h-[40px]  p-4 rounded-md w-screen bg-white bg-opacity-10"
                     onSubmit={handleCreateProject}
                 >
                     <div className="flex flex-row gap-[10px]">
                         <input
-                            className=" rounded-md text-black text-[18px]"
+                            className=" rounded-md text-black text-[15px]"
                             type="text"
                             value={createTitle}
                             name="createTitle"
