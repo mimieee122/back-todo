@@ -39,11 +39,11 @@ export default function CategoriesComponent() {
     }
 
     return (
-        <ul className="flex flex-row justify-center  gap-12 px-12 ">
+        <ul className="flex flex-row cards justify-center  gap-12 px-12 ">
             {categories.map((category) => (
                 // width의 값을 고정적으로 지정해두지 않기
                 <li
-                    className="min-w-[200px] w-[230px] flex-1 h-[380px] text-center text-[30px] hover:shadow-[0_0_25px_white] font-extrabold text-white shadow-[0_0_15px_white] transition-shadow  bg-white bg-opacity-10 border-solid rounded-xl border-[#ff3f6f] border-[4px]"
+                    className="  w-[230px] flex-1 h-[380px] card text-center text-[30px] hover:shadow-[0_0_25px_white] font-extrabold text-white shadow-[0_0_15px_white] transition-shadow  bg-white bg-opacity-10 border-solid rounded-xl border-[#ff3f6f] border-[4px]"
                     key={category.idx}
                     style={{
                         backgroundImage: `url(${showImage(category.title)})`,

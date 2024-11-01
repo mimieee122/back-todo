@@ -98,6 +98,29 @@ body {
     .tell {
         display: none;
     }
+
+    .title {
+        font-size: 55px;
+    }
+
+    .cards {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .card {
+        width: 400px;
+        height: 300px;
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        justify-items: center;
+        align-items: center;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
 }
 
 .signIn {

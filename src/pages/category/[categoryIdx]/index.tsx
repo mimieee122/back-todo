@@ -325,9 +325,9 @@ export default function CategoryDetail() {
     }
 
     return (
-        <div className="w-full h-full flex flex-col justify-start ">
-            <nav className="flex flex-row w-screen nav m-0 justify-between p-[10px] pl-[20px] pr-[20px] h-[60px] bg-white bg-opacity-5">
-                <div className="flex flex-row w-full justify-start gap-[10px]">
+        <div className=" flex flex-col justify-center  ">
+            <nav className="flex flex-row nav m-0 justify-between w-screen p-[10px] pl-[20px] pr-[20px] h-[60px] bg-white bg-opacity-5">
+                <div className="flex flex-row  justify-start gap-[10px]">
                     <div className="relative flex flex-col gap-0 items-start w-[30px] h-[30px] mt-[8px] overflow-hidden ">
                         <Image
                             src="/assets/images/profile.png"
@@ -345,14 +345,14 @@ export default function CategoryDetail() {
                         <button className="text-[#fff983]">CATEGORY</button>
                     </Link>
 
-                    <Link href="/">
+                    <Link href="/" className="home">
                         <button>HOME</button>
                     </Link>
                 </div>
             </nav>
 
             <div className="flex flex-col w-full items-center justify-center">
-                <h1 className="text-[70px] mt-[40px] font-thin mb-[20px] category text-[#ff8fab]">
+                <h1 className="text-[70px] title mt-[40px] font-thin mb-[20px] category text-[#ff8fab]">
                     {category ? category.title : 'Loading...'}
                 </h1>
 
