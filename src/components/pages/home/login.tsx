@@ -26,10 +26,10 @@ export function Login() {
     return (
         <form
             onSubmit={handleSubmit(onSubmitLogin)} // handleSubmit으로 폼 제출
-            className="flex flex-col justify-center items-center text-center gap-[20px] w-[600px] text-black p-4"
+            className="flex flex-col all justify-center items-center text-center gap-[20px] text-black p-4"
         >
-            <div className="flex flex-row gap-[10px] items-end">
-                <div className=" relative flex flex-col gap-0 items-center w-[300px] h-[250px] overflow-hidden">
+            <div className="flex flex-row gap-[10px] items-center inLogo justify-center">
+                <div className=" relative flex flex-col emoji gap-0 items-center w-[300px] h-[250px]">
                     <Image
                         src="/assets/images/flan emoji.png"
                         fill // 부모 요소에 가득 차게 함
@@ -37,16 +37,16 @@ export function Login() {
                         className="object-fill"
                     />
                 </div>
-                <div className="flex flex-col gap-[0px] items-center">
-                    <div className=" relative flex flex-col  gap-0 items-end w-[520px] h-[180px] overflow-hidden">
+                <div className="flex flex-col justify-center items-center">
+                    <div className=" relative flex flex-col justify-center  gap-0 items-center loGo w-[400px] h-[140px] ">
                         <Image
                             src="/assets/images/flan.png"
                             fill // 부모 요소에 가득 차게 함
                             alt="flan 로고"
-                            className="object-fill"
+                            className="object-fill logo"
                         />
                     </div>
-                    <div className="flex flex-row gap-[10px] mt-1 font-thin text-[23px] sub p-0 ">
+                    <div className="flex flex-row gap-[10px] mt-1 font-thin w-[400px] tell h-[5px] text-[18px] sub p-0 ">
                         <p className=" text-[black] font-thin">CREATE </p>
                         <p className="yellow text-[#ffbd43] font-thin">PLAN</p>
                         <p className="yellow text-[#ffbd43]">FAST</p>
@@ -55,7 +55,7 @@ export function Login() {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col text-black p-5 shadow-[0_0_15px_#ffbd43] transition-shadow border-[#ffbd43] border-[3px] border-solid justify-center items-center text-center gap-[15px] w-[800px]  bg-white bg-opacity-10 rounded-xl">
+            <div className="flex flex-col yellowBox text-black p-5 shadow-[0_0_15px_#ffbd43] transition-shadow border-[#ffbd43] border-[3px] border-solid justify-center items-center text-center gap-[15px] w-[817px]  bg-white bg-opacity-10 rounded-xl">
                 <p className="text-[40px] signIn text-[#ffbd43]">SIGN IN</p>
 
                 <label htmlFor="id">ID</label>
@@ -84,7 +84,7 @@ export function Login() {
                 <Button>로그인</Button>
             </div>
             <Link href="/signUp">
-                <button className="w-[800px] text-end">회원가입</button>
+                <button className="w-[800px] text-center">회원가입</button>
             </Link>
         </form>
     )

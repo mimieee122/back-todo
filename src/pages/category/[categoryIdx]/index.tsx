@@ -366,7 +366,7 @@ export default function CategoryDetail() {
             {/* 프로젝트 생성 폼 */}
             <div className="flex flex-row justify-center items-center mt-[30px]">
                 <form
-                    className="flex flex-col items-center w-[1300px] p-4 rounded-sm bg-white bg-opacity-10"
+                    className="flex flex-col items-center w-[1300px] p-4 rounded-lg bg-white bg-opacity-10"
                     onSubmit={handleCreateProject}
                 >
                     <div className="flex flex-row gap-[20px]">
@@ -393,7 +393,7 @@ export default function CategoryDetail() {
                             ))}
                         </select>
                         <button
-                            className="bg-[#ffbd43] text-white p-[10px] rounded-md shadow-[0_0_10px_#fff983] transition-shadow"
+                            className="bg-[#ff8fab] text-white p-[10px] rounded-md shadow-[0_0_10px_#ff8fab] transition-shadow"
                             type="submit"
                         >
                             CREATE
