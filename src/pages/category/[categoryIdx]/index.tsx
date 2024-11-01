@@ -191,11 +191,11 @@ export default function CategoryDetail() {
 
     const showPriority = (priorityLabel) => {
         switch (priorityLabel) {
-            case 'High':
+            case 'HIGH':
                 return '/assets/images/high.png' // 첫 번째 카테고리 이미지
-            case 'Medium':
+            case 'MEDIUM':
                 return '/assets/images/medium.png' // 두 번째 카테고리 이미지
-            case 'Low':
+            case 'LOW':
                 return '/assets/images/low.png' // 기본 이미지
         }
     }
@@ -352,14 +352,14 @@ export default function CategoryDetail() {
             </nav>
 
             <div className="flex flex-col items-center justify-center">
-                <h1 className="text-[70px] mt-[40px] font-thin mb-[20px] category text-[#ffbd43]">
+                <h1 className="text-[70px] mt-[40px] font-thin mb-[20px] category text-[#ff8fab]">
                     {category ? category.title : 'Loading...'}
                 </h1>
 
                 <div className="flex flex-row relative gap-[35px]">
-                    {renderPriorityBoard('High')}
-                    {renderPriorityBoard('Medium')}
-                    {renderPriorityBoard('Low')}
+                    {renderPriorityBoard('HIGH')}
+                    {renderPriorityBoard('MEDIUM')}
+                    {renderPriorityBoard('LOW')}
                 </div>
             </div>
 

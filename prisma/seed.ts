@@ -7,17 +7,17 @@ async function main() {
     await prisma.category.deleteMany()
     await prisma.priority.deleteMany()
     const priorities = [
-        { label: 'High' },
-        { label: 'Medium' },
-        { label: 'Low' },
+        { label: 'HIGH' },
+        { label: 'MEDIUM' },
+        { label: 'LOW' },
     ]
 
     const categories = [
-        { title: 'Study' },
-        { title: 'Exercise' },
-        { title: 'Routine' },
-        { title: 'Hobby' },
-        { title: 'Shopping' },
+        { title: 'STUDY' },
+        { title: 'EXERCISE' },
+        { title: 'ROUTINE' },
+        { title: 'HOBBY' },
+        { title: 'SHOPPING' },
     ]
 
     // 우선 순위 데이터 추가

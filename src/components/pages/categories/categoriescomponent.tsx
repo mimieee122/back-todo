@@ -25,15 +25,15 @@ export default function CategoriesComponent() {
 
     const showImage = (title) => {
         switch (title) {
-            case 'Study':
+            case 'STUDY':
                 return '/assets/images/study.png' // 첫 번째 카테고리 이미지
-            case 'Exercise':
+            case 'EXERCISE':
                 return '/assets/images/exercise.png' // 두 번째 카테고리 이미지
-            case 'Routine':
+            case 'ROUTINE':
                 return '/assets/images/routine.png' // 기본 이미지
-            case 'Hobby':
+            case 'HOBBY':
                 return '/assets/images/hobby.png' // 기본 이미지
-            case 'Shopping':
+            case 'SHOPPING':
                 return '/assets/images/shopping.png' // 기본 이미지
         }
     }
