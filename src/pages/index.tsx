@@ -24,7 +24,7 @@ export default function Home() {
                     {me.isSuccess ? (
                         <div className="flex flex-col gap-[10px] contents-center  justify-center">
                             <div className="flex  flex-row items-center gap-[0px] justify-center">
-                                <div className=" flex flex-row justify-center items-center  border-solid  h-[50px]  gap-[5px] text-black p-4 bg-[#ff3f6f]  rounded-xl">
+                                <div className=" flex name flex-row justify-center items-center  border-solid  h-[50px]  gap-[5px] text-black p-4 bg-[#ff3f6f]  rounded-xl">
                                     <p className="yellow text-[30px] font-thin text-[white]">
                                         <span>HI, </span>
                                         <span>{me.data.data?.nickname}</span>
@@ -35,13 +35,13 @@ export default function Home() {
                                         src="/assets/images/think.png"
                                         fill // 부모 요소에 가득 차게 함
                                         alt="think emoji"
-                                        className="object-contain"
+                                        className="object-contain think"
                                     />
                                 </div>
                             </div>
 
                             <Link className="self-center" href="/category">
-                                <div className="flex flex-col w-[580px] shadow-[0_0_20px_white] transition-shadow rounded-xl  bg-white bg-opacity-15 border-[#ff517d] border-[5px] border-solid  gap-[5px] justify-center">
+                                <div className="flex pink flex-col w-[580px] shadow-[0_0_20px_white] transition-shadow rounded-xl  bg-white bg-opacity-15 border-[#ff517d] border-[5px] border-solid  gap-[5px] justify-center">
                                     <button className="signIn font-thin text-[30px] text-[#ff8fab]">
                                         IT&#39;S YOUR FLAN
                                     </button>
@@ -55,7 +55,7 @@ export default function Home() {
                                                 className="object-contain"
                                             />
                                         </div>
-                                        <div className="self-center relative w-[100px]  h-[100px] mt-[2px] mb-[15px]">
+                                        <div className="self-center cursor relative w-[100px]  h-[100px] mt-[2px] mb-[15px]">
                                             <Image
                                                 src="/assets/images/cursor.png"
                                                 fill // 부모 요소에 가득 차게 함
@@ -67,7 +67,7 @@ export default function Home() {
                                 </div>
                             </Link>
 
-                            <div className="flex relative flex-row justify-center mt-[15px] ">
+                            <div className="flex under relative flex-row justify-center mt-[15px] ">
                                 <LogOut />
                             </div>
                         </div>

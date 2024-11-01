@@ -65,12 +65,30 @@ body {
         display: none; /* 화면에서 숨기기 */
     }
 
+    .think {
+        width: 300px;
+        height: 350px;
+    }
+
     .all {
         display: flex; /* Flexbox 활성화 */
         justify-content: center; /* 가로 방향 중앙 정렬 */
         align-items: center; /* 세로 방향 중앙 정렬 */
         max-width: 100%; /* 너비를 100%로 설정 */
         height: 100%;
+    }
+
+    .name {
+        display: none;
+    }
+
+    .pink,
+    .outButton {
+        width: 380px;
+    }
+
+    .cursor {
+        display: none;
     }
 
     .yellowBox {
