@@ -27,7 +27,7 @@ export function SignUp() {
             {/* 달력과 SIGN UP 폼을 포함하는 부모 div */}
             <div className="relative flex flex-col items-center">
                 {/* 달력 이미지 */}
-                <div className="absolute z-10 w-[160px] h-[100px] mt-[35px]">
+                <div className="absolute z-10 w-[120px] h-[80px] mt-[35px]">
                     <Image
                         src="/assets/images/calendar_width.png"
                         fill
@@ -82,13 +82,13 @@ export function SignUp() {
                             {errors.nickname.message}
                         </p>
                     )}
-                    <button className="w-[200px] h-[35px]  shadow-2xl hover:shadow-[0_0_10px_white] transition-shadow bg-[#ff3f6f] bg-opacity-30 border-black border-[2px] mt-[5px] mb-[15px] border-solid rounded-md">
+                    <button className="w-[200px] h-[55px] pt-1 pb-1  shadow-2xl hover:shadow-[0_0_10px_white] transition-shadow bg-[#ff3f6f] bg-opacity-30 border-black border-[2px] mt-[5px] mb-[35px] border-solid rounded-md">
                         회원가입
                     </button>
                 </div>
             </div>
 
-            <div className="mt-[10px] text-[18px]">
+            <div className="mt-[30px] text-[18px]">
                 <Link href="/">
                     <button>HOME</button>
                 </Link>

@@ -202,7 +202,7 @@ export default function CategoryDetail() {
 
     const renderPriorityBoard = (priorityLabel: string) => {
         return (
-            <div className="flex flex-col w-[400px] relative h-[400px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#ff8fab] border-[2px] border-solid">
+            <div className="flex flex-col star w-[400px] relative h-[400px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#ff8fab] border-[2px] border-solid">
                 {/* 중요도 이미지 */}
 
                 <div
@@ -218,7 +218,7 @@ export default function CategoryDetail() {
                 <h2 className="text-center relative mt-[10px] z-20 label text-[15px]  text-white mb-[10px]">
                     {priorityLabel}
                 </h2>
-                <ul className="project-list w-[350px] flex flex-col gap-[5px]">
+                <ul className="project-list w-[380px] flex flex-col gap-[5px]">
                     {projects
                         ?.filter(
                             (project) =>
@@ -369,7 +369,7 @@ export default function CategoryDetail() {
                 >
                     <div className="flex bar flex-row gap-[10px]">
                         <input
-                            className="pr-1 pl-1 rounded-md text-black text-[18px]"
+                            className="pr-1 w-[160px] pl-1 rounded-md text-black text-[18px]"
                             type="text"
                             value={createTitle}
                             name="createTitle"
