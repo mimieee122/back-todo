@@ -202,7 +202,7 @@ export default function CategoryDetail() {
 
     const renderPriorityBoard = (priorityLabel: string) => {
         return (
-            <div className="flex flex-col w-full relative h-[400px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#ff8fab] border-[2px] border-solid">
+            <div className="flex flex-col w-[400px] relative h-[400px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#ff8fab] border-[2px] border-solid">
                 {/* 중요도 이미지 */}
 
                 <div
@@ -327,7 +327,7 @@ export default function CategoryDetail() {
 
     return (
         <div className=" flex flex-col items-center justify-center  ">
-            <nav className="flex flex-row nav m-0 justify-between w-screen p-[10px] pl-[20px] pr-[20px] h-[60px] bg-white bg-opacity-5">
+            <nav className="flex flex-row nav text-[18px] m-0 justify-between w-screen p-[10px] pl-[20px] pr-[20px] h-[60px] bg-white bg-opacity-5">
                 <div className="flex flex-row  justify-start gap-[10px]">
                     <div className="relative flex flex-col gap-0 items-start w-[30px] h-[30px] mt-[8px] overflow-hidden ">
                         <Image
@@ -337,11 +337,9 @@ export default function CategoryDetail() {
                             className="object-fill"
                         />
                     </div>
-                    <p className="text-[18px] mt-[7px]">
-                        USER: {me?.data?.nickname}
-                    </p>
+                    <p className="user mt-[7px]">USER : {me?.data?.nickname}</p>
                 </div>
-                <div className="flex flex-row mt-[10px] text-[18px] gap-[30px]">
+                <div className="flex flex-row mt-[10px] gap-[30px]">
                     <Link href="/category">
                         <button className="text-[#fff983]">CATEGORY</button>
                     </Link>
@@ -357,7 +355,7 @@ export default function CategoryDetail() {
                     {category ? category.title : 'Loading...'}
                 </h1>
 
-                <div className="flex flex-row stars ml-2 mr-2 justify-center relative gap-[25px]">
+                <div className="flex flex-row stars ml-2 mr-2 justify-center relative gap-[35px]">
                     {renderPriorityBoard('HIGH')}
                     {renderPriorityBoard('MEDIUM')}
                     {renderPriorityBoard('LOW')}
