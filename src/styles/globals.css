@@ -73,6 +73,9 @@ body {
 }
 
 @media (max-width: 817px) {
+    .category {
+        -webkit-text-stroke: 1px black;
+    }
     /* html,
     body {
         overflow: auto;
