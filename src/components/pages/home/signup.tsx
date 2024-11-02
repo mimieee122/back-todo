@@ -37,7 +37,7 @@ export function SignUp() {
                 </div>
 
                 {/* SIGN UP 폼 */}
-                <div className="flex flex-col bg-white bg-opacity-10 p-[10px] justify-center items-center h-[500px] w-[400px] shadow-[0_0_15px_white] transition-shadow border-[#ff3f6f] border-[4px] border-solid rounded-xl gap-[20px] mt-[100px] relative z-0">
+                <div className="flex flex-col bg-white bg-opacity-10 p-[10px] justify-center items-center h-[450px] w-[400px] shadow-[0_0_15px_white] transition-shadow border-[#ff3f6f] border-[4px] border-solid rounded-xl gap-[20px] mt-[100px] relative z-0">
                     <p className="text-[45px] mt-[50px] signIn bg-opacity-80 text-[#ff3f6f]">
                         SIGN UP
                     </p>
@@ -82,7 +82,7 @@ export function SignUp() {
                             {errors.nickname.message}
                         </p>
                     )}
-                    <button className="w-[200px] h-[35px]  shadow-2xl hover:shadow-[0_0_10px_white] transition-shadow bg-[#ff3f6f] bg-opacity-30 border-black border-[2px] mt-[25px] border-solid rounded-md">
+                    <button className="w-[200px] h-[35px]  shadow-2xl hover:shadow-[0_0_10px_white] transition-shadow bg-[#ff3f6f] bg-opacity-30 border-black border-[2px] mt-[5px] mb-[15px] border-solid rounded-md">
                         회원가입
                     </button>
                 </div>
