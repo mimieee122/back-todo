@@ -64,7 +64,7 @@ export function Login() {
                     type="text"
                     id="name"
                     name="id"
-                    className="text-center border-black border-[1px]"
+                    className="text-center w-[200px] border-black border-[1px]"
                 />
                 {errors.id && <p>{errors.id.message}</p>}
 
@@ -77,7 +77,7 @@ export function Login() {
                     type="password"
                     id="password"
                     name="password"
-                    className="text-center border-black border-[1px]"
+                    className="text-center w-[200px] border-black border-[1px]"
                 />
                 {errors.password && <p>{errors.password.message}</p>}
 

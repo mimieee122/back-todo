@@ -27,7 +27,7 @@ export function SignUp() {
             {/* 달력과 SIGN UP 폼을 포함하는 부모 div */}
             <div className="relative flex flex-col items-center">
                 {/* 달력 이미지 */}
-                <div className="absolute z-10 w-[250px] h-[150px] mt-[15px]">
+                <div className="absolute z-10 w-[160px] h-[100px] mt-[35px]">
                     <Image
                         src="/assets/images/calendar_width.png"
                         fill
@@ -37,7 +37,7 @@ export function SignUp() {
                 </div>
 
                 {/* SIGN UP 폼 */}
-                <div className="flex flex-col bg-white bg-opacity-10 p-[10px] justify-center items-center h-[550px] w-[400px] shadow-[0_0_15px_white] transition-shadow border-[#ff3f6f] border-[4px] border-solid rounded-xl gap-[20px] mt-[100px] relative z-0">
+                <div className="flex flex-col bg-white bg-opacity-10 p-[10px] justify-center items-center h-[500px] w-[400px] shadow-[0_0_15px_white] transition-shadow border-[#ff3f6f] border-[4px] border-solid rounded-xl gap-[20px] mt-[100px] relative z-0">
                     <p className="text-[45px] mt-[50px] signIn bg-opacity-80 text-[#ff3f6f]">
                         SIGN UP
                     </p>
@@ -82,7 +82,7 @@ export function SignUp() {
                             {errors.nickname.message}
                         </p>
                     )}
-                    <button className="w-[250px] h-[40px]  shadow-2xl hover:shadow-[0_0_10px_white] transition-shadow bg-[#ff3f6f] bg-opacity-30 border-black border-[3px] mt-[40px] border-solid rounded-md">
+                    <button className="w-[200px] h-[35px]  shadow-2xl hover:shadow-[0_0_10px_white] transition-shadow bg-[#ff3f6f] bg-opacity-30 border-black border-[2px] mt-[25px] border-solid rounded-md">
                         회원가입
                     </button>
                 </div>
