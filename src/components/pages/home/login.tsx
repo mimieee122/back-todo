@@ -38,7 +38,7 @@ export function Login() {
                     />
                 </div>
                 <div className="flex flex-col justify-center items-center">
-                    <div className=" relative flex flex-col justify-center  gap-0 items-center loGo w-[400px] h-[130px] mt-[15px] ">
+                    <div className=" relative flex flex-col justify-center  gap-0 items-center loGo w-[360px] h-[110px] mt-[15px] ">
                         <Image
                             src="/assets/images/flan.png"
                             fill // 부모 요소에 가득 차게 함
@@ -83,7 +83,7 @@ export function Login() {
 
                 <Button>로그인</Button>
             </div>
-            <Link href="/signUp">
+            <Link href="/signUp" className="mt-[10px]">
                 <button className="w-[800px] text-center">회원가입</button>
             </Link>
         </form>

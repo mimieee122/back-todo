@@ -102,7 +102,7 @@ body {
     }
 
     .yellowBox {
-        width: 380px; /* 화면 너비에 따라 줄어들도록 설정 */
+        width: 370px; /* 화면 너비에 따라 줄어들도록 설정 */
     }
 
     .tell {
@@ -140,7 +140,7 @@ body {
     }
 
     .card {
-        width: 350px;
+        width: 380px;
         display: flex;
         flex-direction: row;
         text-align: center;
@@ -150,7 +150,7 @@ body {
     }
 
     .project-list {
-        width: 280px;
+        width: 350px;
         margin-top: 30px;
     }
 
@@ -164,7 +164,7 @@ body {
     }
 
     .star {
-        width: 300px;
+        width: 370px;
     }
 
     .starImage {
