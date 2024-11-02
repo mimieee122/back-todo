@@ -88,7 +88,7 @@ body {
 
     .pink,
     .outButton {
-        width: 380px;
+        width: 350px;
     }
 
     .cursor {
@@ -104,40 +104,53 @@ body {
     }
 
     .title {
-        font-size: 55px;
+        font-size: 50px;
+        margin-bottom: 20px;
     }
 
     .cards {
         display: flex;
         flex-direction: column;
         align-items: start;
-        gap: 40px;
+        gap: 30px;
         overflow: auto;
+        font-size: 20px;
+    }
+
+    .white {
+        font-size: 20px;
+        height: 60px;
     }
 
     .card {
-        width: 400px;
-        height: 300px;
+        width: 350px;
         display: flex;
         flex-direction: row;
         text-align: center;
         justify-items: center;
         align-items: center;
-        padding-top: 5px;
-        padding-bottom: 5px;
     }
 
     .stars {
         display: flex;
         flex-direction: column;
         width: 400px;
-        height: 500px;
+        height: 400px;
         justify-items: center;
         align-items: center;
     }
 
+    .starImage {
+        width: 80px;
+        height: 30px;
+    }
+
     .label {
         display: none;
+    }
+
+    .bar {
+        font-size: 10px;
     }
 }
 

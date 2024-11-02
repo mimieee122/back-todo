@@ -212,7 +212,7 @@ export default function CategoryDetail() {
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',
                     }}
-                    className="w-[150px] h-[40px] "
+                    className="w-[150px] h-[40px] starImage "
                 ></div>
 
                 <h2 className="text-center label text-[15px] mt-[5px] text-white mb-[10px]">
@@ -230,12 +230,12 @@ export default function CategoryDetail() {
                         .map((project) => (
                             <li
                                 key={project.idx}
-                                className="task flex flex-row gap-[10px] mt-[10px]"
+                                className="task flex flex-row justify-center gap-[10px] mt-[10px]"
                             >
                                 {editingProject === project.idx ? (
                                     <form
                                         onSubmit={(e) => handleUpdateProject(e)}
-                                        className="flex flex-row gap-[10px]"
+                                        className="flex flex-row gap-[10px] text-[12px]"
                                     >
                                         <input
                                             type="text"
@@ -274,7 +274,7 @@ export default function CategoryDetail() {
                                         </button>
                                     </form>
                                 ) : (
-                                    <div className="flex flex-row border-[1px] p-1 m-1 text-[10px] hover:shadow-[0_0_15px_white]  shadow-[0_0_10px_white] transition-shadow rounded-md bg-white bg-opacity-15 border-[#f13857] border-solid justify-between items-center w-full">
+                                    <div className="flex flex-row border-[1px] p-1 m-1 text-[13px] hover:shadow-[0_0_15px_white]  shadow-[0_0_10px_white] transition-shadow rounded-md bg-white bg-opacity-15 border-[#f13857] border-solid justify-between items-center w-full">
                                         <input
                                             type="checkbox"
                                             checked={
@@ -351,12 +351,12 @@ export default function CategoryDetail() {
                 </div>
             </nav>
 
-            <div className="flex flex-col overflow-auto w-full items-center justify-center">
-                <h1 className="text-[70px] title mt-[40px] font-thin mb-[50px] category text-[#ff8fab]">
+            <div className="flex flex-col overflow-auto w-full items-center justify-center mb-[20px]">
+                <h1 className="text-[70px] title mt-[40px] font-thin mb-[30px] category text-[#ff8fab]">
                     {category ? category.title : 'Loading...'}
                 </h1>
 
-                <div className="flex flex-row stars ml-2 mr-2 justify-center relative gap-[35px]">
+                <div className="flex flex-row stars ml-2 mr-2 justify-center relative gap-[25px]">
                     {renderPriorityBoard('HIGH')}
                     {renderPriorityBoard('MEDIUM')}
                     {renderPriorityBoard('LOW')}
@@ -364,19 +364,19 @@ export default function CategoryDetail() {
             </div>
 
             {/* 프로젝트 생성 폼 */}
-            <div className="flex flex-row justify-center items-center   mt-[30px]">
+            <div className="flex flex-row justify-center items-center">
                 <form
-                    className="flex flex-col justify-center items-center h-[40px]  p-4 rounded-md w-screen bg-white bg-opacity-10"
+                    className="flex flex-col justify-center items-center h-[50px]  p-4 rounded-md w-screen bg-white bg-opacity-10"
                     onSubmit={handleCreateProject}
                 >
-                    <div className="flex flex-row gap-[10px]">
+                    <div className="flex bar flex-row gap-[10px]">
                         <input
-                            className=" rounded-md text-black text-[15px]"
+                            className="pr-1 pl-1 rounded-md text-black text-[18px]"
                             type="text"
                             value={createTitle}
                             name="createTitle"
                             onChange={(e) => setCreateTitle(e.target.value)}
-                            placeholder="Enter to-do"
+                            placeholder="write your to-do"
                         />
                         <select
                             className="rounded-md"
@@ -396,7 +396,7 @@ export default function CategoryDetail() {
                             className="bg-[#ff8fab] text-white pr-[10px] pl-[10px] rounded-md shadow-[0_0_10px_#ff8fab] transition-shadow"
                             type="submit"
                         >
-                            CREATE
+                            create
                         </button>
                     </div>
                 </form>

@@ -39,7 +39,7 @@ export default function CategoriesComponent() {
     }
 
     return (
-        <ul className="flex flex-row cards justify-center  gap-12 px-12 ">
+        <ul className="flex flex-row cards justify-center gap-12  px-12 ">
             {categories.map((category) => (
                 // width의 값을 고정적으로 지정해두지 않기
                 <li
@@ -54,7 +54,7 @@ export default function CategoriesComponent() {
                 >
                     <button
                         onClick={() => handleCategoryClick(category.idx)}
-                        className="w-full h-full flex items-center justify-center"
+                        className="w-full h-full white flex items-center justify-center"
                     >
                         {category.title}
                     </button>

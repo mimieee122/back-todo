@@ -30,12 +30,12 @@ export default function Home() {
                                         <span>{me.data.data?.nickname}</span>
                                     </p>
                                 </div>
-                                <div className="relative w-[450px]  h-[400px] ">
+                                <div className="relative think w-[450px]  h-[400px] ">
                                     <Image
                                         src="/assets/images/think.png"
                                         fill // 부모 요소에 가득 차게 함
                                         alt="think emoji"
-                                        className="object-contain think"
+                                        className="object-contain"
                                     />
                                 </div>
                             </div>
