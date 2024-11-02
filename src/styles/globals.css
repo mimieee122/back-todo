@@ -140,6 +140,10 @@ body {
         align-items: center;
     }
 
+    .project-list {
+        margin-top: 20px;
+    }
+
     .starImage {
         width: 80px;
         height: 30px;
@@ -150,6 +154,9 @@ body {
     }
 
     .bar {
+        font-size: 10px;
+    }
+    .check {
         font-size: 10px;
     }
 }

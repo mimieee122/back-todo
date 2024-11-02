@@ -202,7 +202,7 @@ export default function CategoryDetail() {
 
     const renderPriorityBoard = (priorityLabel: string) => {
         return (
-            <div className="flex flex-col w-full relative  h-[450px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#ff8fab] border-[2px] border-solid">
+            <div className="flex flex-col w-full relative h-[400px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#ff8fab] border-[2px] border-solid">
                 {/* 중요도 이미지 */}
 
                 <div
@@ -211,11 +211,12 @@ export default function CategoryDetail() {
                         backgroundSize: 'contain',
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',
+                        position: 'fixed',
                     }}
-                    className="w-[150px] h-[40px] starImage "
+                    className="flex w-[150px] h-[40px] starImage "
                 ></div>
 
-                <h2 className="text-center label text-[15px] mt-[5px] text-white mb-[10px]">
+                <h2 className="text-center relative mt-[40px] z-20 label text-[15px]  text-white mb-[10px]">
                     {priorityLabel}
                 </h2>
                 <ul className="project-list w-[350px] flex flex-col gap-[5px]">
@@ -230,7 +231,7 @@ export default function CategoryDetail() {
                         .map((project) => (
                             <li
                                 key={project.idx}
-                                className="task flex flex-row justify-center gap-[10px] mt-[10px]"
+                                className="task flex flex-row justify-center pr-1 pl-1 gap-[10px] mt-[3px]"
                             >
                                 {editingProject === project.idx ? (
                                     <form
@@ -274,7 +275,7 @@ export default function CategoryDetail() {
                                         </button>
                                     </form>
                                 ) : (
-                                    <div className="flex flex-row border-[1px] p-1 m-1 text-[13px] hover:shadow-[0_0_15px_white]  shadow-[0_0_10px_white] transition-shadow rounded-md bg-white bg-opacity-15 border-[#f13857] border-solid justify-between items-center w-full">
+                                    <div className="flex check flex-row border-[1px] p-1 m-1 text-[13px] hover:shadow-[0_0_15px_white]  shadow-[0_0_10px_white] transition-shadow rounded-sm bg-white bg-opacity-15 border-[#f13857] border-solid justify-between items-center w-full">
                                         <input
                                             type="checkbox"
                                             checked={
@@ -293,7 +294,7 @@ export default function CategoryDetail() {
                                         >
                                             {project.title}
                                         </div>
-                                        <div className="flex  gap-[10px]">
+                                        <div className="flex flex-row   gap-[10px]">
                                             <button
                                                 className="text-[white]"
                                                 onClick={() =>
@@ -364,7 +365,7 @@ export default function CategoryDetail() {
             </div>
 
             {/* 프로젝트 생성 폼 */}
-            <div className="flex flex-row justify-center items-center">
+            <div className="flex flex-row justify-center items-center fixed bottom-0">
                 <form
                     className="flex flex-col justify-center items-center h-[50px]  p-4 rounded-md w-screen bg-white bg-opacity-10"
                     onSubmit={handleCreateProject}
