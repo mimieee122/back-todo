@@ -202,7 +202,7 @@ export default function CategoryDetail() {
 
     const renderPriorityBoard = (priorityLabel: string) => {
         return (
-            <div className="flex flex-col overflow-hidden star w-[400px]  h-[400px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#ff8fab] border-[2px] border-solid">
+            <div className="flex flex-col star w-[400px]  h-[400px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#ff8fab] border-[2px] border-solid">
                 {/* 중요도 이미지 */}
 
                 <div
