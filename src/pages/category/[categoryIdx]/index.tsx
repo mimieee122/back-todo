@@ -211,12 +211,11 @@ export default function CategoryDetail() {
                         backgroundSize: 'contain',
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',
-                        position: 'fixed',
                     }}
                     className="flex w-[150px] h-[40px] starImage "
                 ></div>
 
-                <h2 className="text-center relative mt-[40px] z-20 label text-[15px]  text-white mb-[10px]">
+                <h2 className="text-center relative mt-[10px] z-20 label text-[15px]  text-white mb-[10px]">
                     {priorityLabel}
                 </h2>
                 <ul className="project-list w-[350px] flex flex-col gap-[5px]">
