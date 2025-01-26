@@ -26,17 +26,16 @@ export function Login() {
     return (
         <form
             onSubmit={handleSubmit(onSubmitLogin)} // handleSubmit으로 폼 제출
-            className="flex flex-col  all justify-center items-center text-center  text-black p-4"
+            className="flex flex-col h-screen overflow-y-hidden all justify-center items-center text-center  text-black "
         >
             <div className="flex flex-col gap-[0px] items-center inLogo justify-center">
-                <div className=" relative flex flex-col emoji gap-0 items-end w-[300px] h-[200px]">
-                    <Image
-                        src="/assets/images/final face.svg"
-                        fill // 부모 요소에 가득 차게 함
-                        alt="flan 이모지"
-                        className="object-cover"
-                        unoptimized
-                    />
+                <div
+                    className="relative flex flex-col emoji gap-0 items-end w-[300px] h-[200px] bg-cover bg-no-repeat"
+                    style={{
+                        backgroundImage: "url('/assets/images/final face.svg')",
+                    }}
+                >
+                    {/* 필요한 컨텐츠 추가 */}
                 </div>
 
                 <div className="relative gap-0 loGo w-[300px]   ">

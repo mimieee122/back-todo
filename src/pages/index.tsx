@@ -72,7 +72,7 @@ export default function Home() {
                             </div>
                         </div>
                     ) : (
-                        <div className="flex  h-screen overflow-hidden ">
+                        <div className="flex flex-col  all justify-center items-center text-center  text-black  h-screen overflow-hidden ">
                             <Login />
                         </div>
                     )}
