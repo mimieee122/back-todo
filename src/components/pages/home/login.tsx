@@ -26,10 +26,10 @@ export function Login() {
     return (
         <form
             onSubmit={handleSubmit(onSubmitLogin)} // handleSubmit으로 폼 제출
-            className="flex flex-col all justify-center items-center text-center gap-[14px] text-black p-4"
+            className="flex flex-col all justify-center items-center text-center  text-black p-4"
         >
             <div className="flex flex-col gap-[0px] items-center inLogo justify-center">
-                <div className=" relative flex flex-col emoji gap-0 items-center w-[320px] h-[252px]">
+                <div className=" relative flex flex-col emoji gap-0 items-end w-[280px] h-[252px]">
                     <Image
                         src="/assets/images/final face.svg"
                         fill // 부모 요소에 가득 차게 함
@@ -38,7 +38,7 @@ export function Login() {
                     />
                 </div>
 
-                <div className="relative gap-0 loGo w-[320px] h-[100px]  ">
+                <div className="relative gap-0 loGo w-[300px]   ">
                     <Image
                         src="/assets/images/flan.png"
                         width={400} // 원하는 가로 길이
@@ -56,20 +56,23 @@ export function Login() {
                     </div> */}
                 </div>
             </div>
-            <div className="flex flex-col yellowBox text-black bg-[white] bg-opacity-10  border-[#FF9800] border-[2px] border-solid shadow-[0_0_5px_#FF9800] transition-shadow justify-center items-center text-center gap-[10px] w-[360px] py-2 mt-12   rounded-2xl">
+            <div className="flex flex-col yellowBox text-black bg-[white] bg-opacity-10   justify-center items-center text-center gap-[10px] w-[360px] py-2  rounded-2xl">
                 {/* <label
                     htmlFor="id"
                     className="text-[24px] signIn text-[#ffbd43]"
                 >
                     SIGN IN
                 </label> */}
+                <p className=" text-[black] text-[24px]  mt-[20px] mb-[10px] font-extrabold">
+                    Welcome Back
+                </p>
                 <input
                     {...register('id', { required: 'id를 입력해 주세요.' })} // id 필드를 useForm과 연결
                     type="text"
                     id="name"
                     name="id"
                     placeholder="id"
-                    className="text-center bg-[#FFFAF0] w-[200px] py-1 rounded-xl border-gray-400 border-[1px]"
+                    className="text-center w-[360px] h-[40px] bg-[#DCDCDC] rounded-xl"
                 />
                 {errors.id && <p>{errors.id.message}</p>}
 
@@ -88,15 +91,18 @@ export function Login() {
                     id="password"
                     name="password"
                     placeholder="password"
-                    className="text-center w-[200px] py-1 rounded-xl border-gray-400 border-[1px]"
+                    className="text-center w-[360px] h-[40px] bg-[#DCDCDC] rounded-xl"
                 />
                 {errors.password && <p>{errors.password.message}</p>}
-
-                <Button>로그인</Button>
+                <div className="flex flex-row justify-center items-center mt-[10px] gap-[20px]">
+                    <Button>SIGN IN</Button>
+                    <Link href="/signUp">
+                        <button className="w-[160px] h-[40px] mt-[20px]   shadow-2xl hover:shadow-[0_0_10px_white] transition-shadow bg-[white] bg-opacity-70  border-solid rounded-3xl">
+                            SIGN UP
+                        </button>
+                    </Link>
+                </div>
             </div>
-            <Link href="/signUp" className="mt-[10px]">
-                <button className="w-[800px] text-center">회원가입</button>
-            </Link>
         </form>
     )
 }
