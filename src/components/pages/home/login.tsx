@@ -63,7 +63,7 @@ export function Login() {
                 >
                     SIGN IN
                 </label> */}
-                <p className=" text-[black] text-[24px]  mt-[20px] mb-[10px] font-extrabold">
+                <p className=" text-[black] text-[24px]  mt-[20px] mb-[4px] font-extrabold">
                     Welcome Back
                 </p>
                 <input
