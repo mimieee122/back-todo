@@ -26,10 +26,10 @@ export function Login() {
     return (
         <form
             onSubmit={handleSubmit(onSubmitLogin)} // handleSubmit으로 폼 제출
-            className="flex flex-col all justify-center items-center text-center  text-black p-4"
+            className="flex flex-col overflow-hidden all justify-center items-center text-center  text-black p-4"
         >
             <div className="flex flex-col gap-[0px] items-center inLogo justify-center">
-                <div className=" relative flex flex-col emoji gap-0 items-end w-[280px] h-[252px]">
+                <div className=" relative flex flex-col emoji gap-0 items-end w-[260px] h-[142px]">
                     <Image
                         src="/assets/images/final face.svg"
                         fill // 부모 요소에 가득 차게 함
@@ -97,7 +97,7 @@ export function Login() {
                 <div className="flex flex-row justify-center items-center mt-[10px] gap-[20px]">
                     <Button>SIGN IN</Button>
                     <Link href="/signUp">
-                        <button className="w-[160px] h-[40px] mt-[20px]   shadow-2xl hover:shadow-[0_0_10px_white] transition-shadow bg-[white] bg-opacity-70  border-solid rounded-3xl">
+                        <button className="w-[160px] h-[40px] mt-[20px]   hover:shadow-[0_0_10px_white] transition-shadow bg-[white] bg-opacity-70  border-solid rounded-3xl">
                             SIGN UP
                         </button>
                     </Link>

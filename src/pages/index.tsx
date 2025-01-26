@@ -72,7 +72,7 @@ export default function Home() {
                             </div>
                         </div>
                     ) : (
-                        <div className="flex flex-col mb-[5px] gap-[10px]">
+                        <div className="flex flex-col ">
                             <Login />
                         </div>
                     )}
