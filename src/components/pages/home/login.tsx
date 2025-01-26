@@ -29,7 +29,7 @@ export function Login() {
             className="flex flex-col all justify-center items-center text-center gap-[14px] text-black p-4"
         >
             <div className="flex flex-col gap-[0px] items-center inLogo justify-center">
-                <div className=" relative flex flex-col emoji gap-0 items-center w-[400px] h-[252px]">
+                <div className=" relative flex flex-col emoji gap-0 items-center w-[320px] h-[252px]">
                     <Image
                         src="/assets/images/final face.svg"
                         fill // 부모 요소에 가득 차게 함
@@ -56,20 +56,29 @@ export function Login() {
                     </div> */}
                 </div>
             </div>
-            <div className="flex flex-col yellowBox text-black p-5 shadow-[0_0_15px_#ffbd43] transition-shadow border-[#ffbd43] border-[3px] border-solid justify-center items-center text-center gap-[15px] w-[817px]  bg-white bg-opacity-10 rounded-xl">
-                <p className="text-[30px] signIn text-[#ffbd43]">SIGN IN</p>
-
-                <label htmlFor="id">ID</label>
+            <div className="flex flex-col yellowBox text-black bg-[white] bg-opacity-10  border-[#FF9800] border-[2px] border-solid shadow-[0_0_5px_#FF9800] transition-shadow justify-center items-center text-center gap-[10px] w-[360px] py-2 mt-12   rounded-2xl">
+                {/* <label
+                    htmlFor="id"
+                    className="text-[24px] signIn text-[#ffbd43]"
+                >
+                    SIGN IN
+                </label> */}
                 <input
                     {...register('id', { required: 'id를 입력해 주세요.' })} // id 필드를 useForm과 연결
                     type="text"
                     id="name"
                     name="id"
-                    className="text-center w-[200px] border-black border-[1px]"
+                    placeholder="id"
+                    className="text-center bg-[#FFFAF0] w-[200px] py-1 rounded-xl border-gray-400 border-[1px]"
                 />
                 {errors.id && <p>{errors.id.message}</p>}
 
-                <label htmlFor="password">Password</label>
+                {/* <label
+                    htmlFor="password"
+                    className="text-[24px] signIn text-[#ffbd43]"
+                >
+                    pw
+                </label> */}
                 <input
                     {...register('password', {
                         required: 'password를 입력해 주세요.',
@@ -78,7 +87,8 @@ export function Login() {
                     type="password"
                     id="password"
                     name="password"
-                    className="text-center w-[200px] border-black border-[1px]"
+                    placeholder="password"
+                    className="text-center w-[200px] py-1 rounded-xl border-gray-400 border-[1px]"
                 />
                 {errors.password && <p>{errors.password.message}</p>}
 

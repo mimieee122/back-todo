@@ -20,7 +20,7 @@ const Button = ({
     return (
         <button
             onClick={onClick}
-            className="w-[200px] h-[30px] mt-[10px]  shadow-2xl hover:shadow-[0_0_10px_white] transition-shadow bg-[#ffbd43] bg-opacity-70 border-black border-[2px] border-solid rounded-md"
+            className="w-[200px] h-[30px] mt-[10px]  shadow-2xl hover:shadow-[0_0_10px_white] transition-shadow bg-[#FF9800] bg-opacity-70 border-gray-400 border-[1px] border-solid rounded-xl"
         >
             {children}
         </button>
