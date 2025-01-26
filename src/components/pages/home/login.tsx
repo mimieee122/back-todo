@@ -26,7 +26,7 @@ export function Login() {
     return (
         <form
             onSubmit={handleSubmit(onSubmitLogin)} // handleSubmit으로 폼 제출
-            className="flex flex-col w-screen h-screen overflow-hidden all justify-center items-center text-center  text-black p-4"
+            className="flex flex-col  all justify-center items-center text-center  text-black p-4"
         >
             <div className="flex flex-col gap-[0px] items-center inLogo justify-center">
                 <div className=" relative flex flex-col emoji gap-0 items-end w-[300px] h-[200px]">
@@ -35,6 +35,7 @@ export function Login() {
                         fill // 부모 요소에 가득 차게 함
                         alt="flan 이모지"
                         className="object-cover"
+                        unoptimized
                     />
                 </div>
 
@@ -45,6 +46,7 @@ export function Login() {
                         height={100} // 원하는 세로 길이
                         alt="flan 로고"
                         className="object-cover"
+                        unoptimized
                     />
 
                     {/* <div className="flex flex-row gap-[10px] mt-1 font-thin w-[400px] tell h-[5px] text-[18px] sub p-0 ">
