@@ -18,9 +18,7 @@ export function LogOut() {
 
     return (
         <form onSubmit={handleSubmit(onSubmitLogOut)}>
-            <button className="w-[580px] outButton h-[40px] mb-[20px] border-[1.5px] border-[#ff3f6f]  bg-[white] text-white bg-opacity-15  border-solid rounded-md">
-                로그아웃
-            </button>
+            <button className="">로그아웃</button>
         </form>
     )
 }

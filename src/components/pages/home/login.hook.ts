@@ -1,10 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMutation, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
+import { useRouter } from 'next/router'
 import { toast } from 'react-toastify'
-
-// 데이터의 형식을 동일하게 강제하는 것
-// (데이터가 공유되는 게 아니라, 타입 정의만 동일한 것.)
 
 type FormData = {
     id: string
@@ -12,60 +10,38 @@ type FormData = {
 }
 
 export function useLogin() {
-    // 사용자 정보 쿼리
+    const router = useRouter()
+
+    // 현재 로그인 상태 확인
     const me = useQuery({
         queryKey: ['me'],
-        queryFn: async () => await axios.get('/api/me'),
+        queryFn: async () => {
+            const response = await axios.get('/api/me')
+            return response.data
+        },
+        staleTime: 1000 * 60 * 5, // 5분 동안 캐시 유지
+        retry: false,
     })
 
-    // 로그인 폼 제출 핸들러
-    const onSubmitLogin = (data: FormData) => {
-        if (me.isSuccess) {
-            toast.error('이미 로그인 상태입니다.')
-            return
-        } else {
-            loginMutation.mutate({
-                id: data.id,
-                password: data.password,
-            })
-        }
-    }
-
-    // 로그인 API 호출을 위한 mutation
+    // 로그인 처리
     const loginMutation = useMutation({
         mutationFn: async ({ id, password }: FormData) => {
-            const response = await axios.post('/api/login', {
-                id,
-                password,
-            })
-
-            const { payload } = response.data
-
-            const userIdx = payload.idx
-
-            if (!userIdx || userIdx === undefined) {
-                console.error(
-                    'Failed to set userIdx: value is undefined or null'
-                )
-                throw new Error('로그인 실패: 유효하지 않은 데이터입니다.')
-            }
-            return payload
+            const response = await axios.post('/api/login', { id, password })
+            return response.data
         },
-
-        // ********* 이 밑에 onSuccess가 진짜 문제다 문제...
-        onSuccess: async () => {
-            toast.success('로그인이 완료되었습니다.')
-            // await refetch는 없애고, reload는 있어야 빠름.
-            window.location.reload()
+        onSuccess: () => {
+            toast.success('로그인 성공!')
+            router.replace('/category') // 로그인 성공 시 즉시 이동
         },
         onError: (error: any) => {
-            if (error.response && error.response.data) {
-                toast.error(error.response.data.message)
-            }
+            toast.error(error.response?.data?.message || '로그인 실패')
         },
     })
 
-    return {
-        onSubmitLogin, // 로그인 폼 제출 함수 반환
+    // ✅ `onSubmitLogin`을 명확하게 정의하여 반환
+    const onSubmitLogin = (data: FormData) => {
+        loginMutation.mutate(data)
     }
+
+    return { me, onSubmitLogin }
 }

@@ -1,8 +1,8 @@
 import CategoriesComponent from '@/components/pages/categories/categoriescomponent'
+import { LogOut } from '@/components/pages/home/logout'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import Image from 'next/image'
-import Link from 'next/link'
 
 export default function Main() {
     const { data: me } = useQuery({
@@ -25,14 +25,10 @@ export default function Main() {
                             className="object-fill"
                         />
                     </div>
-                    <p className="user  mt-[7px]">
-                        USER : {me?.data?.nickname}
-                    </p>
+                    <p className="user  mt-[7px]">USER : {me?.data.nickname}</p>
                 </div>
-                <div className="flex home flex-row mt-[10px]  gap-[30px]">
-                    <Link href="/">
-                        <button>HOME</button>
-                    </Link>
+                <div className="">
+                    <LogOut />
                 </div>
             </nav>
             <div className="flex flex-col two justify-center items-center  gap-[10px] mt-[30px]">
