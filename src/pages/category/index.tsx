@@ -25,7 +25,9 @@ export default function Main() {
                             className="object-fill"
                         />
                     </div>
-                    <p className="user  mt-[7px]">USER : {me?.data.nickname}</p>
+                    <p className="user  mt-[7px]">
+                        USER : {me?.data?.nickname}
+                    </p>
                 </div>
                 <div className="">
                     <LogOut />
