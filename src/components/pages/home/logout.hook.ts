@@ -28,9 +28,8 @@ export function useLogOut() {
         mutationFn: async () => await axios.post('/api/logout'),
         onSuccess: async () => {
             toast.success('로그아웃이 완료되었습니다.')
+            await me.refetch() // 어 얘 넣으니까 바로 문제 해결됐다 !!
             router.push('/')
-            // await me.refetch()
-            // await refetch를 빼도 되는구나..
         },
     })
 

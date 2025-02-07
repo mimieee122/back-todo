@@ -21,37 +21,37 @@ export function SignUp() {
 
     return (
         <form
-            className="flex flex-col mb-[5px] justify-center items-center h-screen w-screen"
+            className="flex flex-col gap-[10px]  justify-center items-center h-screen w-screen"
             onSubmit={handleSubmit(onSubmitSignUp)}
         >
             {/* 달력과 SIGN UP 폼을 포함하는 부모 div */}
-            <div className="relative flex flex-col items-center">
-                {/* 달력 이미지 */}
-                <div className="absolute z-10 w-[140px] h-[90px] mt-[30px]">
+            <div className="relative flex flex-col gap-[20px] items-center mb-[20px] ">
+                <div className="relative w-[285px] h-[300px] z-20 ">
                     <Image
-                        src="/assets/images/calendar_width.png"
-                        fill
-                        alt="달력"
-                        className="object-cover"
+                        src="/assets/images/signup.svg"
+                        alt="flan 이모지"
+                        layout="fill"
+                        objectFit="cover"
+                        unoptimized
                     />
                 </div>
 
                 {/* SIGN UP 폼 */}
-                <div className="flex flex-col bg-white bg-opacity-10 p-[10px] justify-center items-center h-[450px] w-[370px] shadow-[0_0_15px_white] transition-shadow border-[#ff3f6f] border-[4px] border-solid rounded-xl gap-[20px] mt-[100px] relative z-0">
-                    <p className="text-[45px] mt-[50px] signIn bg-opacity-80 text-[#ff3f6f]">
-                        SIGN UP
+                <div className="flex flex-col  bg-opacity-70   justify-center items-center w-[370px]    gap-[8px]  relative z-0">
+                    <p className=" text-[black] text-[24px]  mb-[10px] font-extrabold">
+                        Get Started
                     </p>
-                    <label htmlFor="id">ID</label>
+
                     <input
                         {...register('id', { required: 'id를 입력해 주세요.' })}
                         type="text"
                         id="name"
                         name="id"
-                        className="text-center w-[200px] border-black border-[1px]"
+                        className="text-center w-[300px] h-[40px] bg-[#FF9800] bg-opacity-20 rounded-xl"
+                        placeholder="id"
                     />
                     {errors.id && <p>{errors.id.message}</p>}
 
-                    <label htmlFor="password">PASSWORD</label>
                     <input
                         {...register('password', {
                             required: 'password를 입력해 주세요.',
@@ -59,10 +59,17 @@ export function SignUp() {
                         type="password"
                         id="password"
                         name="password"
-                        className="text-center w-[200px] border-black border-[1px]"
+                        className="text-center w-[300px] h-[40px] bg-[#FF9800] bg-opacity-20 rounded-xl"
+                        placeholder="password"
                     />
                     {errors.password && <p>{errors.password.message}</p>}
-                    <label htmlFor="nickname">NICKNAME</label>
+
+                    {/* <label
+                        htmlFor="nickname "
+                        className="mt-[20px]  text-[12px]"
+                    >
+                        NICKNAME
+                    </label> */}
                     <input
                         {...register('nickname', {
                             required: 'nickname을 입력해 주세요.',
@@ -75,20 +82,23 @@ export function SignUp() {
                         type="text"
                         id="nickname"
                         name="nickname"
-                        className="text-center w-[200px] border-black border-[1px]"
+                        className="text-center w-[300px] h-[40px] bg-[#FF9800] bg-opacity-20 rounded-xl "
+                        placeholder="nickname"
                     />
                     {errors.nickname && (
                         <p className="mb-[0px] text-red-500 text-sm">
                             {errors.nickname.message}
                         </p>
                     )}
-                    <button className="w-[200px] h-[55px] pt-1 pb-1  shadow-2xl hover:shadow-[0_0_10px_white] transition-shadow bg-[#ff3f6f] bg-opacity-30 border-black border-[2px] mt-[5px] mb-[35px] border-solid rounded-md">
-                        회원가입
-                    </button>
+                    <Link href="/signUp">
+                        <button className="w-[160px] h-[40px] mt-[10px] bg-[#FF9800] text-white hover:shadow-[0_0_10px_white] transition-shadow   border-solid rounded-3xl">
+                            SIGN UP
+                        </button>
+                    </Link>
                 </div>
             </div>
 
-            <div className="mt-[30px] text-[18px]">
+            <div className=" text-[18px] text-gray-500 ">
                 <Link href="/">
                     <button>HOME</button>
                 </Link>
