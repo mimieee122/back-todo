@@ -13,7 +13,7 @@ export function useLogin() {
     const router = useRouter()
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const me = useQuery<any, Error>({
+    const me = useQuery({
         queryKey: ['me'],
         queryFn: async () => {
             const response = await axios.get('/api/me')
