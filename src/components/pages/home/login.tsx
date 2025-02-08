@@ -59,12 +59,6 @@ export function Login() {
                 </div>
             </div>
             <div className="flex flex-col yellowBox text-black bg-[white] bg-opacity-10   justify-center items-center text-center gap-[10px] w-[360px] py-2  rounded-2xl">
-                {/* <label
-                    htmlFor="id"
-                    className="text-[24px] signIn text-[#ffbd43]"
-                >
-                    SIGN IN
-                </label> */}
                 <p className=" text-[black] text-[24px]  mt-[20px] mb-[4px] font-extrabold">
                     Welcome Back
                 </p>
