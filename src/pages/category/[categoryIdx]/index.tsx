@@ -5,6 +5,7 @@ import { useMutation, useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import { LogOut } from '@/components/pages/home/logout'
 
 export default function CategoryDetail() {
     const [editingProject, setEditingProject] = useState<number | null>(null)
@@ -343,9 +344,9 @@ export default function CategoryDetail() {
                         <button className="text-[#fff983]">CATEGORY</button>
                     </Link>
 
-                    <Link href="/" className="home">
-                        <button>HOME</button>
-                    </Link>
+                    <div className="">
+                        <LogOut />
+                    </div>
                 </div>
             </nav>
 

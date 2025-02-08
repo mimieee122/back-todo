@@ -90,11 +90,10 @@ export function SignUp() {
                             {errors.nickname.message}
                         </p>
                     )}
-                    <Link href="/signUp">
-                        <button className="w-[160px] h-[40px] mt-[10px] bg-[#FF9800] text-white hover:shadow-[0_0_10px_white] transition-shadow   border-solid rounded-3xl">
-                            SIGN UP
-                        </button>
-                    </Link>
+
+                    <button className="w-[160px] h-[40px] mt-[10px] bg-[#FF9800] text-white hover:shadow-[0_0_10px_white] transition-shadow   border-solid rounded-3xl">
+                        SIGN UP
+                    </button>
                 </div>
             </div>
 

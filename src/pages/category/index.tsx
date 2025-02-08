@@ -3,15 +3,32 @@ import { LogOut } from '@/components/pages/home/logout'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import Image from 'next/image'
+import { UseQueryOptions } from '@tanstack/react-query'
+import { useState, useEffect } from 'react'
 
 export default function Main() {
-    const { data: me } = useQuery({
+    const [nickname, setNickname] = useState<string | null>(null)
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            // ✅ 브라우저 환경에서만 실행하도록 체크
+            const storedNickname = localStorage.getItem('nickname')
+            if (storedNickname) {
+                setNickname(storedNickname) // ✅ localStorage에서 닉네임을 가져와서 업데이트
+            }
+        }
+    }, [])
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    useQuery<any, Error>({
         queryKey: ['me'],
         queryFn: async () => {
             const response = await axios.get('/api/me')
             return response.data
         },
-    })
+
+        staleTime: 1000 * 60 * 5, // 5분 동안 데이터 캐시 유지
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as UseQueryOptions<any, Error>)
 
     return (
         <div className="flex flex-col items-center justify-center">
@@ -25,9 +42,7 @@ export default function Main() {
                             className="object-fill"
                         />
                     </div>
-                    <p className="user  mt-[7px]">
-                        USER : {me?.data?.nickname}
-                    </p>
+                    <p className="user  mt-[7px]">USER : {nickname}</p>
                 </div>
                 <div className="">
                     <LogOut />
