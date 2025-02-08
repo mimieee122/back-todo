@@ -3,7 +3,6 @@ import { useMutation, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { toast } from 'react-toastify'
-import { UseQueryOptions } from '@tanstack/react-query'
 
 type FormData = {
     id: string
@@ -21,9 +20,8 @@ export function useLogin() {
             return response.data
         },
 
-        staleTime: 1000 * 60 * 5, // 5분 동안 데이터 캐시 유지
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as UseQueryOptions<any, Error>)
+    })
 
     // 로그인 처리
     const loginMutation = useMutation({
@@ -31,8 +29,7 @@ export function useLogin() {
             const response = await axios.post('/api/login', { id, password })
             return response.data
         },
-        onSuccess: (data) => {
-            localStorage.setItem('nickname', data.nickname) // ✅ localStorage에도 저장
+        onSuccess: () => {
             toast.success('로그인 성공!')
             router.replace('/category') // 로그인 성공 시 즉시 이동
         },

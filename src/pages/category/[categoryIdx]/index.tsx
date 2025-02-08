@@ -33,7 +33,7 @@ export default function CategoryDetail() {
     const router = useRouter()
     const idx = Number(router.query.categoryIdx)
 
-    const { data: me } = useQuery({
+    const me = useQuery({
         queryKey: ['me'],
         queryFn: async () => {
             const response = await axios.get('/api/me')
