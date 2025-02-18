@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 export default function CategoriesComponent() {
     const router = useRouter()
@@ -23,40 +24,60 @@ export default function CategoriesComponent() {
         router.push(`/category/${categoryIdx}`)
     }
 
+    // 카테고리 인덱스에 따라 배경 그라데이션을 반환하는 함수
+    const getGradientBackground = (idx) => {
+        switch (idx) {
+            case 1:
+                return 'linear-gradient(180deg, #FFE490 0%, #D9585E 100%)'
+            case 2:
+                return 'linear-gradient(180deg, #FFE490 0%, #EABC30 95%)'
+            case 3:
+                return 'linear-gradient(180deg, #FFE490 0%, #FF9226 99.99%)'
+            case 4:
+                return 'linear-gradient(180deg, #FFE490 0%, #FE5476 100%)'
+            case 5:
+                return 'linear-gradient(180deg, #FFE490 0%, #FF78B4 100%)'
+            default:
+                return 'linear-gradient(180deg, #FFE490 0%, #FFFFFF 100%)' // 기본 그라데이션
+        }
+    }
+
     const showImage = (title) => {
         switch (title) {
             case 'STUDY':
-                return '/assets/images/study.png' // 첫 번째 카테고리 이미지
+                return '/assets/images/study.svg' // 첫 번째 카테고리 이미지
             case 'EXERCISE':
-                return '/assets/images/exercise.png' // 두 번째 카테고리 이미지
+                return '/assets/images/exercise.svg' // 두 번째 카테고리 이미지
             case 'ROUTINE':
-                return '/assets/images/routine.png' // 기본 이미지
+                return '/assets/images/routine.svg' // 기본 이미지
             case 'HOBBY':
-                return '/assets/images/hobby.png' // 기본 이미지
+                return '/assets/images/hobby.svg' // 기본 이미지
             case 'SHOPPING':
-                return '/assets/images/shopping.png' // 기본 이미지
+                return '/assets/images/shopping.svg' // 기본 이미지
         }
     }
 
     return (
-        <ul className="flex flex-row cards justify-center gap-12  px-12 ">
+        <ul className="flex flex-row cards justify-center gap-[40px] px-12">
             {categories.map((category) => (
-                // width의 값을 고정적으로 지정해두지 않기
                 <li
-                    className="  w-[230px] flex-1 h-[380px] card text-center text-[30px] hover:shadow-[0_0_25px_white] font-extrabold text-white shadow-[0_0_15px_white] transition-shadow  bg-white bg-opacity-10 border-solid rounded-xl border-[#ff3f6f] border-[4px]"
+                    className="flex flex-col items-center justify-center w-[200px] h-[320px] card text-center text-[20px]  font-extrabold text-white shadow-[0_0_5px_white] border-solid rounded-xl"
                     key={category.idx}
-                    style={{
-                        backgroundImage: `url(${showImage(category.title)})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center', // 배경 이미지의 위치 설정
-                        backgroundRepeat: 'no-repeat',
-                    }}
+                    style={{ background: getGradientBackground(category.idx) }} // 각 카테고리의 고유 키 설정
                 >
+                    <div className="w-[180px] h-[240px] relative">
+                        <Image
+                            src={showImage(category.title)} // 카테고리 제목에 맞는 이미지 소스 설정
+                            alt={category.title} // 이미지 대체 텍스트 설정
+                            fill
+                            className="object-fill rounded-t-xl" // 이미지 스타일 적용
+                        />
+                    </div>
                     <button
-                        onClick={() => handleCategoryClick(category.idx)}
-                        className="w-full h-full white flex items-center justify-center"
+                        onClick={() => handleCategoryClick(category.idx)} // 버튼 클릭 시 카테고리 클릭 핸들러 실행
+                        className="w-full h-[80px]  items-center justify-center  text-white " // 버튼 스타일 적용
                     >
-                        {category.title}
+                        {category.title} {/* 버튼에 카테고리 제목 표시 */}
                     </button>
                 </li>
             ))}

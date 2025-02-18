@@ -15,7 +15,7 @@ export default function Main() {
 
     return (
         <div className="flex flex-col items-center justify-center">
-            <nav className="flex flex-row text-[18px] justify-between nav w-screen  p-[10px] pl-[20px] h-[60px] pr-[20px] bg-white bg-opacity-5 ">
+            <nav className="flex flex-row text-[18px] justify-between nav w-screen bg-[#CECECE]  p-[10px] pl-[20px] h-[60px] pr-[20px]  bg-opacity-5 ">
                 <div className="flex flex-row gap-[10px]">
                     <div className=" relative flex flex-col gap-0 items-start w-[30px] h-[30px] mt-[8px] overflow-hidden">
                         <Image
@@ -33,9 +33,9 @@ export default function Main() {
                     <LogOut />
                 </div>
             </nav>
-            <div className="flex flex-col two justify-center items-center  gap-[10px] mt-[30px]">
-                <h1 className="text-[70px] text-[#ff8fab] title font-thin category yellow">
-                    CATEGORY
+            <div className="flex  flex-col two justify-center items-center  gap-[30px] mt-[100px]">
+                <h1 className="press text-[30px] text-[#CECECE]   ">
+                    CREATE PLAN FAST WITH FLAN
                 </h1>
                 <CategoriesComponent />
             </div>
