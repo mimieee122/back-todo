@@ -61,8 +61,9 @@ export default function CategoriesComponent() {
         <ul className="flex flex-row cards justify-center gap-[40px] px-12">
             {categories.map((category) => (
                 <li
-                    className="flex flex-col items-center justify-center w-[220px] h-[320px] card text-center text-[20px]  font-extrabold text-white shadow-[0_0_10px_gray] border-solid rounded-xl"
+                    className="flex flex-col items-center cursor-pointer justify-center w-[220px] h-[320px] card text-center text-[20px]  font-extrabold text-white shadow-[0_0_10px_gray] border-solid rounded-xl"
                     key={category.idx}
+                    onClick={() => handleCategoryClick(category.idx)}
                     style={{
                         background: getGradientBackground(category.title),
                     }} // 각 카테고리의 고유 키 설정

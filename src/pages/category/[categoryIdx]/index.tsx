@@ -327,7 +327,7 @@ export default function CategoryDetail() {
 
     return (
         <div className=" flex flex-col items-center justify-center  ">
-            <nav className="flex flex-row nav text-[18px] m-0 justify-between w-screen p-[10px] pl-[20px] pr-[20px] h-[60px] bg-white bg-opacity-5">
+            <nav className="flex flex-row nav text-[18px] m-0 justify-between items-center w-screen p-[10px] pl-[20px] pr-[20px] h-[50px] bg-[#eaeaea] bg-opacity-50">
                 <div className="flex flex-row  justify-start gap-[10px]">
                     <div className="relative flex flex-col gap-0 items-start w-[30px] h-[30px] mt-[8px] overflow-hidden ">
                         <Image
@@ -341,7 +341,7 @@ export default function CategoryDetail() {
                 </div>
                 <div className="flex flex-row mt-[10px] gap-[30px]">
                     <Link href="/category">
-                        <button className="text-[#fff983]">CATEGORY</button>
+                        <button className="">CATEGORY</button>
                     </Link>
 
                     <div className="">
@@ -351,7 +351,7 @@ export default function CategoryDetail() {
             </nav>
 
             <div className="flex flex-col overflow-auto w-full items-center justify-center mb-[20px]">
-                <h1 className="text-[70px] title mt-[40px] font-thin mb-[30px] category text-[#ff8fab]">
+                <h1 className="press text-[24px] text-[#CECECE] mt-[80px] mb-[80px]">
                     {category ? category.title : 'Loading...'}
                 </h1>
 
