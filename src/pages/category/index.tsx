@@ -33,8 +33,8 @@ export default function Main() {
                     <LogOut />
                 </div>
             </nav>
-            <div className="flex  flex-col two justify-center items-center  gap-[30px] mt-[100px]">
-                <h1 className="press text-[30px] text-[#CECECE]   ">
+            <div className="flex  flex-col two justify-center items-center  gap-[80px] mt-[100px]">
+                <h1 className="press text-[24px] text-[#CECECE]   ">
                     CREATE PLAN FAST WITH FLAN
                 </h1>
                 <CategoriesComponent />

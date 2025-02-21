@@ -25,17 +25,17 @@ export default function CategoriesComponent() {
     }
 
     // 카테고리 인덱스에 따라 배경 그라데이션을 반환하는 함수
-    const getGradientBackground = (idx) => {
-        switch (idx) {
-            case 1:
+    const getGradientBackground = (title) => {
+        switch (title) {
+            case 'STUDY':
                 return 'linear-gradient(180deg, #FFE490 0%, #D9585E 100%)'
-            case 2:
+            case 'EXERCISE':
                 return 'linear-gradient(180deg, #FFE490 0%, #EABC30 95%)'
-            case 3:
+            case 'ROUTINE':
                 return 'linear-gradient(180deg, #FFE490 0%, #FF9226 99.99%)'
-            case 4:
+            case 'HOBBY':
                 return 'linear-gradient(180deg, #FFE490 0%, #FE5476 100%)'
-            case 5:
+            case 'SHOPPING':
                 return 'linear-gradient(180deg, #FFE490 0%, #FF78B4 100%)'
             default:
                 return 'linear-gradient(180deg, #FFE490 0%, #FFFFFF 100%)' // 기본 그라데이션
@@ -61,11 +61,13 @@ export default function CategoriesComponent() {
         <ul className="flex flex-row cards justify-center gap-[40px] px-12">
             {categories.map((category) => (
                 <li
-                    className="flex flex-col items-center justify-center w-[200px] h-[320px] card text-center text-[20px]  font-extrabold text-white shadow-[0_0_5px_white] border-solid rounded-xl"
+                    className="flex flex-col items-center justify-center w-[220px] h-[320px] card text-center text-[20px]  font-extrabold text-white shadow-[0_0_10px_gray] border-solid rounded-xl"
                     key={category.idx}
-                    style={{ background: getGradientBackground(category.idx) }} // 각 카테고리의 고유 키 설정
+                    style={{
+                        background: getGradientBackground(category.title),
+                    }} // 각 카테고리의 고유 키 설정
                 >
-                    <div className="w-[180px] h-[240px] relative">
+                    <div className="w-[200px] h-[260px] relative">
                         <Image
                             src={showImage(category.title)} // 카테고리 제목에 맞는 이미지 소스 설정
                             alt={category.title} // 이미지 대체 텍스트 설정

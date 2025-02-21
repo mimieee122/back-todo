@@ -3,28 +3,6 @@
 @tailwind utilities;
 
 @import url('https://fonts.cdnfonts.com/css/press-start-2p');
-@font-face {
-    font-family: 'establishRetrosansOTF';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/establishRetrosansOTF.woff')
-        format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-/* @font-face {
-    src: url('https://fonts.googleapis.com/css?family=Press Start 2P');
-    font-family: 'Press Start 2P';
-    font-weight: 400;
-    font-style: normal;
-} */
-
-@font-face {
-    font-family: 'SF_HambakSnow';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff')
-        format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
 
 @font-face {
     font-family: 'PartialSansKR-Regular';
@@ -38,13 +16,6 @@
     font-family: 'PFStardust';
     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/PFStardust.woff')
         format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Noto Sans KR';
-    src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
     font-weight: normal;
     font-style: normal;
 }
