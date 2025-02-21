@@ -201,9 +201,24 @@ export default function CategoryDetail() {
         }
     }
 
+    const showImage = (title) => {
+        switch (title) {
+            case 'STUDY':
+                return '/assets/images/emoji1.svg' // 첫 번째 카테고리 이미지
+            case 'EXERCISE':
+                return '/assets/images/emoji2.svg' // 두 번째 카테고리 이미지
+            case 'ROUTINE':
+                return '/assets/images/emoji3.svg' // 기본 이미지
+            case 'HOBBY':
+                return '/assets/images/emoji4.svg' // 기본 이미지
+            case 'SHOPPING':
+                return '/assets/images/emoji5.svg' // 기본 이미지
+        }
+    }
+
     const renderPriorityBoard = (priorityLabel: string) => {
         return (
-            <div className="flex flex-col star w-[400px]  h-[400px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#ff8fab] border-[2px] border-solid">
+            <div className="flex flex-col star w-[400px]  h-[400px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#eaeaea] border-[2px] border-solid">
                 {/* 중요도 이미지 */}
 
                 <div
@@ -216,7 +231,7 @@ export default function CategoryDetail() {
                     className="flex w-[150px] h-[40px] starImage "
                 ></div>
 
-                <h2 className="text-center relative mt-[10px] z-20 label text-[15px]  text-white mb-[10px]">
+                <h2 className="text-center relative mt-[10px] z-20 label text-[15px]  text-black mb-[10px]">
                     {priorityLabel}
                 </h2>
                 <ul className="project-list w-[380px] flex flex-col gap-[5px]">
@@ -275,7 +290,7 @@ export default function CategoryDetail() {
                                         </button>
                                     </form>
                                 ) : (
-                                    <div className="flex check flex-row border-[1px] p-1 m-1 text-[13px] hover:shadow-[0_0_15px_white]  shadow-[0_0_10px_white] transition-shadow rounded-sm bg-white bg-opacity-15 border-[#f13857] border-solid justify-between items-center w-full">
+                                    <div className="flex check flex-row border-[1px] p-1 m-1 text-[13px] hover:shadow-[0_0_15px_white]  shadow-[0_0_10px_white] transition-shadow rounded-sm bg-white bg-opacity-15 border-[#eaeaea] border-solid justify-between items-center w-full">
                                         <input
                                             type="checkbox"
                                             checked={
@@ -351,7 +366,15 @@ export default function CategoryDetail() {
             </nav>
 
             <div className="flex flex-col overflow-auto w-full items-center justify-center mb-[20px]">
-                <h1 className="press text-[24px] text-[#CECECE] mt-[80px] mb-[80px]">
+                <div className="w-[100px] h-[100px] mt-[40px] relative">
+                    <Image
+                        src={showImage(category?.title)} // 카테고리 제목에 맞는 이미지 소스 설정
+                        alt={category?.title} // 이미지 대체 텍스트 설정
+                        fill
+                        className="object-fill" // 이미지 스타일 적용
+                    />
+                </div>
+                <h1 className="press text-[24px] text-[#CECECE] mt-[12px] mb-[20px]">
                     {category ? category.title : 'Loading...'}
                 </h1>
 
@@ -392,7 +415,7 @@ export default function CategoryDetail() {
                             ))}
                         </select>
                         <button
-                            className="bg-[#ff8fab] text-white pr-[10px] pl-[10px] rounded-md shadow-[0_0_10px_#ff8fab] transition-shadow"
+                            className="bg-[#eaeaea] text-black pr-[10px] pl-[10px] rounded-md shadow-[0_0_10px_#eaeaea] transition-shadow"
                             type="submit"
                         >
                             create
