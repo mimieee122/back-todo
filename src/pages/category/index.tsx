@@ -16,8 +16,8 @@ export default function Main() {
     return (
         <div className="flex flex-col items-center justify-center">
             <nav className="flex flex-row text-[18px] justify-between items-center nav w-screen bg-[#EAEAEA]  p-[10px] pl-[20px] h-[50px] pr-[20px] bg-opacity-50 ">
-                <div className="flex flex-row gap-[10px]">
-                    <div className=" relative flex flex-col gap-0 items-start w-[30px] h-[30px] mt-[8px] overflow-hidden">
+                <div className="flex flex-row items-center gap-[10px]">
+                    <div className=" relative flex flex-col gap-0 items-center w-[25px] h-[25px] mt-[6px] overflow-hidden">
                         <Image
                             src="/assets/images/profile.png"
                             fill // 부모 요소에 가득 차게 함

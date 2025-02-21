@@ -329,7 +329,7 @@ export default function CategoryDetail() {
         <div className=" flex flex-col items-center justify-center  ">
             <nav className="flex flex-row nav text-[18px] m-0 justify-between items-center w-screen p-[10px] pl-[20px] pr-[20px] h-[50px] bg-[#eaeaea] bg-opacity-50">
                 <div className="flex flex-row  justify-start gap-[10px]">
-                    <div className="relative flex flex-col gap-0 items-start w-[30px] h-[30px] mt-[8px] overflow-hidden ">
+                    <div className="relative flex flex-col gap-0 items-center w-[25px] h-[25px] mt-[6px] overflow-hidden ">
                         <Image
                             src="/assets/images/profile.png"
                             fill
