@@ -218,7 +218,7 @@ export default function CategoryDetail() {
 
     const renderPriorityBoard = (priorityLabel: string) => {
         return (
-            <div className="flex flex-col star w-[400px]  h-[400px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-15 border-[#eaeaea] border-[2px] border-solid">
+            <div className="flex flex-col star w-[400px]  h-[400px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-60  border-[#eaeaea] border-[2px] border-solid">
                 {/* 중요도 이미지 */}
 
                 <div
@@ -311,7 +311,7 @@ export default function CategoryDetail() {
                                         </div>
                                         <div className="flex flex-row   gap-[10px]">
                                             <button
-                                                className="text-[white]"
+                                                className="text-[black]"
                                                 onClick={() =>
                                                     setEditingProject(
                                                         project.idx
@@ -321,7 +321,7 @@ export default function CategoryDetail() {
                                                 수정
                                             </button>
                                             <button
-                                                className="text-[white]"
+                                                className="text-[black]"
                                                 onClick={() =>
                                                     handleDeleteProject(
                                                         project.idx
@@ -378,50 +378,61 @@ export default function CategoryDetail() {
                     {category ? category.title : 'Loading...'}
                 </h1>
 
+                {/* 프로젝트 생성 폼 */}
+                <div className="flex flex-row justify-center items-center ">
+                    <form
+                        className="flex flex-col justify-center items-center h-[60px] mb-[20px]  p-4 rounded-md w-[1000px] bg-[#FFCC34] bg-opacity-30"
+                        onSubmit={handleCreateProject}
+                    >
+                        <div className="flex  flex-row gap-[10px]">
+                            <div className="w-[80px] h-[40px]  relative">
+                                <Image
+                                    src="/assets/images/write.svg"
+                                    fill
+                                    alt="Profile picture"
+                                    className="object-fill"
+                                />
+                            </div>
+                            <input
+                                className="pr-1 w-[300px] h-[40px] pl-1 rounded-md text-black text-[18px]"
+                                type="text"
+                                value={createTitle}
+                                name="createTitle"
+                                onChange={(e) => setCreateTitle(e.target.value)}
+                                placeholder="write your to-do"
+                            />
+                            <select
+                                className="rounded-md w-[100px]"
+                                value={createPriorityIdx}
+                                name="createPriorityIdx"
+                                onChange={(e) =>
+                                    setCreatePriorityIdx(e.target.value)
+                                }
+                            >
+                                {priorities.map((priority) => (
+                                    <option
+                                        key={priority.idx}
+                                        value={priority.idx}
+                                    >
+                                        {priority.label}
+                                    </option>
+                                ))}
+                            </select>
+                            <button
+                                className="bg-[#FFCC34] bg-opacity-60 text-black w-[100px] pr-[10px] pl-[10px] rounded-md shadow-[0_0_10px_#eaeaea] transition-shadow"
+                                type="submit"
+                            >
+                                create
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
                 <div className="flex flex-row stars ml-2 mr-2 justify-center relative gap-[35px]">
                     {renderPriorityBoard('HIGH')}
                     {renderPriorityBoard('MEDIUM')}
                     {renderPriorityBoard('LOW')}
                 </div>
-            </div>
-
-            {/* 프로젝트 생성 폼 */}
-            <div className="flex flex-row justify-center items-center fixed bottom-0">
-                <form
-                    className="flex flex-col justify-center items-center h-[50px]  p-4 rounded-md w-screen bg-white bg-opacity-10"
-                    onSubmit={handleCreateProject}
-                >
-                    <div className="flex bar flex-row gap-[10px]">
-                        <input
-                            className="pr-1 w-[160px] pl-1 rounded-md text-black text-[18px]"
-                            type="text"
-                            value={createTitle}
-                            name="createTitle"
-                            onChange={(e) => setCreateTitle(e.target.value)}
-                            placeholder="write your to-do"
-                        />
-                        <select
-                            className="rounded-md"
-                            value={createPriorityIdx}
-                            name="createPriorityIdx"
-                            onChange={(e) =>
-                                setCreatePriorityIdx(e.target.value)
-                            }
-                        >
-                            {priorities.map((priority) => (
-                                <option key={priority.idx} value={priority.idx}>
-                                    {priority.label}
-                                </option>
-                            ))}
-                        </select>
-                        <button
-                            className="bg-[#eaeaea] text-black pr-[10px] pl-[10px] rounded-md shadow-[0_0_10px_#eaeaea] transition-shadow"
-                            type="submit"
-                        >
-                            create
-                        </button>
-                    </div>
-                </form>
             </div>
         </div>
     )
