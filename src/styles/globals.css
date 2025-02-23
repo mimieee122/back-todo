@@ -159,7 +159,7 @@ body {
         display: flex;
         flex-direction: column;
 
-        height: 400px;
+        height: 200px;
         justify-items: center;
         align-items: center;
     }

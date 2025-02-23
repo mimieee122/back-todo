@@ -193,11 +193,11 @@ export default function CategoryDetail() {
     const showPriority = (priorityLabel) => {
         switch (priorityLabel) {
             case 'HIGH':
-                return '/assets/images/high.png' // 첫 번째 카테고리 이미지
+                return '/assets/images/1 Star.svg' // 첫 번째 카테고리 이미지
             case 'MEDIUM':
-                return '/assets/images/medium.png' // 두 번째 카테고리 이미지
+                return '/assets/images/2 Star.svg' // 두 번째 카테고리 이미지
             case 'LOW':
-                return '/assets/images/low.png' // 기본 이미지
+                return '/assets/images/3 Star.svg' // 기본 이미지
         }
     }
 
@@ -218,23 +218,27 @@ export default function CategoryDetail() {
 
     const renderPriorityBoard = (priorityLabel: string) => {
         return (
-            <div className="flex flex-col star w-[400px]  h-[400px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-white bg-opacity-60  border-[#eaeaea] border-[2px] border-solid">
+            <div className="flex flex-row star w-[800px]  h-[200px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-opacity-60  border-[#eaeaea] border-[2px] border-solid">
                 {/* 중요도 이미지 */}
 
-                <div
-                    style={{
-                        backgroundImage: `url(${showPriority(priorityLabel)})`,
-                        backgroundSize: 'contain',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat',
-                    }}
-                    className="flex w-[150px] h-[40px] starImage "
-                ></div>
+                <div className="flex flex-col gap-[10px]">
+                    <div
+                        style={{
+                            backgroundImage: `url(${showPriority(
+                                priorityLabel
+                            )})`,
+                            backgroundSize: 'contain',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat',
+                        }}
+                        className="flex w-[150px] h-[40px] starImage "
+                    ></div>
 
-                <h2 className="text-center relative mt-[10px] z-20 label text-[15px]  text-black mb-[10px]">
-                    {priorityLabel}
-                </h2>
-                <ul className="project-list w-[380px] flex flex-col gap-[5px]">
+                    <h2 className="text-center relative mt-[10px] z-20 label text-[15px]  text-black mb-[10px]">
+                        {priorityLabel}
+                    </h2>
+                </div>
+                <ul className="project-list w-[380px] flex flex-col overflow-y-auto gap-[5px]">
                     {projects
                         ?.filter(
                             (project) =>
@@ -381,7 +385,7 @@ export default function CategoryDetail() {
                 {/* 프로젝트 생성 폼 */}
                 <div className="flex flex-row justify-center items-center ">
                     <form
-                        className="flex flex-col justify-center items-center h-[60px] mb-[20px]  p-4 rounded-md w-[1000px] bg-[#FFCC34] bg-opacity-30"
+                        className="flex flex-col justify-center items-center h-[60px] mb-[20px]  p-4 rounded-3xl w-[800px] bg-[white] bg-opacity-20"
                         onSubmit={handleCreateProject}
                     >
                         <div className="flex  flex-row gap-[10px]">
@@ -428,7 +432,7 @@ export default function CategoryDetail() {
                     </form>
                 </div>
 
-                <div className="flex flex-row stars ml-2 mr-2 justify-center relative gap-[35px]">
+                <div className="flex flex-col stars ml-2 mr-2 justify-center relative gap-[35px]">
                     {renderPriorityBoard('HIGH')}
                     {renderPriorityBoard('MEDIUM')}
                     {renderPriorityBoard('LOW')}
