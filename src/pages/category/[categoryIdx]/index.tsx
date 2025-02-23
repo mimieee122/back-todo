@@ -220,7 +220,7 @@ export default function CategoryDetail() {
 
     // 중요도 기준으로 정렬
     const sortedProjects = isSorted
-        ? [...projects].sort((a, b) => {
+        ? [...(projects || [])].sort((a, b) => {
               const priorityA = priorities.find(
                   (priority) => priority.idx === a.priorityIdx
               ).idx
@@ -229,135 +229,7 @@ export default function CategoryDetail() {
               ).idx
               return priorityA - priorityB // 중요도에 따라 오름차순 정렬
           })
-        : projects // 정렬하지 않을 경우 원래의 배열 사용
-
-    // const renderPriorityBoard = (priorityLabel: string) => {
-    //     return (
-    //         <div className="flex flex-row star w-[800px]  h-[200px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-opacity-60  border-[#eaeaea] border-[2px] border-solid">
-    //             {/* 중요도 이미지 */}
-
-    //             <div className="flex flex-col gap-[10px]">
-    //                 <div
-    //                     style={{
-    //                         backgroundImage: `url(${showPriority(
-    //                             priorityLabel
-    //                         )})`,
-    //                         backgroundSize: 'contain',
-    //                         backgroundPosition: 'center',
-    //                         backgroundRepeat: 'no-repeat',
-    //                     }}
-    //                     className="flex w-[150px] h-[40px] starImage "
-    //                 ></div>
-
-    //                 <h2 className="text-center relative mt-[10px] z-20 label text-[15px]  text-black mb-[10px]">
-    //                     {priorityLabel}
-    //                 </h2>
-    //             </div>
-    //             <ul className="project-list w-[380px] flex flex-col overflow-y-auto gap-[5px]">
-    //                 {projects
-    //                     ?.filter(
-    //                         (project) =>
-    //                             priorities.find(
-    //                                 (priority) =>
-    //                                     priority.idx === project.priorityIdx
-    //                             )?.label === priorityLabel
-    //                     )
-    //                     .map((project) => (
-    //                         <li
-    //                             key={project.idx}
-    //                             className="task flex flex-row justify-center pr-1 pl-1 gap-[10px] mt-[3px]"
-    //                         >
-    //                             {editingProject === project.idx ? (
-    //                                 <form
-    //                                     onSubmit={(e) => handleUpdateProject(e)}
-    //                                     className="flex flex-row gap-[10px] text-[12px]"
-    //                                 >
-    //                                     <input
-    //                                         type="text"
-    //                                         value={editTitle}
-    //                                         name="editTitle"
-    //                                         onChange={(e) =>
-    //                                             setEditTitle(e.target.value)
-    //                                         }
-    //                                     />
-    //                                     <select
-    //                                         value={editPriorityIdx}
-    //                                         name="editPriorityIdx"
-    //                                         onChange={(e) =>
-    //                                             setEditPriorityIdx(
-    //                                                 e.target.value
-    //                                             )
-    //                                         }
-    //                                     >
-    //                                         {priorities.map((priority) => (
-    //                                             <option
-    //                                                 key={priority.idx}
-    //                                                 value={priority.idx}
-    //                                             >
-    //                                                 {priority.label}
-    //                                             </option>
-    //                                         ))}
-    //                                     </select>
-    //                                     <button type="submit">Update</button>
-    //                                     <button
-    //                                         type="button"
-    //                                         onClick={() =>
-    //                                             setEditingProject(null)
-    //                                         }
-    //                                     >
-    //                                         Cancel
-    //                                     </button>
-    //                                 </form>
-    //                             ) : (
-    //                                 <div className="flex check flex-row border-[1px] p-1 m-1 text-[13px] hover:shadow-[0_0_15px_white]  shadow-[0_0_10px_white] transition-shadow rounded-sm bg-white bg-opacity-15 border-[#eaeaea] border-solid justify-between items-center w-full">
-    //                                     <input
-    //                                         type="checkbox"
-    //                                         checked={
-    //                                             !!completedProjects[project.idx]
-    //                                         }
-    //                                         onChange={() =>
-    //                                             toggleCompletion(project.idx)
-    //                                         }
-    //                                     />
-    //                                     <div
-    //                                         className={`${
-    //                                             completedProjects[project.idx]
-    //                                                 ? 'line-through text-gray-500'
-    //                                                 : ''
-    //                                         }`}
-    //                                     >
-    //                                         {project.title}
-    //                                     </div>
-    //                                     <div className="flex flex-row   gap-[10px]">
-    //                                         <button
-    //                                             className="text-[black]"
-    //                                             onClick={() =>
-    //                                                 setEditingProject(
-    //                                                     project.idx
-    //                                                 )
-    //                                             }
-    //                                         >
-    //                                             수정
-    //                                         </button>
-    //                                         <button
-    //                                             className="text-[black]"
-    //                                             onClick={() =>
-    //                                                 handleDeleteProject(
-    //                                                     project.idx
-    //                                                 )
-    //                                             }
-    //                                         >
-    //                                             삭제
-    //                                         </button>
-    //                                     </div>
-    //                                 </div>
-    //                             )}
-    //                         </li>
-    //                     ))}
-    //             </ul>
-    //         </div>
-    //     )
-    // }
+        : projects || [] // 정렬하지 않을 경우 원래의 배열 사용
 
     return (
         <div className=" flex flex-col items-center justify-center  ">
@@ -463,7 +335,7 @@ export default function CategoryDetail() {
                             {isSorted ? '정렬 해제' : '중요도 순으로 정렬'}
                         </button>
                         <ul className="project-list w-full flex flex-col overflow-y-auto gap-[5px]">
-                            {sortedProjects.map((project) => (
+                            {sortedProjects?.map((project) => (
                                 <li
                                     key={project.idx}
                                     className="task flex flex-row justify-between pr-1 pl-1 gap-[10px] mt-[3px]"
