@@ -26,9 +26,9 @@ export function SignUp() {
         >
             {/* 달력과 SIGN UP 폼을 포함하는 부모 div */}
             <div className="relative flex flex-col gap-[20px] items-center mb-[20px] ">
-                <div className="relative w-[285px] h-[300px] z-20 ">
+                <div className="relative w-[250px] h-[265px] z-20 ">
                     <Image
-                        src="/assets/images/signup.svg"
+                        src="/assets/images/emoji0.svg"
                         alt="flan 이모지"
                         layout="fill"
                         objectFit="cover"
