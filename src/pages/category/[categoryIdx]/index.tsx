@@ -327,25 +327,25 @@ export default function CategoryDetail() {
                     {renderPriorityBoard('MEDIUM')}
                     {renderPriorityBoard('LOW')}
                 </div> */}
-                    <div className="flex flex-col w-[1000px] h-[500px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-opacity-60 border-[#eaeaea] border-[2px] border-solid">
-                        <h2 className="text-center mb-4 text-[20px]">
-                            투두 목록
-                        </h2>
-                        <button onClick={() => setIsSorted((prev) => !prev)}>
+                    <div className="flex flex-col w-[1000px] h-[400px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-opacity-60 border-[#eaeaea] border-[2px] border-solid">
+                        <button
+                            className="w-[850px] text-right mt-[20px] mb-[20px]"
+                            onClick={() => setIsSorted((prev) => !prev)}
+                        >
                             {isSorted ? '정렬 해제' : '중요도 순으로 정렬'}
                         </button>
-                        <ul className="project-list w-full flex flex-col overflow-y-auto gap-[5px]">
+                        <ul className="project-list w-full flex flex-col items-center overflow-y-auto gap-[8px]">
                             {sortedProjects?.map((project) => (
                                 <li
                                     key={project.idx}
-                                    className="task flex flex-row justify-between pr-1 pl-1 gap-[10px] mt-[3px]"
+                                    className="task flex flex-row  justify-between pr-1 pl-1 gap-[8px] mt-[3px]"
                                 >
                                     {editingProject === project.idx ? (
                                         <form
                                             onSubmit={(e) =>
                                                 handleUpdateProject(e)
                                             }
-                                            className="flex flex-row gap-[10px] text-[12px]"
+                                            className="flex flex-row justify-center text-[13px] items-center w-[800px] gap-[8px]"
                                         >
                                             <input
                                                 type="text"
@@ -354,6 +354,7 @@ export default function CategoryDetail() {
                                                 onChange={(e) =>
                                                     setEditTitle(e.target.value)
                                                 }
+                                                className="w-[200px] h-[40px] rounded-md"
                                             />
                                             <select
                                                 value={editPriorityIdx}
@@ -363,6 +364,7 @@ export default function CategoryDetail() {
                                                         e.target.value
                                                     )
                                                 }
+                                                className=" h-[40px] rounded-md"
                                             >
                                                 {priorities.map((priority) => (
                                                     <option
@@ -386,7 +388,7 @@ export default function CategoryDetail() {
                                             </button>
                                         </form>
                                     ) : (
-                                        <div className="flex check flex-row border-[1px] p-1 m-1 text-[13px] hover:shadow-[0_0_15px_white] shadow-[0_0_10px_white] transition-shadow rounded-sm bg-white bg-opacity-15 border-[#eaeaea] border-solid justify-between items-center w-full">
+                                        <div className="flex check flex-row border-[1px] gap-[10px] p-[10px] m-1 text-[16px] hover:shadow-[0_0_15px_white] shadow-[0_0_10px_white] transition-shadow rounded-sm bg-white bg-opacity-15 border-[#eaeaea] border-solid justify-between items-center w-[600px]">
                                             <input
                                                 type="checkbox"
                                                 checked={
