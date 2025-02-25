@@ -388,7 +388,7 @@ export default function CategoryDetail() {
                                             </button>
                                         </form>
                                     ) : (
-                                        <div className="flex check flex-row border-[1px] gap-[10px] p-[10px] m-1 text-[16px] hover:shadow-[0_0_15px_white] shadow-[0_0_10px_white] transition-shadow rounded-sm bg-white bg-opacity-15 border-[#eaeaea] border-solid justify-between items-center w-[600px]">
+                                        <div className="flex check flex-row border-[1px] p-[10px] m-1 text-[16px] hover:shadow-[0_0_15px_white] shadow-[0_0_10px_white] transition-shadow rounded-sm bg-white bg-opacity-15 border-[#eaeaea] border-solid justify-between items-center w-[600px]">
                                             <input
                                                 type="checkbox"
                                                 checked={
@@ -413,9 +413,9 @@ export default function CategoryDetail() {
                                             >
                                                 {project.title}
                                             </div>
-                                            <div className="flex flex-row gap-[10px]">
+                                            <div className="flex flex-row gap-[16px] ">
                                                 <button
-                                                    className="text-[black]"
+                                                    className="text-[black] w-[80px] h-[20px] bg-white rounded-md"
                                                     onClick={() =>
                                                         setEditingProject(
                                                             project.idx
@@ -425,7 +425,7 @@ export default function CategoryDetail() {
                                                     수정
                                                 </button>
                                                 <button
-                                                    className="text-[black]"
+                                                    className="text-[black] w-[80px] h-[20px] bg-white rounded-md"
                                                     onClick={() =>
                                                         handleDeleteProject(
                                                             project.idx
