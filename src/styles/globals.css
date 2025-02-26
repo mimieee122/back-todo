@@ -65,7 +65,7 @@ body {
 /* 개별 카테고리 화면*/
 
 .grayBox {
-    @apply w-[400px] md:w-[600px];
+    @apply w-[400px] md:w-[600px] xl:w-[800px];
 }
 
 .check {

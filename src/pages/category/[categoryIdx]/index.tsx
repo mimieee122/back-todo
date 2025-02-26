@@ -327,9 +327,9 @@ export default function CategoryDetail() {
                     {renderPriorityBoard('MEDIUM')}
                     {renderPriorityBoard('LOW')}
                 </div> */}
-                    <div className="flex flex-col grayBox w-[1000px] h-[400px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-opacity-60 border-[#eaeaea] border-[2px] border-solid">
+                    <div className="flex flex-col grayBox h-[400px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-opacity-60 border-[#eaeaea] border-[2px] border-solid">
                         <button
-                            className="w-[850px] text-right mt-[20px] mb-[20px]"
+                            className="check text-right mt-[20px] mb-[20px]"
                             onClick={() => setIsSorted((prev) => !prev)}
                         >
                             {isSorted ? '정렬 해제' : '중요도 순으로 정렬'}
