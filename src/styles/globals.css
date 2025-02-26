@@ -49,6 +49,8 @@ body {
     overflow-x: hidden;
 }
 
+/* 카테고리 목록 화면*/
+
 .box {
     @apply w-[160px] h-[220px] text-[16px] sm:w-[170px] sm:h-[235px] md:text-[20px] md:w-[170px] md:h-[235px] lg:text-[20px] lg:w-[180px] lg:h-[260px] xl:text-[22px] xl:w-[220px] xl:h-[320px];
 }
@@ -58,6 +60,16 @@ body {
 
 .sentence {
     @apply hidden lg:block;
+}
+
+/* 개별 카테고리 화면*/
+
+.grayBox {
+    @apply w-[400px] md:w-[600px];
+}
+
+.check {
+    @apply w-[300px] md:w-[400px] lg:w-[500px] xl:w-[600px];
 }
 
 .category {
@@ -85,20 +97,6 @@ body {
     body {
         overflow: auto;
     } */
-
-    .think {
-        width: 300px;
-        height: 350px;
-        margin-top: 5px;
-    }
-
-    .all {
-        display: flex; /* Flexbox 활성화 */
-        justify-content: center; /* 가로 방향 중앙 정렬 */
-        align-items: center; /* 세로 방향 중앙 정렬 */
-        max-width: 100%; /* 너비를 100%로 설정 */
-        height: 100%;
-    }
 
     .name {
         display: none;
@@ -143,17 +141,7 @@ body {
     }
 
     .project-list {
-        width: 350px;
         margin-top: 30px;
-    }
-
-    .stars {
-        display: flex;
-        flex-direction: column;
-
-        height: 200px;
-        justify-items: center;
-        align-items: center;
     }
 
     .bar {

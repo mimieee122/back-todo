@@ -327,7 +327,7 @@ export default function CategoryDetail() {
                     {renderPriorityBoard('MEDIUM')}
                     {renderPriorityBoard('LOW')}
                 </div> */}
-                    <div className="flex flex-col w-[1000px] h-[400px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-opacity-60 border-[#eaeaea] border-[2px] border-solid">
+                    <div className="flex flex-col grayBox w-[1000px] h-[400px] justify-start items-center overflow-y-auto shadow-[0_0_10px_white] transition-shadow rounded-xl bg-opacity-60 border-[#eaeaea] border-[2px] border-solid">
                         <button
                             className="w-[850px] text-right mt-[20px] mb-[20px]"
                             onClick={() => setIsSorted((prev) => !prev)}
@@ -388,7 +388,7 @@ export default function CategoryDetail() {
                                             </button>
                                         </form>
                                     ) : (
-                                        <div className="flex check flex-row border-[1px] p-[10px] m-1 text-[16px] hover:shadow-[0_0_15px_white] shadow-[0_0_10px_white] transition-shadow rounded-sm bg-white bg-opacity-15 border-[#eaeaea] border-solid justify-between items-center w-[600px]">
+                                        <div className="flex check flex-row border-[1px] p-[10px] m-1 text-[16px] hover:shadow-[0_0_15px_white] shadow-[0_0_10px_white] transition-shadow rounded-sm bg-white bg-opacity-15 border-[#eaeaea] border-solid justify-between items-center ">
                                             <input
                                                 type="checkbox"
                                                 checked={
