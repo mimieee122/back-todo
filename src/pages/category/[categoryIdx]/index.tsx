@@ -266,7 +266,7 @@ export default function CategoryDetail() {
                             className="object-fill" // 이미지 스타일 적용
                         />
                     </div>
-                    <h1 className="press text-[24px] text-[#CECECE] mt-[12px] mb-[20px]">
+                    <h1 className="press text-[28px] text-[#FFE490] mt-[12px] mb-[20px]">
                         {category ? category.title : 'Loading...'}
                     </h1>
 
@@ -401,6 +401,7 @@ export default function CategoryDetail() {
                                                         project.idx
                                                     )
                                                 }
+                                                className="w-[20px] h-[20px]"
                                             />
                                             <div
                                                 className={`${
@@ -415,7 +416,7 @@ export default function CategoryDetail() {
                                             </div>
                                             <div className="flex flex-row gap-[16px] ">
                                                 <button
-                                                    className="text-[black] w-[80px] h-[20px] bg-white rounded-md"
+                                                    className="text-[black] w-[80px] h-[30px] bg-white rounded-md"
                                                     onClick={() =>
                                                         setEditingProject(
                                                             project.idx
@@ -425,7 +426,7 @@ export default function CategoryDetail() {
                                                     수정
                                                 </button>
                                                 <button
-                                                    className="text-[black] w-[80px] h-[20px] bg-white rounded-md"
+                                                    className="text-[black] w-[80px] h-[30px] bg-white rounded-md"
                                                     onClick={() =>
                                                         handleDeleteProject(
                                                             project.idx

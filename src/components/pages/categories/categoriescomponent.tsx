@@ -58,17 +58,17 @@ export default function CategoriesComponent() {
     }
 
     return (
-        <ul className="flex flex-row cards justify-center gap-[40px] px-12">
+        <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-[40px] justify-items-center">
             {categories.map((category) => (
                 <li
-                    className="flex flex-col items-center cursor-pointer justify-center w-[220px] h-[320px] card text-center text-[20px]  font-extrabold text-white shadow-[0_0_10px_gray] border-solid rounded-xl"
+                    className="flex flex-col box items-center cursor-pointer justify-center text-center text-[20px]  font-extrabold text-white shadow-[0_0_10px_gray] border-solid rounded-xl"
                     key={category.idx}
                     onClick={() => handleCategoryClick(category.idx)}
                     style={{
                         background: getGradientBackground(category.title),
                     }} // 각 카테고리의 고유 키 설정
                 >
-                    <div className="w-[200px] h-[260px] relative">
+                    <div className="red relative">
                         <Image
                             src={showImage(category.title)} // 카테고리 제목에 맞는 이미지 소스 설정
                             alt={category.title} // 이미지 대체 텍스트 설정
@@ -78,7 +78,7 @@ export default function CategoriesComponent() {
                     </div>
                     <button
                         onClick={() => handleCategoryClick(category.idx)} // 버튼 클릭 시 카테고리 클릭 핸들러 실행
-                        className="w-full h-[80px]  items-center justify-center  text-white " // 버튼 스타일 적용
+                        className="w-full items-center justify-center  text-white " // 버튼 스타일 적용
                     >
                         {category.title} {/* 버튼에 카테고리 제목 표시 */}
                     </button>

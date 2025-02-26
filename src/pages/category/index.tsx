@@ -34,7 +34,7 @@ export default function Main() {
                 </div>
             </nav>
             <div className="flex  flex-col two justify-center items-center  gap-[80px] mt-[100px]">
-                <h1 className="press text-[24px] text-[#CECECE]   ">
+                <h1 className="press sentence text-[24px] text-[#CECECE]   ">
                     CREATE PLAN FAST WITH FLAN
                 </h1>
                 <CategoriesComponent />
