@@ -34,7 +34,7 @@ body {
     padding: 0;
     width: 100%; /* 너비를 100%로 설정 */
     height: 100%;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     font-family: Pretendard-Regular;
 
     background-color: #fff4d2;
@@ -45,7 +45,7 @@ body {
     background-position: center; */
     display: flex; /* flexbox 사용 */
     justify-content: center; /* 가로 방향 중앙 정렬 */
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
 }
 
@@ -94,10 +94,10 @@ body {
 }
 
 .press {
-    font-family: 'Press Start 2P', sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    -webkit-text-stroke: 1.2px black;
+    font-family: PartialSansKR-Regular;
+    color: black;
+    font-size: 18px;
+    -webkit-text-stroke: 1px black;
 }
 
 @media (max-width: 817px) {
@@ -147,20 +147,11 @@ body {
         align-items: center;
     }
 
-    .user {
-        margin-top: 14px;
-    }
-
     .white {
         font-size: 18px;
         height: 60px;
     }
-
-    .project-list {
-        margin-top: 30px;
-    }
-
-    .bar {
+    - .bar {
         font-size: 12px;
     }
     .check {
