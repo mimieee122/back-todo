@@ -235,14 +235,6 @@ export default function CategoryDetail() {
         <div className=" flex flex-col items-center justify-center  ">
             <nav className="flex flex-row nav text-[18px] m-0 justify-between items-center w-screen p-[10px] pl-[20px] pr-[20px] h-[50px] bg-[#eaeaea] bg-opacity-50">
                 <div className="flex flex-row  justify-start gap-[10px]">
-                    <div className="relative flex flex-col gap-0 items-center w-[25px] h-[25px] mt-[6px] overflow-hidden ">
-                        <Image
-                            src="/assets/images/profile.png"
-                            fill
-                            alt="Profile picture"
-                            className="object-fill"
-                        />
-                    </div>
                     <p className="user mt-[7px]">USER : {me?.data?.nickname}</p>
                 </div>
                 <div className="flex flex-row mt-[10px] gap-[30px]">
@@ -273,11 +265,11 @@ export default function CategoryDetail() {
                     {/* 프로젝트 생성 폼 */}
                     <div className="flex flex-row justify-center items-center ">
                         <form
-                            className="flex flex-col justify-center items-center h-[60px] mb-[20px]  p-4 rounded-3xl w-[800px] bg-[white] bg-opacity-20"
+                            className="flex flex-col justify-center items-center h-[30px] lg:h-[60px] mb-[20px]  p-4 rounded-3xl w-[400px] md:w-[600px] lg:w-[800px] bg-[white] bg-opacity-20"
                             onSubmit={handleCreateProject}
                         >
                             <div className="flex  flex-row gap-[10px]">
-                                <div className="w-[80px] h-[40px]  relative">
+                                <div className="create1   relative">
                                     <Image
                                         src="/assets/images/write.svg"
                                         fill
@@ -286,7 +278,7 @@ export default function CategoryDetail() {
                                     />
                                 </div>
                                 <input
-                                    className="pr-1 w-[300px] h-[40px] pl-1 rounded-md text-black text-[18px]"
+                                    className="pr-1 create2 pl-1 rounded-md text-black text-[12px] lg:text-[18px]"
                                     type="text"
                                     value={createTitle}
                                     name="createTitle"
@@ -296,7 +288,7 @@ export default function CategoryDetail() {
                                     placeholder="write your to-do"
                                 />
                                 <select
-                                    className="rounded-md w-[100px]"
+                                    className="create3 rounded-md text-[12px] lg:text-[18px]"
                                     value={createPriorityIdx}
                                     name="createPriorityIdx"
                                     onChange={(e) =>
@@ -313,7 +305,7 @@ export default function CategoryDetail() {
                                     ))}
                                 </select>
                                 <button
-                                    className="bg-[#FFCC34] bg-opacity-60 text-black w-[100px] pr-[10px] pl-[10px] rounded-md shadow-[0_0_10px_#eaeaea] transition-shadow"
+                                    className="bg-[#FFCC34] create4 text-[12px] lg:text-[18px] bg-opacity-60 text-black w-[100px] pr-[10px] pl-[10px] rounded-md shadow-[0_0_10px_#eaeaea] transition-shadow"
                                     type="submit"
                                 >
                                     create
@@ -401,7 +393,7 @@ export default function CategoryDetail() {
                                                         project.idx
                                                     )
                                                 }
-                                                className="w-[20px] h-[20px]"
+                                                className="w-[10px] h-[10px] lg:w-[20px] lg:h-[20px]"
                                             />
                                             <div
                                                 className={`${
@@ -416,7 +408,7 @@ export default function CategoryDetail() {
                                             </div>
                                             <div className="flex flex-row gap-[16px] ">
                                                 <button
-                                                    className="text-[black] w-[80px] h-[30px] bg-white rounded-md"
+                                                    className="text-[black] w-[40px] h-[15px] lg:w-[80px] lg:h-[30px] bg-white rounded-md"
                                                     onClick={() =>
                                                         setEditingProject(
                                                             project.idx
@@ -426,7 +418,7 @@ export default function CategoryDetail() {
                                                     수정
                                                 </button>
                                                 <button
-                                                    className="text-[black] w-[80px] h-[30px] bg-white rounded-md"
+                                                    className="text-[black] w-[40px] h-[15px] lg:w-[80px] lg:h-[30px] bg-white rounded-md"
                                                     onClick={() =>
                                                         handleDeleteProject(
                                                             project.idx

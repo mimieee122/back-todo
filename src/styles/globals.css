@@ -62,6 +62,22 @@ body {
     @apply hidden lg:block;
 }
 
+.create1 {
+    @apply w-[20px] h-[30px] lg:w-[80px] lg:h-[40px];
+}
+
+.create2 {
+    @apply w-[180px] h-[30px] lg:w-[300px] lg:h-[40px];
+}
+
+.create3 {
+    @apply w-[80px] h-[30px] lg:w-[100px] lg:h-[40px];
+}
+
+.create4 {
+    @apply w-[60px] h-[30px] lg:w-[100px] lg:h-[40px];
+}
+
 /* 개별 카테고리 화면*/
 
 .grayBox {

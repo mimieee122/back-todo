@@ -2,7 +2,6 @@ import CategoriesComponent from '@/components/pages/categories/categoriescompone
 import { LogOut } from '@/components/pages/home/logout'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import Image from 'next/image'
 
 export default function Main() {
     const me = useQuery({
@@ -17,14 +16,6 @@ export default function Main() {
         <div className="flex flex-col items-center justify-center">
             <nav className="flex flex-row text-[18px] justify-between items-center nav w-screen bg-[#EAEAEA]  p-[10px] pl-[20px] h-[50px] pr-[20px] bg-opacity-50 ">
                 <div className="flex flex-row items-center gap-[10px]">
-                    <div className=" relative flex flex-col gap-0 items-center w-[25px] h-[25px] mt-[6px] overflow-hidden">
-                        <Image
-                            src="/assets/images/profile.png"
-                            fill // 부모 요소에 가득 차게 함
-                            alt="프로필 사진"
-                            className="object-fill"
-                        />
-                    </div>
                     <p className="user  mt-[7px]">
                         USER : {me?.data?.nickname}
                     </p>
