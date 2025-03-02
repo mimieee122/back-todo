@@ -96,15 +96,17 @@ body {
 .press {
     font-family: PartialSansKR-Regular;
     color: black;
-    font-size: 18px;
-    -webkit-text-stroke: 1px black;
+    font-size: 24px;
 }
 
 @media (max-width: 817px) {
     .press {
-        font-family: 'Press Start 2P', sans-serif;
+        font-family: PartialSansKR-Regular;
+        color: black;
+        font-size: 24px;
+        /* font-family: 'Press Start 2P', sans-serif;
         font-weight: 400;
-        font-style: normal;
+        font-style: normal; */
     }
     .category {
         -webkit-text-stroke: 1px black;

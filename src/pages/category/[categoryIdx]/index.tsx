@@ -258,7 +258,7 @@ export default function CategoryDetail() {
                             className="object-fill" // 이미지 스타일 적용
                         />
                     </div>
-                    <h1 className="press text-[28px] text-[#FFE490] mt-[12px] mb-[20px]">
+                    <h1 className="press text-[28px] mt-[12px] mb-[20px]">
                         {category ? category.title : 'Loading...'}
                     </h1>
 
